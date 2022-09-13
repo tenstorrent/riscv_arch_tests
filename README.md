@@ -1,3 +1,3 @@
-# tt_riscv_arch_tests
+# RISC-V Architectural Self Checking Tests
 
 Git repository to contain RISC-V architectural tests
