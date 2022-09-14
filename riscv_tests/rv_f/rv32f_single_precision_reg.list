@@ -1,0 +1,4 @@
+name=rv32f_single_precision_reg_4 tool=whisper test=../tt_riscv_arch_tests/riscv_tests/rv_f/rv32f_single_precision_reg/rv32f_single_precision_reg_4 opts=default
+name=rv32f_single_precision_reg_3 tool=whisper test=../tt_riscv_arch_tests/riscv_tests/rv_f/rv32f_single_precision_reg/rv32f_single_precision_reg_3 opts=default
+name=rv32f_single_precision_reg_2 tool=whisper test=../tt_riscv_arch_tests/riscv_tests/rv_f/rv32f_single_precision_reg/rv32f_single_precision_reg_2 opts=default
+name=rv32f_single_precision_reg_1 tool=whisper test=../tt_riscv_arch_tests/riscv_tests/rv_f/rv32f_single_precision_reg/rv32f_single_precision_reg_1 opts=default
