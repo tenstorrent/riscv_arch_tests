@@ -69,7 +69,7 @@ class Runner:
           if tool == "" or testfile == "":
             sys.exit("Name, Tool and Test are mandatory")
           
-          print(f'name : {name} tool : {tool} opts : {opts} test : {testfile}')
+          #print(f'name : {name} tool : {tool} opts : {opts} test : {testfile}')
           test = QualTest(name)
         
           if tool == "whisper":
@@ -83,9 +83,11 @@ class Runner:
       test.run()
       temp = tuple([test.run_cmd,test.result.name])
       self.pass_fail_map[test.name] = temp   
-    print("{:^20s}|{:^400s}|{:^20s}|".format("TESTNAME","COMMAND","STATUS"))
+    print("|%-50s|%-50s|" % ("TESTNAME","STATUS"))
     for k,v in self.pass_fail_map.items():
-        print("{:^20s}|{:^400s}|{:^20s}|".format(k,v[0],v[1]))
+        print("|%-50s|%-50s|" % (k,v[1]))
+        if v[1] == "FAIL":
+          print(f'COMMAND : {v[0]}')
   
   def check_pass_fail(self,output):
     for line in output: 
