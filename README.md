@@ -11,6 +11,7 @@ These tests are released as binary (elf) files and generated for following RISC-
 1. RV64-I
 2. RV-M
 3. RV-F
+4. RVV [README](https://github.com/tenstorrent/riscv_arch_tests/tree/main/riscv_tests/rvv)
 
 The repository provides infrastructure to run the given tests on whisper (which is already submoduled here) currently.
 
@@ -39,6 +40,9 @@ The repository provides infrastructure to run the given tests on whisper (which 
 |       |-- rvm_multiply
 |       |-- rvm_divide
 |       `-- rvm_multiply
+|   `-- rvv                                              -- risc-v V-extension tests
+|       |-- vlen_128
+|       `-- README.md 
 `-- whisper
 ```
 
