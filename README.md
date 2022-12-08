@@ -5,6 +5,8 @@
 
 This Git repository to contain RISC-V architectural tests that can be run on the RISC-V design as well as on any RISC-V instruction set simulator like [whisper](https://github.com/tenstorrent/whisper) or [spike](https://github.com/riscv-software-src/riscv-isa-sim). The provided tests are self-checking in nature and they do follow semi-standard end of the test mechanism invented by Spike and also supported by [riscv-dv](https://github.com/google/riscv-dv). More detail on the unofficial discussion [here](https://github.com/riscv-software-src/riscv-isa-sim/issues/364#issuecomment-607657754). These tests has randomly generated register operands and operand data.
 
+These tests are generated using an internally developed tool at Tenstorrent, which parses ISA spec from [riscv-opcodes](https://github.com/riscv/riscv-opcodes), which is maintained by RISCV organization.
+
 These tests are released as binary (elf) files and generated for following RISC-V extensions:
 1. RV64-I
 2. RV-M
@@ -18,31 +20,25 @@ The repository provides infrastructure to run the given tests on whisper (which 
 |-- infra
 |-- riscv_tests
 |   |-- rv_f                                              -- risc-v F-extension tests and list files run quals
-|       |-- rv32f_single_precision_classify
-|       |-- rv32f_single_precision_compare
-|       |-- rv32f_single_precision_convert_move
-|       |-- rv32f_single_precision_load_store
-|       |-- rv32f_single_precision_reg
-|       |-- rv32f_single_precision_reg_reg
-|       `-- rv32f_single_precision_reg_reg_reg
+|       |-- rvf_single_precision_classify
+|       |-- rvf_single_precision_compare
+|       |-- rvf_single_precision_convert_move
+|       |-- rvf_single_precision_load_store
+|       |-- rvf_single_precision_reg
+|       |-- rvf_single_precision_reg_reg
+|       `-- rvf_single_precision_reg_reg_reg
 |   |-- rv_i                                              -- risc-v I-extension tests
-|       |-- rv32i_compute_register_immediate
-|       |-- rv32i_compute_register_register
-|       |-- rv32i_control_transfer
-|       |-- rv32i_control_transfer_conditional
-|       |-- rv32i_control_transfer_unconditional
-|       |-- rv64i_load_store
-|       |-- rv64i_compute_register_immediate
-|       |-- rv64i_compute_register_register
-|       |-- rv64i_control_transfer
-|       |-- rv64i_control_transfer_conditional
-|       |-- rv64i_control_transfer_unconditional
-|       `-- rv64i_load_store
+|       |-- rvi_compute_register_immediate
+|       |-- rvi_compute_register_register
+|       |-- rvi_control_transfer
+|       |-- rvi_control_transfer_conditional
+|       |-- rvi_control_transfer_unconditional
+|       `-- rvi_load_store
 |   `-- rv_m                                              -- risc-v M-extension tests
-|       |-- rv32m_divide
-|       |-- rv32m_multiply
-|       |-- rv32m_divide
-|       `-- rv32m_multiply
+|       |-- rvm_divide
+|       |-- rvm_multiply
+|       |-- rvm_divide
+|       `-- rvm_multiply
 `-- whisper
 ```
 
