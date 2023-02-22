@@ -1,13 +1,11 @@
 {
     "xlen" : 64,
-
-    "isa" : "rv64imafvszfh_zba_zbb",
-
+    "isa" : "rv64imafdcvszfh_zba_zbb_zbc_zbs",
     "enable_performance_counters" : "true",
     "perf_count_atomic_load_store" : "true",
     "perf_count_fp_load_store" : "true",
 
-    "page_fault_on_first_access" : false,
+    "page_fault_on_first_access" : true,
 
     "Comment" : "Print memory addres of ld/st instructions in trace log.",
     "print_load_store_address" : "true",
@@ -17,38 +15,34 @@
 
     "csr" : {
 	"misa" : {
-	    "reset-comment" : "imabfvsu",
-	    "reset" : "0x40341123",
+	    "reset-comment" : "imabfcvsu",
+	    "reset" : "0x4034112f",
 	    "mask-comment" : "Misa is not writable by CSR instructions",
 	    "mask" : "0x0"
 	},
 
 	"mstatus" : {
 	    "mstatus-comment" : "FIXME : Hardwired to zero except for FS, VS, and SD.",
-	    "reset" : "0x47800",
-	    "mask" : "0xffffffffffffffff",
-	    "poke_mask" : "0x0"
+	    "reset" : "0x47804",
+	    "mask" : "0xffffffffffffffff"
 	},
 
 	"satp" : {
 	    "satp-comment" : "Hardwired to zero except for FS, VS, and SD.",
 	    "reset" : "0x0",
-	    "mask" : "0xffffffffffffffff",
-	    "poke_mask" : "0x0"
+	    "mask" : "0xffffffffffffffff"
 	},
 
 	"stvec" : {
 	    "stvec-comment" : "FIXME : Hardwired to zero except for FS, VS, and SD.",
 	    "reset" : "0x0",
-	    "mask" : "0xffffffffffffffff",
-	    "poke_mask" : "0x0"
+	    "mask" : "0xffffffffffffffff"
 	},
 
 	"medeleg" : {
 	    "medeleg-comment" : "FIXME : Hardwired to zero except for FS, VS, and SD.",
 	    "reset" : "0x0",
-	    "mask" : "0xffff0000fff00fff",
-	    "poke_mask" : "0x0"
+	    "mask" : "0xffffffffffffffff"
 	},
 
 	"tselect" : {
@@ -193,7 +187,7 @@
     },
 
     "vector" : {
-	"bytes_per_vec" : 16,
+	"bytes_per_vec" : 32,
 	"min_bytes_per_elem" : 1,
 	"Comment" : "Hardware supports 32-bit ELEN plus some widening operations from 32 to 64-bit",
 	"max_bytes_per_elem" : 8
