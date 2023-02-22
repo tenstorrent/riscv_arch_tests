@@ -9,14 +9,14 @@ We currently support tests with following configuration:
 
 "vsew"  : ["8","16","32","64"]
 
-"vlen"  : "128"
+"vlen"  : ["128", "256"]
 
 Each instruction has tests for each of the possible combined configuration of vlmul and vsew. As usual, the data operands, immediate values and addresses are randomized for every instruction to create interesting scenarios and data. A project ideally wants to run a number of these tests exhaustively to cover every possible combined configuration, ideally in an emulation environment (since you can run a much longer test exhaustively). These set of tests are sample tests where every instruction has two discrete tests in each configuration. Our automated test generator is capable of generating exhaustive list of these tests in a large number of repitition to cover the entire architectural verification space for vector instructions effectively.
 
 ## Future work
-1. We have a few categories of instructions that we are still working on and should be released here soon.
+1. We have a few categories of instructions that we are still working on and should be released here soon. (Widening, narrowing, etc.)
 2. Add remaining vector configuration of TA, MA, VXRM, VSTART
-3. Make VLEN configurable
+3. Make VLEN configurable at runtime
 
 # Test organization
 The vector tests are categorized based on following categories
@@ -405,7 +405,6 @@ vamomaxei16.v
 vamominuei16.v 
 vamomaxuei16.v 
 
-
 vamoaddei32.v  
 vamoxorei32.v  
 vamoandei32.v  
@@ -414,7 +413,6 @@ vamominei32.v
 vamomaxei32.v  
 vamominuei32.v 
 vamomaxuei32.v 
-
 
 vamoaddei64.v  
 vamoxorei64.v  
