@@ -93,6 +93,8 @@ class Runner:
     for line in output: 
       if "FAILED" in line:
         return PassFailEnum.FAILED
+    if "FAILED" in output:
+        return PassFailEnum.FAILED
     return PassFailEnum.PASS
 
 class WhisperRunner(Runner):
