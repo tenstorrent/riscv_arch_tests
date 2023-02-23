@@ -13,7 +13,7 @@ These tests are released as binary (elf) files and generated for following RISC-
 3. RV-F
 4. RV-D
 5. RV-C
-6. RV-V
+6. RV-V [README](https://github.com/tenstorrent/riscv_arch_tests/tree/main/riscv_tests/rvv)
 7. Zfh
 8. Zba, Zbb, Zbc, Zbs
 
@@ -41,6 +41,8 @@ The repository provides infrastructure to run the given tests on whisper (which 
 |   |   `-- rvi_load_store
 |   |-- rv_m                                              -- risc-v M-extension tests
 |   |   |-- rvm_divide
+|   |   |-- rvm_multiply
+|   |   |-- rvm_divide
 |   |   `-- rvm_multiply
 |   |-- rv_d                                              -- risc-v D-extension tests
 |   |   `-- rvd
@@ -50,44 +52,44 @@ The repository provides infrastructure to run the given tests on whisper (which 
 |   |   `-- rvcd
 |   |-- rvv                                               -- risc-v V-extension tests
 |   |   |-- vlen_128
-|   |   |   |-- opivi_2       
-|   |   |   |-- opivv_2      
-|   |   |   |-- opivx_2       
-|   |   |   |-- opmvv_3       
-|   |   |   |-- opmvv_4       
-|   |   |   |-- opmvv_vid       
-|   |   |   |-- opmvv_vmacc       
-|   |   |   |-- opmvx_1       
-|   |   |   |-- opmvx_vmacc       
-|   |   |   |-- rvv_int_arithmetic       
-|   |   |   |-- vls_iu       
-|   |   |   |-- vls_s       
+|   |   |   |-- opivi_2
+|   |   |   |-- opivv_2
+|   |   |   |-- opivx_2
+|   |   |   |-- opmvv_3
+|   |   |   |-- opmvv_4
+|   |   |   |-- opmvv_vid
+|   |   |   |-- opmvv_vmacc
+|   |   |   |-- opmvx_1
+|   |   |   |-- opmvx_vmacc
+|   |   |   |-- rvv_int_arithmetic
+|   |   |   |-- vls_iu
+|   |   |   |-- vls_s
 |   |   |   `-- vl_usff
 |   |   `-- vlen_256
-|   |       |-- opivi_2       
-|   |       |-- opivv_2      
-|   |       |-- opivx_2       
-|   |       |-- opmvv_3       
-|   |       |-- opmvv_4       
-|   |       |-- opmvv_vid       
-|   |       |-- opmvv_vmacc       
-|   |       |-- opmvx_1       
-|   |       |-- opmvx_vmacc       
-|   |       |-- rvv_int_arithmetic       
-|   |       |-- vls_iu       
-|   |       |-- vls_s       
+|   |       |-- opivi_2
+|   |       |-- opivv_2
+|   |       |-- opivx_2
+|   |       |-- opmvv_3
+|   |       |-- opmvv_4
+|   |       |-- opmvv_vid
+|   |       |-- opmvv_vmacc
+|   |       |-- opmvx_1
+|   |       |-- opmvx_vmacc
+|   |       |-- rvv_int_arithmetic
+|   |       |-- vls_iu
+|   |       |-- vls_s
 |   |       `-- vl_usff
 |   |-- zfh                                               -- risc-v Zfh-extension tests
 |   |   |-- rvd_zfh
 |   |   `-- rvzfh
 |   |-- zba                                               -- risc-v Zba-extension tests
 |   |   `-- rvzba
-|   |-- zbb                                               -- risc-v Zbb-extension tests                                          
-|   |   `-- rvzbb                                        
+|   |-- zbb                                               -- risc-v Zbb-extension tests
+|   |   `-- rvzbb
 |   |-- zbc                                               -- risc-v Zbc-extension tests
-|   |   `-- rvzbc                                         
+|   |   `-- rvzbc
 |   `-- zbs                                               -- risc-v Zbs-extension tests
-|       `-- rvzbs                                         
+|       `-- rvzbs
 `-- whisper
 ```
 
