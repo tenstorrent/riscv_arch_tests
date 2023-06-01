@@ -94,14 +94,19 @@ The repository provides infrastructure to run the given tests on whisper (which 
 ```
 
 ## Steps to run the tests
-`riscv_arch_tests` provides infrastructure to run these tests on `whisper`.
+`riscv_arch_tests` provides infrastructure to run these tests on `whisper` and `spike`.
 
 1. Clone repository and git init submodules (`git submodule update --init --recursive`)
 2. Build `whisper`, steps are [here](https://github.com/tenstorrent/whisper#compiling-whisper)
-3. cd to riscv_tests directory
-4. If running an rvv test, cp over the ../infra/whisper_config.json file with the whisper config file labeled for the vlen (128 or 256) appropriate for the test list.
-5. `../infra/quals.py --quals_file <quals_file>`
-
+3. Build `spike`, steps are [here](https://github.com/tenstorrent/spike#build-steps)
+4. cd to riscv_tests directory
+5. Type the command to run a single test list. The log file is printed to `riscv_tests/log`:\
+    `../infra/quals.py --quals_file <quals_file> --iss <whisper/spike> --vlen <128/256>`
+    - `--quals_file` is mandatory.
+    - If running an rvv test, specify the `vlen` (128 or 256) in the command line appropriately for the test list. `vlen` is 256 by default when the argument is not provided.
+    - One type of `iss` needs to be specified in either the command line or in the quals file. The `iss` in command line has a higher priority and will overwrite the `iss` tool in the quals file.
+6. (optional) Run all tests with both whisper and spike:\
+    `./test_all.bash`
 ## Future work
 We are actively developing infrastructure which generates these tests and we are constantly improving these tests with more functionality. In near future we plan to add following new features to the tests.
 1. Add tests for supervisor and user privilege modes (current tests are machine mode only)

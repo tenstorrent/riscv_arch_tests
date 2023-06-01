@@ -1,3 +1,6 @@
 [submodule "whisper"]
 	path = whisper
 	url = https://github.com/tenstorrent/whisper.git
+[submodule "spike"]
+	path = spike
+	url = https://github.com/tenstorrent/spike.git
