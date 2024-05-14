@@ -155,22 +155,3 @@ We are actively developing infrastructure which generates these tests and we are
 |       `-- rvzbs
 `-- whisper
 ```
-
-## Vector tests
-The instructions for each of the vector tests in `rvv/vlen_#/<test_dir>` is summarized in the following table:
-
-| Test directory | Included Instructions |
-| ----- | -- |
-|opivi_2 | vadc.vim vmadc.vim vmadc.vi vmv.v.i vmseq.vi vmsne.vi vmsleu.vi vmsle.vi vmsgtu.vi vmsgt.vi|
-|opivv_2 | vadc.vvm vmadc.vvm vmadc.vv vsbc.vvm vmsbc.vvm vmsbc.vv vmv.v.v vmseq.vv vmsne.vv vmsltu.vv vmslt.vv vmsleu.vv vmsle.vv|
-|opmvv_3 | vmsbf.m vmsof.m vmsif.m viota.mvcpop.m vfirst.m|
-|opmvv_4 | vdivu.vv vdiv.vv vremu.vv vrem.vv vmulhu.vv vmul.vv vmulhsu.vv vmulh.vvvmacc.vv|
-|opmvv_vid | vid.v|
-|opmvv_vmacc | vmacc.vv|
-|opmvx_1 | vslide1down.vx vslide1up.vx vmul.vx vmulh.vx vmulhu.vx vmulhsu.vx vmadd.vx vrem.vx vdiv.vx|
-|opmvx_vmacc | vmacc.vx|
-|rvv_int_arithmetic | vadd.vx vsub.vx vrsub.vx vminu.vx vmin.vx vmaxu.vx vmax.vx vand.vx vor.vx vxor.vx vrgather.vx vslideup.vx vslidedown.vx|
-|vl_usff | vle8ff.v vle16ff.v vle32ff.v vle64ff.v|
-|vls_iu | vluxei8.v vluxei16.v vluxei32.v vluxei64.v vsuxei8.v vsuxei16.v vsuxei32.v vsuxei64.v|
-|vls_s | vlse8.v vlse16.v vlse32.v vlse64.v vsse8.v vsse16.v vsse32.v vsse64.v|
-|vl_usff | vle8ff.v vle16ff.v vle32ff.v vle64ff.v|
