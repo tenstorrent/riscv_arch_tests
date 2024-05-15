@@ -31,7 +31,7 @@ This section contains code to run the tests included in `.code`. Broadly it incl
 ### `.code` structure
 This section contains the tests being ran. Individual tests are strucuted with
 1. Operand setup, labeled `<test#>`
-2. Insturction under test + self-checking code
+2. Instruction under test + self-checking code
 
 ### Example test:
 Looking at the `.code` section in an RVI compute test using: `riscv64-unknown-linux-gnu-objdump riscv_tests/rv_i/rvi_compute_register_immediate/rvi_compute_register_immediate_2 -D`, gives the following snippet.
@@ -71,7 +71,7 @@ Here the code in the `<test1>` label is setting the 64-bit operand for the `ANDI
     `./test_all.bash`
 
 ## Debugging test failures
-Test failures can be more easily debugged by first dissassembling the test code using the RISC-V toolchain to dump the disassembly to a text file, e.g. `riscv64-unknown-linux-gnu-objdump <test_elf> -D > test.dis`. After disassembling, determine where the test failed by comparing the instruction trace with the disassembly. Spike includes code labels in the trace, but Whisper does not. The instruction trace can be used with the dissassembly to follow the flow of execution.
+Test failures can be more easily debugged by first disassembling  the test code using the RISC-V toolchain to dump the disassembly to a text file, e.g. `riscv64-unknown-linux-gnu-objdump <test_elf> -D > test.dis`. After disassembling, determine where the test failed by comparing the instruction trace with the disassembly. Spike includes code labels in the trace, but Whisper does not. The instruction trace can be used with the dissassembly to follow the flow of execution.
 
 Generally failures can occur due to an self-checking mismatch, triggering a jump to the `<test_failed>` subroutine where the test will exit in a failure. Here the cause be determined by following the jumps and branches to the last test executed. Other times, failures can occur due to an exception. These fails are handled in the `<ecall_from_machine>` subroutine and can be traced back to find the instruction causing the exception.
 
