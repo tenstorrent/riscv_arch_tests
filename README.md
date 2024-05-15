@@ -77,9 +77,8 @@ Generally failures can occur due to an self-checking mismatch, triggering a jump
 
 ## Future work
 We are actively developing infrastructure which generates these tests and we are constantly improving these tests with more functionality. In near future we plan to add following new features to the tests.
-1. Add tests for supervisor and user privilege modes (current tests are machine mode only)
-2. Release tests with RISC-V paging modes sv39, sv48, sv57 and paging_disabled, pending discussion of memory map requirements.
-3. And more (come back here to see the list updated) (user feedback is appreciated!)
+1. Release tests with RISC-V paging modes sv39, sv48, sv57 and paging_disabled, pending discussion of memory map requirements.
+2. And more (come back here to see the list updated) (user feedback is appreciated!)
 
 
 ## Directory structure
