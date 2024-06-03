@@ -17,16 +17,33 @@ These tests are released as binary (elf) files and generated for following RISC-
 7. Zfh
 8. Zba, Zbb, Zbc, Zbs
 
+- Privilege Modes
+  - The current tests randomly chose one of these privilege modes: 
+    1. `machine` 
+    2. `supervisor` 
+    3. `user`
+
+- Paging Modes
+  - The tests randomly chose of the following paging modes depending on which privilege mode is picked
+    1. `sv39`
+    2. `sv48`
+    3. `sv57`
+    4. `bare`
+  - If `machine` mode is picked, then the paging mode is restricted to `bare` mode
+
 The repository provides infrastructure to run the given tests on whisper (which is already submoduled here) currently.
 
 ## Test Structure
 The test code structure comprises of a few sections: `.text`, `.code`.
 
 ### `.text.` structure
-This section contains code to run the tests included in `.code`. Broadly it includes:
+This section contains a `mini OS` to run the tests included in `.code`. Broadly it includes:
 
-1. Setup code to initialize registers, operands, and CSRs (if any)
-2. Test scheduling / running logic
+1. Loader - Setup code to initialize registers, operands, and CSRs (if any)
+2. Scheduler - Test scheduling / running logic
+3. Trap Handler - To handle any traps that may occur during the test execution
+4. Hypervisor - To manage tests run as VM (future functionality)
+5. End of the test mechanism
 
 ### `.code` structure
 This section contains the tests being ran. Individual tests are strucuted with
@@ -75,10 +92,18 @@ Test failures can be more easily debugged by first disassembling  the test code 
 
 Generally failures can occur due to an self-checking mismatch, triggering a jump to the `<test_failed>` subroutine where the test will exit in a failure. Here the cause be determined by following the jumps and branches to the last test executed. Other times, failures can occur due to an exception. These fails are handled in the `<ecall_from_machine>` subroutine and can be traced back to find the instruction causing the exception.
 
-## Future work
-We are actively developing infrastructure which generates these tests and we are constantly improving these tests with more functionality. In near future we plan to add following new features to the tests.
-1. Release tests with RISC-V paging modes sv39, sv48, sv57 and paging_disabled, pending discussion of memory map requirements.
-2. And more (come back here to see the list updated) (user feedback is appreciated!)
+## Coming soon
+We are actively developing infrastructure which generates these tests and we are constantly improving these tests with more functionality. In near future we plan to add following new features to the tests and also add more tests in following areas of RISCV architecture spec.
+1. Generate tests per privilege and paging modes separately
+2. Generate vector tests per vector configuration separately (e.g. vsew, masking etc)
+3. Tests for privilege spec Supervisor ISA are coming in `Q2` and `Q3` of `2024`
+   1. Virtual Memory System (Paging - sv39/48/57)
+   2. napot, svpbmt, svinval
+   3. Hypervisor extensions
+   4. Interrupts
+   5. Traps
+   6. CSRs
+3. And more (come back here to see the list updated) (user feedback is appreciated!)
 
 
 ## Directory structure
