@@ -1,0 +1,593 @@
+Total instruction coverage: 98.05
+All Instruction Summary:
++-------------+-------------+
+| Instruction |     Hit     |
++-------------+-------------+
+| add         |   Covered   |
+| add.uw      |   Covered   |
+| addi        |   Covered   |
+| addiw       |   Covered   |
+| addw        |   Covered   |
+| amoadd.d    |   Covered   |
+| amoadd.w    |   Covered   |
+| amoand.d    |   Covered   |
+| amoand.w    |   Covered   |
+| amomax.d    |   Covered   |
+| amomax.w    |   Covered   |
+| amomaxu.d   |   Covered   |
+| amomaxu.w   |   Covered   |
+| amomin.d    |   Covered   |
+| amomin.w    |   Covered   |
+| amominu.d   |   Covered   |
+| amominu.w   |   Covered   |
+| amoor.d     |   Covered   |
+| amoor.w     |   Covered   |
+| amoswap.d   |   Covered   |
+| amoswap.w   |   Covered   |
+| amoxor.d    |   Covered   |
+| amoxor.w    |   Covered   |
+| and         |   Covered   |
+| andi        |   Covered   |
+| andn        |   Covered   |
+| auipc       |   Covered   |
+| bclr        |   Covered   |
+| bclri       |   Covered   |
+| beq         |   Covered   |
+| bext        |   Covered   |
+| bexti       |   Covered   |
+| bge         |   Covered   |
+| bgeu        |   Covered   |
+| binv        |   Covered   |
+| binvi       |   Covered   |
+| blt         |   Covered   |
+| bltu        |   Covered   |
+| bne         |   Covered   |
+| bset        |   Covered   |
+| bseti       |   Covered   |
+| c.add       |   Covered   |
+| c.addi      |   Covered   |
+| c.addi16sp  |   Covered   |
+| c.addi4spn  |   Covered   |
+| c.addiw     |   Covered   |
+| c.addw      |   Covered   |
+| c.and       |   Covered   |
+| c.andi      |   Covered   |
+| c.beqz      |   Covered   |
+| c.bnez      |   Covered   |
+| c.ebreak    | Not covered |
+| c.j         |   Covered   |
+| c.jalr      |   Covered   |
+| c.jr        |   Covered   |
+| c.ld        |   Covered   |
+| c.ldsp      |   Covered   |
+| c.li        |   Covered   |
+| c.lui       |   Covered   |
+| c.lw        |   Covered   |
+| c.lwsp      |   Covered   |
+| c.mv        |   Covered   |
+| c.nop       | Not covered |
+| c.or        |   Covered   |
+| c.sd        |   Covered   |
+| c.sdsp      |   Covered   |
+| c.slli      |   Covered   |
+| c.srai      |   Covered   |
+| c.srli      |   Covered   |
+| c.sub       |   Covered   |
+| c.subw      |   Covered   |
+| c.sw        |   Covered   |
+| c.swsp      |   Covered   |
+| c.xor       |   Covered   |
+| clmul       |   Covered   |
+| clmulh      |   Covered   |
+| clmulr      |   Covered   |
+| clz         |   Covered   |
+| clzw        |   Covered   |
+| cpop        |   Covered   |
+| cpopw       |   Covered   |
+| ctz         |   Covered   |
+| ctzw        |   Covered   |
+| div         |   Covered   |
+| divu        |   Covered   |
+| divuw       |   Covered   |
+| divw        |   Covered   |
+| ebreak      | Not covered |
+| ecall       | Not covered |
+| fadd.d      |   Covered   |
+| fadd.h      |   Covered   |
+| fadd.s      |   Covered   |
+| fclass.d    |   Covered   |
+| fclass.h    |   Covered   |
+| fclass.s    |   Covered   |
+| fcvt.bf16.s |   Covered   |
+| fcvt.d.l    |   Covered   |
+| fcvt.d.lu   |   Covered   |
+| fcvt.d.s    |   Covered   |
+| fcvt.d.w    |   Covered   |
+| fcvt.d.wu   |   Covered   |
+| fcvt.h.l    |   Covered   |
+| fcvt.h.lu   |   Covered   |
+| fcvt.h.s    |   Covered   |
+| fcvt.h.w    |   Covered   |
+| fcvt.h.wu   |   Covered   |
+| fcvt.l.d    |   Covered   |
+| fcvt.l.h    |   Covered   |
+| fcvt.l.s    |   Covered   |
+| fcvt.lu.d   |   Covered   |
+| fcvt.lu.h   |   Covered   |
+| fcvt.lu.s   |   Covered   |
+| fcvt.s.bf16 |   Covered   |
+| fcvt.s.d    |   Covered   |
+| fcvt.s.h    |   Covered   |
+| fcvt.s.l    |   Covered   |
+| fcvt.s.lu   |   Covered   |
+| fcvt.s.w    |   Covered   |
+| fcvt.s.wu   |   Covered   |
+| fcvt.w.d    |   Covered   |
+| fcvt.w.h    |   Covered   |
+| fcvt.w.s    |   Covered   |
+| fcvt.wu.d   |   Covered   |
+| fcvt.wu.h   |   Covered   |
+| fcvt.wu.s   |   Covered   |
+| fdiv.d      |   Covered   |
+| fdiv.h      |   Covered   |
+| fdiv.s      |   Covered   |
+| fence       | Not covered |
+| feq.d       |   Covered   |
+| feq.h       |   Covered   |
+| feq.s       |   Covered   |
+| fld         |   Covered   |
+| fle.d       |   Covered   |
+| fle.h       |   Covered   |
+| fle.s       |   Covered   |
+| flh         |   Covered   |
+| flt.d       |   Covered   |
+| flt.h       |   Covered   |
+| flt.s       |   Covered   |
+| flw         |   Covered   |
+| fmadd.d     |   Covered   |
+| fmadd.h     |   Covered   |
+| fmadd.s     |   Covered   |
+| fmax.d      |   Covered   |
+| fmax.h      |   Covered   |
+| fmax.s      |   Covered   |
+| fmin.d      |   Covered   |
+| fmin.h      |   Covered   |
+| fmin.s      |   Covered   |
+| fmsub.d     |   Covered   |
+| fmsub.h     |   Covered   |
+| fmsub.s     |   Covered   |
+| fmul.d      |   Covered   |
+| fmul.h      |   Covered   |
+| fmul.s      |   Covered   |
+| fmv.d.x     |   Covered   |
+| fmv.h.x     |   Covered   |
+| fmv.w.x     |   Covered   |
+| fmv.x.d     |   Covered   |
+| fmv.x.h     |   Covered   |
+| fmv.x.w     |   Covered   |
+| fnmadd.d    |   Covered   |
+| fnmadd.h    |   Covered   |
+| fnmadd.s    |   Covered   |
+| fnmsub.d    |   Covered   |
+| fnmsub.h    |   Covered   |
+| fnmsub.s    |   Covered   |
+| fsd         |   Covered   |
+| fsgnj.d     |   Covered   |
+| fsgnj.h     |   Covered   |
+| fsgnj.s     |   Covered   |
+| fsgnjn.d    |   Covered   |
+| fsgnjn.h    |   Covered   |
+| fsgnjn.s    |   Covered   |
+| fsgnjx.d    |   Covered   |
+| fsgnjx.h    |   Covered   |
+| fsgnjx.s    |   Covered   |
+| fsh         |   Covered   |
+| fsqrt.d     |   Covered   |
+| fsqrt.h     |   Covered   |
+| fsqrt.s     |   Covered   |
+| fsub.d      |   Covered   |
+| fsub.h      |   Covered   |
+| fsub.s      |   Covered   |
+| fsw         |   Covered   |
+| jal         |   Covered   |
+| jalr        |   Covered   |
+| lb          |   Covered   |
+| lbu         |   Covered   |
+| ld          |   Covered   |
+| lh          |   Covered   |
+| lhu         |   Covered   |
+| lr.d        |   Covered   |
+| lr.w        |   Covered   |
+| lui         |   Covered   |
+| lw          |   Covered   |
+| lwu         |   Covered   |
+| max         |   Covered   |
+| maxu        |   Covered   |
+| min         |   Covered   |
+| minu        |   Covered   |
+| mul         |   Covered   |
+| mulh        |   Covered   |
+| mulhsu      |   Covered   |
+| mulhu       |   Covered   |
+| mulw        |   Covered   |
+| or          |   Covered   |
+| ori         |   Covered   |
+| orn         |   Covered   |
+| rem         |   Covered   |
+| remu        |   Covered   |
+| remuw       |   Covered   |
+| remw        |   Covered   |
+| rol         |   Covered   |
+| rolw        |   Covered   |
+| ror         |   Covered   |
+| rori        |   Covered   |
+| roriw       |   Covered   |
+| rorw        |   Covered   |
+| sb          |   Covered   |
+| sc.d        |   Covered   |
+| sc.w        |   Covered   |
+| sd          |   Covered   |
+| sext.b      |   Covered   |
+| sext.h      |   Covered   |
+| sh          |   Covered   |
+| sh1add      |   Covered   |
+| sh1add.uw   |   Covered   |
+| sh2add      |   Covered   |
+| sh2add.uw   |   Covered   |
+| sh3add      |   Covered   |
+| sh3add.uw   |   Covered   |
+| sll         |   Covered   |
+| slli        |   Covered   |
+| slli.uw     |   Covered   |
+| slliw       |   Covered   |
+| sllw        |   Covered   |
+| slt         |   Covered   |
+| slti        |   Covered   |
+| sltiu       |   Covered   |
+| sltu        |   Covered   |
+| sra         |   Covered   |
+| srai        |   Covered   |
+| sraiw       |   Covered   |
+| sraw        |   Covered   |
+| srl         |   Covered   |
+| srli        |   Covered   |
+| srliw       |   Covered   |
+| srlw        |   Covered   |
+| sub         |   Covered   |
+| subw        |   Covered   |
+| sw          |   Covered   |
+| xnor        |   Covered   |
+| xor         |   Covered   |
+| xori        |   Covered   |
++-------------+-------------+
+
+
+Instructions by extension
+Extension rv_a Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| amoadd.d    | Covered |
+| amoadd.w    | Covered |
+| amoand.d    | Covered |
+| amoand.w    | Covered |
+| amomax.d    | Covered |
+| amomax.w    | Covered |
+| amomaxu.d   | Covered |
+| amomaxu.w   | Covered |
+| amomin.d    | Covered |
+| amomin.w    | Covered |
+| amominu.d   | Covered |
+| amominu.w   | Covered |
+| amoor.d     | Covered |
+| amoor.w     | Covered |
+| amoswap.d   | Covered |
+| amoswap.w   | Covered |
+| amoxor.d    | Covered |
+| amoxor.w    | Covered |
+| lr.d        | Covered |
+| lr.w        | Covered |
+| sc.d        | Covered |
+| sc.w        | Covered |
++-------------+---------+
+Extension rv_d Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| fadd.d      | Covered |
+| fclass.d    | Covered |
+| fcvt.d.l    | Covered |
+| fcvt.d.lu   | Covered |
+| fcvt.d.s    | Covered |
+| fcvt.d.w    | Covered |
+| fcvt.d.wu   | Covered |
+| fcvt.l.d    | Covered |
+| fcvt.lu.d   | Covered |
+| fcvt.s.d    | Covered |
+| fcvt.w.d    | Covered |
+| fcvt.wu.d   | Covered |
+| fdiv.d      | Covered |
+| feq.d       | Covered |
+| fld         | Covered |
+| fle.d       | Covered |
+| flt.d       | Covered |
+| fmadd.d     | Covered |
+| fmax.d      | Covered |
+| fmin.d      | Covered |
+| fmsub.d     | Covered |
+| fmul.d      | Covered |
+| fmv.d.x     | Covered |
+| fmv.x.d     | Covered |
+| fnmadd.d    | Covered |
+| fnmsub.d    | Covered |
+| fsd         | Covered |
+| fsgnj.d     | Covered |
+| fsgnjn.d    | Covered |
+| fsgnjx.d    | Covered |
+| fsqrt.d     | Covered |
+| fsub.d      | Covered |
++-------------+---------+
+Extension rv_c Summary:
+Average score: 93.94 
++-------------+-------------+
+| Instruction |     Hit     |
++-------------+-------------+
+| c.add       |   Covered   |
+| c.addi      |   Covered   |
+| c.addi16sp  |   Covered   |
+| c.addi4spn  |   Covered   |
+| c.addiw     |   Covered   |
+| c.addw      |   Covered   |
+| c.and       |   Covered   |
+| c.andi      |   Covered   |
+| c.beqz      |   Covered   |
+| c.bnez      |   Covered   |
+| c.ebreak    | Not covered |
+| c.j         |   Covered   |
+| c.jalr      |   Covered   |
+| c.jr        |   Covered   |
+| c.ld        |   Covered   |
+| c.ldsp      |   Covered   |
+| c.li        |   Covered   |
+| c.lui       |   Covered   |
+| c.lw        |   Covered   |
+| c.lwsp      |   Covered   |
+| c.mv        |   Covered   |
+| c.nop       | Not covered |
+| c.or        |   Covered   |
+| c.sd        |   Covered   |
+| c.sdsp      |   Covered   |
+| c.slli      |   Covered   |
+| c.srai      |   Covered   |
+| c.srli      |   Covered   |
+| c.sub       |   Covered   |
+| c.subw      |   Covered   |
+| c.sw        |   Covered   |
+| c.swsp      |   Covered   |
+| c.xor       |   Covered   |
++-------------+-------------+
+Extension rv_zbb Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| andn        | Covered |
+| clz         | Covered |
+| clzw        | Covered |
+| cpop        | Covered |
+| cpopw       | Covered |
+| ctz         | Covered |
+| ctzw        | Covered |
+| max         | Covered |
+| maxu        | Covered |
+| min         | Covered |
+| minu        | Covered |
+| orn         | Covered |
+| rol         | Covered |
+| rolw        | Covered |
+| ror         | Covered |
+| rori        | Covered |
+| roriw       | Covered |
+| rorw        | Covered |
+| sext.b      | Covered |
+| sext.h      | Covered |
+| xnor        | Covered |
++-------------+---------+
+Extension rv_zbc Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| clmul       | Covered |
+| clmulh      | Covered |
+| clmulr      | Covered |
++-------------+---------+
+Extension rv_zbs Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| bclr        | Covered |
+| bclri       | Covered |
+| bext        | Covered |
+| bexti       | Covered |
+| binv        | Covered |
+| binvi       | Covered |
+| bset        | Covered |
+| bseti       | Covered |
++-------------+---------+
+Extension rv_i Summary:
+Average score: 94.23 
++-------------+-------------+
+| Instruction |     Hit     |
++-------------+-------------+
+| add         |   Covered   |
+| addi        |   Covered   |
+| addiw       |   Covered   |
+| addw        |   Covered   |
+| and         |   Covered   |
+| andi        |   Covered   |
+| auipc       |   Covered   |
+| beq         |   Covered   |
+| bge         |   Covered   |
+| bgeu        |   Covered   |
+| blt         |   Covered   |
+| bltu        |   Covered   |
+| bne         |   Covered   |
+| ebreak      | Not covered |
+| ecall       | Not covered |
+| fence       | Not covered |
+| jal         |   Covered   |
+| jalr        |   Covered   |
+| lb          |   Covered   |
+| lbu         |   Covered   |
+| ld          |   Covered   |
+| lh          |   Covered   |
+| lhu         |   Covered   |
+| lui         |   Covered   |
+| lw          |   Covered   |
+| lwu         |   Covered   |
+| or          |   Covered   |
+| ori         |   Covered   |
+| sb          |   Covered   |
+| sd          |   Covered   |
+| sh          |   Covered   |
+| sll         |   Covered   |
+| slli        |   Covered   |
+| slliw       |   Covered   |
+| sllw        |   Covered   |
+| slt         |   Covered   |
+| slti        |   Covered   |
+| sltiu       |   Covered   |
+| sltu        |   Covered   |
+| sra         |   Covered   |
+| srai        |   Covered   |
+| sraiw       |   Covered   |
+| sraw        |   Covered   |
+| srl         |   Covered   |
+| srli        |   Covered   |
+| srliw       |   Covered   |
+| srlw        |   Covered   |
+| sub         |   Covered   |
+| subw        |   Covered   |
+| sw          |   Covered   |
+| xor         |   Covered   |
+| xori        |   Covered   |
++-------------+-------------+
+Extension rv_zba Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| add.uw      | Covered |
+| sh1add      | Covered |
+| sh1add.uw   | Covered |
+| sh2add      | Covered |
+| sh2add.uw   | Covered |
+| sh3add      | Covered |
+| sh3add.uw   | Covered |
+| slli.uw     | Covered |
++-------------+---------+
+Extension rv_m Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| div         | Covered |
+| divu        | Covered |
+| divuw       | Covered |
+| divw        | Covered |
+| mul         | Covered |
+| mulh        | Covered |
+| mulhsu      | Covered |
+| mulhu       | Covered |
+| mulw        | Covered |
+| rem         | Covered |
+| remu        | Covered |
+| remuw       | Covered |
+| remw        | Covered |
++-------------+---------+
+Extension rv_zfh Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| fadd.h      | Covered |
+| fclass.h    | Covered |
+| fcvt.h.l    | Covered |
+| fcvt.h.lu   | Covered |
+| fcvt.h.s    | Covered |
+| fcvt.h.w    | Covered |
+| fcvt.h.wu   | Covered |
+| fcvt.l.h    | Covered |
+| fcvt.lu.h   | Covered |
+| fcvt.s.h    | Covered |
+| fcvt.w.h    | Covered |
+| fcvt.wu.h   | Covered |
+| fdiv.h      | Covered |
+| feq.h       | Covered |
+| fle.h       | Covered |
+| flh         | Covered |
+| flt.h       | Covered |
+| fmadd.h     | Covered |
+| fmax.h      | Covered |
+| fmin.h      | Covered |
+| fmsub.h     | Covered |
+| fmul.h      | Covered |
+| fmv.h.x     | Covered |
+| fmv.x.h     | Covered |
+| fnmadd.h    | Covered |
+| fnmsub.h    | Covered |
+| fsgnj.h     | Covered |
+| fsgnjn.h    | Covered |
+| fsgnjx.h    | Covered |
+| fsh         | Covered |
+| fsqrt.h     | Covered |
+| fsub.h      | Covered |
++-------------+---------+
+Extension rv_f Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| fadd.s      | Covered |
+| fclass.s    | Covered |
+| fcvt.l.s    | Covered |
+| fcvt.lu.s   | Covered |
+| fcvt.s.l    | Covered |
+| fcvt.s.lu   | Covered |
+| fcvt.s.w    | Covered |
+| fcvt.s.wu   | Covered |
+| fcvt.w.s    | Covered |
+| fcvt.wu.s   | Covered |
+| fdiv.s      | Covered |
+| feq.s       | Covered |
+| fle.s       | Covered |
+| flt.s       | Covered |
+| flw         | Covered |
+| fmadd.s     | Covered |
+| fmax.s      | Covered |
+| fmin.s      | Covered |
+| fmsub.s     | Covered |
+| fmul.s      | Covered |
+| fmv.w.x     | Covered |
+| fmv.x.w     | Covered |
+| fnmadd.s    | Covered |
+| fnmsub.s    | Covered |
+| fsgnj.s     | Covered |
+| fsgnjn.s    | Covered |
+| fsgnjx.s    | Covered |
+| fsqrt.s     | Covered |
+| fsub.s      | Covered |
+| fsw         | Covered |
++-------------+---------+
+Extension rv_zfbfmin Summary:
+Average score: 100.00 
++-------------+---------+
+| Instruction |   Hit   |
++-------------+---------+
+| fcvt.bf16.s | Covered |
+| fcvt.s.bf16 | Covered |
++-------------+---------+
