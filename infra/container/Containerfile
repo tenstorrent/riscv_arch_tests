@@ -40,8 +40,8 @@ RUN git clone https://github.com/tenstorrent/spike.git /spike \
     && git checkout $SPIKE_COMMIT_SHA \
     && mkdir build \
     && cd build \
-    && ../configure --prefix=$RISCV \
-    && make -j $BUILD_JOBS --enable-tt-stop-if-tohost-nonzero --enable-tt-table-walk-debug --enable-tt-expanded-dram-address-range --enable-dual-endian --with-isa=RV64IMAFDCV_ZBA_ZBB_ZBC_ZBS --with-priv=MSU 2>&1
+    && ../configure --prefix=$RISCV --enable-tt-stop-if-tohost-nonzero --enable-tt-table-walk-debug --enable-tt-expanded-dram-address-range --enable-dual-endian --with-isa=RV64IMAFDCV_ZBA_ZBB_ZBC_ZBS --with-priv=MSU \
+    && make -j $BUILD_JOBS \
     && cp /spike/build/spike /usr/bin/spike
 
 # Entry point for container
