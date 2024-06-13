@@ -1,0 +1,48 @@
+
+FROM ubuntu:22.04
+
+# Install Packages
+RUN apt-get update && apt-get install -y \
+    # required packages
+    wget \
+    git \
+
+    # Whisper packages:
+    build-essential \
+    g++ \
+    libboost-all-dev \
+
+    # Spike packages:
+    device-tree-compiler \
+
+    # Bare-metal RISCV toolchain
+    gcc-riscv64-unknown-elf \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN export RISCV=/usr/bin/
+
+ARG BUILD_JOBS=8
+
+
+ARG WHISPER_COMMIT_SHA=master
+# Build whisper
+RUN git clone https://github.com/tenstorrent/whisper.git /whisper \
+    && cd /whisper \
+    && git checkout $WHISPER_COMMIT_SHA \
+    && make -j $BUILD_JOBS BOOST_DIR=/usr/lib/x86_64-linux-gnu/ \
+    && cp /whisper/build-Linux/whisper /usr/bin/whisper
+#     && rm -rf /whisper
+
+ARG SPIKE_COMMIT_SHA=master
+# Build spike
+RUN git clone https://github.com/tenstorrent/spike.git /spike \
+    && cd /spike \
+    && git checkout $SPIKE_COMMIT_SHA \
+    && mkdir build \
+    && cd build \
+    && ../configure --prefix=$RISCV --enable-tt-stop-if-tohost-nonzero --enable-tt-table-walk-debug --enable-tt-expanded-dram-address-range --enable-dual-endian --with-isa=RV64IMAFDCV_ZBA_ZBB_ZBC_ZBS --with-priv=MSU \
+    && make -j $BUILD_JOBS \
+    && cp /spike/build/spike /usr/bin/spike
+
+# Entry point for container
+CMD ["/bin/bash"]

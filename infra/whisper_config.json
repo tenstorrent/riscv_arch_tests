@@ -1,8 +1,6 @@
 {
     "xlen" : 64,
-
-    "isa" : "rv64imafvszfh_zba_zbb",
-
+    "isa" : "rv64imafdchvus_svinval_zba_zbb_zbc_zbs_zfa_zfh_zfbfmin_zvfbfmin_zvfbfwma_zvkg_zvfh_zvbb_zvbc_zbkb_zbkx_zknd_zkne_zksed_zksh_zicbom_zicboz_zicond_zihintpause_zimop_zcmop_zawrs",
     "enable_performance_counters" : "true",
     "perf_count_atomic_load_store" : "true",
     "perf_count_fp_load_store" : "true",
@@ -17,17 +15,22 @@
 
     "csr" : {
 	"misa" : {
-	    "reset-comment" : "imabfvsu",
-	    "reset" : "0x40341123",
+	    "reset-comment" : "imabfcvsu",
+	    "reset" : "0x403411af",
 	    "mask-comment" : "Misa is not writable by CSR instructions",
 	    "mask" : "0x0"
 	},
 
 	"mstatus" : {
 	    "mstatus-comment" : "FIXME : Hardwired to zero except for FS, VS, and SD.",
-	    "reset" : "0x47800",
-	    "mask" : "0xffffffffffffffff",
-	    "poke_mask" : "0x0"
+	    "reset" : "0x47804",
+	    "mask" : "0xffffffffffffffff"
+	},
+
+	"sstatus" : {
+	    "sstatus-comment" : "FIXME : Hardwired to zero except for FS, VS, and SD.",
+	    "reset" : "0x47804",
+	    "mask" : "0xffffffffffffffff"
 	},
 
 	"satp" : {
