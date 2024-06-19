@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
 import pathlib
+from pathlib import Path
 import subprocess
-import sys 
+import sys
+import shutil
 
 import argparse
-import shlex 
+import shlex
 import os
 import random
-from enum import IntEnum 
+from enum import IntEnum
 
 current_path   = pathlib.Path(__file__).parent.resolve()
 
@@ -17,23 +19,23 @@ class PassFailEnum(IntEnum):
     FAILED  = 1
 
 class QualTest:
-  
+
   def __init__(self,name):
     self.runner = None
-    self.result = PassFailEnum.FAILED 
-    self.name   = name   
-  
+    self.result = PassFailEnum.FAILED
+    self.name   = name
+
   def run(self):
     self.result = self.runner.run()
-  
+
   @property
   def run_cmd(self):
-    return self.runner.run_cmd 
-  
+    return self.runner.run_cmd
+
 
 class Runner:
 
-  test_num = 1 
+  test_num = 1
 
   def __init__(self,**kwargs):
 
@@ -43,7 +45,16 @@ class Runner:
     self.iss = kwargs['iss']
     self.vlen = kwargs['vlen']
     self.parse_qual_list(kwargs['quals_file'])
-    
+  def unzip(self, testfile) -> str:
+    test_path = Path(testfile)
+    target = test_path.parent
+    unzip = shutil.which("unzip")
+    cmd = [unzip, str(test_path), "-d", str(target)]
+    subprocess.check_output(unzip_cmd)
+    return testfile.replace(".zip", "")
+
+
+
   def parse_qual_list(self, quals_file):
     with open(quals_file, 'r') as qual_list:
       for line in qual_list:
@@ -52,10 +63,10 @@ class Runner:
         if not line.startswith('#') and line.strip():
           args = shlex.split(line)
           for arg in args:
-            if 'name' in arg: 
+            if 'name' in arg:
               name = arg.split('=')[1]
-            if "tool" in arg: 
-              tool = arg.split("=")[1] 
+            if "tool" in arg:
+              tool = arg.split("=")[1]
             if "test" in arg:
               testfile = arg.split("=")[1]
             if 'opts' in arg:
@@ -65,15 +76,18 @@ class Runner:
                 if self.iss==None and tool not in ['whisper'] and tool not in ['spike']:
                     opts = f'{opts} --seed {seed}'
           if name == "":
-            name = f'TEST{self.test_num}' 
+            name = f'TEST{self.test_num}'
             self.test_num += 1
 
           if tool == "" or testfile == "":
             sys.exit("Name, Tool and Test are mandatory")
-          
+
+          if testfile.endswith(".zip"):
+            testfile = self.unzip(testfile)
+
           #print(f'name : {name} tool : {tool} opts : {opts} test : {testfile}')
           test = QualTest(name)
-        
+
           # command line argument has higher priority
           if self.iss == "whisper":
             test.runner = WhisperRunner(testfile,opts,self.vlen)
@@ -87,20 +101,20 @@ class Runner:
           else:
             sys.exit("Tool Unknown")
           self._tests.append(test)
-  
+
   def run(self):
     for test in self._tests:
       test.run()
       temp = tuple([test.run_cmd,test.result.name])
-      self.pass_fail_map[test.name] = temp   
+      self.pass_fail_map[test.name] = temp
     print("|%-50s|%-50s|" % ("TESTNAME","STATUS"))
     for k,v in self.pass_fail_map.items():
         print("|%-50s|%-50s|" % (k,v[1]))
         if v[1] == "FAIL":
           print(f'COMMAND : {v[0]}')
-  
+
   def check_pass_fail(self,output):
-    for line in output: 
+    for line in output:
       if "FAILED" in line:
         return PassFailEnum.FAILED
     if "FAILED" in output:
@@ -127,13 +141,13 @@ class WhisperRunner(Runner):
                         f'--logfile {log_path}/{testname}_whisper.log '
     )
     self._tool = f'{current_path}/../whisper/whisper'
-    
+
     if opts == "default":
       self._opts = self._default_opts
     else:
-      self._opts = opts 
+      self._opts = opts
 
-    self._testfile = testfile 
+    self._testfile = testfile
     self.run_cmd = f'{self._tool} {self._testfile} {self._opts}'
 
   def run(self):
@@ -163,11 +177,11 @@ class SpikeRunner(Runner):
                         f'>& {log_path}/{testname}_spike.log '
       )
     self._tool = f'{current_path}/../spike/spike'
-    
+
     if opts == "default":
       self._opts = self._default_opts
     else:
-      self._opts = opts 
+      self._opts = opts
 
     self.run_cmd = f'{self._tool} {self._opts}'
 
@@ -177,26 +191,26 @@ class SpikeRunner(Runner):
 
 if __name__ == "__main__":
   parser      = argparse.ArgumentParser(description='Quals Runner Script')
-  parser.add_argument('--quals_file', 
+  parser.add_argument('--quals_file',
                       type=str,
-                      required=True, 
+                      required=True,
                       help='path to the quals file'
                       )
-  parser.add_argument('--iss', 
-                      type=str, 
-                      choices=['whisper','spike'], 
-                      default=None, 
+  parser.add_argument('--iss',
+                      type=str,
+                      choices=['whisper','spike'],
+                      default=None,
                       help='which iss to use: whisper/spike \
                             (Note: this will overwrite the \"tool\" \
                             option in the quals file)'
                       )
-  parser.add_argument('--vlen', 
-                      type=int, 
-                      choices=[128,256], 
-                      default=256, 
+  parser.add_argument('--vlen',
+                      type=int,
+                      choices=[128,256],
+                      default=256,
                       help='length of vector: 128/256 (default 256)'
                       )
   args        = parser.parse_args()
- 
+
   QualRunner  = Runner(quals_file=args.quals_file, iss=args.iss, vlen=args.vlen)
   QualRunner.run()

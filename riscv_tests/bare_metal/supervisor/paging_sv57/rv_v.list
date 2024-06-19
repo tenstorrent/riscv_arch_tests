@@ -1,0 +1,1 @@
+name=xlen_256 tool=whisper test=../riscv_tests/bare_metal/supervisor/paging_sv57/rv_v/xlen_256 opts=default
