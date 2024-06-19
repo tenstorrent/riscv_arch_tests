@@ -17,19 +17,22 @@ These tests are released as binary (elf) files and generated for following RISC-
 7. Zfh
 8. Zba, Zbb, Zbc, Zbs
 
+In the `riscv_tests` directory, the name of each subdirectory describes how the tests were generated.
+- Virtualization Modes:
+  - Tests are generated in either `bare_metal` mode or virtualized in hypervisor mode - `h_ext`
+
 - Privilege Modes
-  - The current tests randomly chose one of these privilege modes: 
-    1. `machine` 
-    2. `supervisor` 
+  - Tests are generated with one of the following privilege modes:
+    1. `machine`
+    2. `supervisor`
     3. `user`
 
 - Paging Modes
-  - The tests randomly chose of the following paging modes depending on which privilege mode is picked
+  - The tests were generated with one of the following paging modes (note that `machine`'s only paging mode is `paging_bare`):
     1. `sv39`
     2. `sv48`
     3. `sv57`
     4. `bare`
-  - If `machine` mode is picked, then the paging mode is restricted to `bare` mode
 
 The repository provides infrastructure to run the given tests on whisper (which is already submoduled here) currently.
 
@@ -107,75 +110,55 @@ We are actively developing infrastructure which generates these tests and we are
 
 
 ## Directory structure
+The structure of each `paging_` directory is the same as the structure of `riscv_tests/bare_metal/paging_bare` but was removed for brevity.
 ```
 .
 |-- infra
-|-- riscv_tests
-|   |-- rv_f                                              -- risc-v F-extension tests and list files run quals
-|   |   |-- rvf_single_precision_classify
-|   |   |-- rvf_single_precision_compare
-|   |   |-- rvf_single_precision_convert_move
-|   |   |-- rvf_single_precision_load_store
-|   |   |-- rvf_single_precision_reg
-|   |   |-- rvf_single_precision_reg_reg
-|   |   `-- rvf_single_precision_reg_reg_reg
-|   |-- rv_i                                              -- risc-v I-extension tests
-|   |   |-- rvi_compute_register_immediate
-|   |   |-- rvi_compute_register_register
-|   |   |-- rvi_control_transfer
-|   |   |-- rvi_control_transfer_conditional
-|   |   |-- rvi_control_transfer_unconditional
-|   |   `-- rvi_load_store
-|   |-- rv_m                                              -- risc-v M-extension tests
-|   |   |-- rvm_divide
-|   |   |-- rvm_multiply
-|   |   |-- rvm_divide
-|   |   `-- rvm_multiply
-|   |-- rv_d                                              -- risc-v D-extension tests
-|   |   `-- rvd
-|   |-- rv_c                                              -- risc-v C-extension tests
-|   |   |-- rvc
-|   |   |-- rv_c
-|   |   `-- rvcd
-|   |-- rvv                                               -- risc-v V-extension tests
-|   |   |-- vlen_128
-|   |   |   |-- opivi_2
-|   |   |   |-- opivv_2
-|   |   |   |-- opivx_2
-|   |   |   |-- opmvv_3
-|   |   |   |-- opmvv_4
-|   |   |   |-- opmvv_vid
-|   |   |   |-- opmvv_vmacc
-|   |   |   |-- opmvx_1
-|   |   |   |-- opmvx_vmacc
-|   |   |   |-- rvv_int_arithmetic
-|   |   |   |-- vls_iu
-|   |   |   |-- vls_s
-|   |   |   `-- vl_usff
-|   |   `-- vlen_256
-|   |       |-- opivi_2
-|   |       |-- opivv_2
-|   |       |-- opivx_2
-|   |       |-- opmvv_3
-|   |       |-- opmvv_4
-|   |       |-- opmvv_vid
-|   |       |-- opmvv_vmacc
-|   |       |-- opmvx_1
-|   |       |-- opmvx_vmacc
-|   |       |-- rvv_int_arithmetic
-|   |       |-- vls_iu
-|   |       |-- vls_s
-|   |       `-- vl_usff
-|   |-- zfh                                               -- risc-v Zfh-extension tests
-|   |   |-- rvd_zfh
-|   |   `-- rvzfh
-|   |-- zba                                               -- risc-v Zba-extension tests
-|   |   `-- rvzba
-|   |-- zbb                                               -- risc-v Zbb-extension tests
-|   |   `-- rvzbb
-|   |-- zbc                                               -- risc-v Zbc-extension tests
-|   |   `-- rvzbc
-|   `-- zbs                                               -- risc-v Zbs-extension tests
-|       `-- rvzbs
+├── riscv_tests
+│   ├── bare_metal
+│   │   ├── machine
+│   │   │   └── paging_bare
+│   │   │       ├── rv_a
+│   │   │       ├── rv_c
+│   │   │       ├── rv_d
+│   │   │       ├── rv_f
+│   │   │       ├── rv_i
+│   │   │       ├── rv_m
+│   │   │       ├── rv_v
+│   │   │       │   └── xlen_256
+│   │   │       │       ├── vlmul_m1
+│   │   │       │       ├── vlmul_m2
+│   │   │       │       ├── vlmul_m4
+│   │   │       │       ├── vlmul_mf2
+│   │   │       │       ├── vlmul_mf4
+│   │   │       │       └── vlmul_mf8
+│   │   │       ├── rv_zba
+│   │   │       ├── rv_zbb
+│   │   │       ├── rv_zbc
+│   │   │       ├── rv_zbs
+│   │   │       └── rv_zfh
+│   │   ├── supervisor
+│   │   │   ├── paging_bare
+│   │   │       ├── rv_a ...
+│   │   │   ├── paging_sv39
+│   │   │       ├── rv_a ...
+│   │   │   ├── paging_sv48
+│   │   │       ├── rv_a ...
+│   │   │   └── paging_sv57
+│   │   │       ├── rv_a ...
+│   │   └── user
+│   │       ├── paging_bare
+│   │           ├── rv_a ...
+│   │       ├── paging_sv39
+│   │           ├── rv_a ...
+│   │       ├── paging_sv48
+│   │       │   ├── rv_a ...
+│   │       └── paging_sv57
+│   │           ├── rv_a ...
+│   └── h_ext
+│       ├── supervisor
+│       │   ├── rv_a ...
+│       └── user
+│       │   ├── rv_a ...
 `-- whisper
 ```
