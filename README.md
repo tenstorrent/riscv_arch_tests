@@ -13,7 +13,7 @@ These tests are released as binary (elf) files and generated for following RISC-
 3. RV-F
 4. RV-D
 5. RV-C
-6. RV-V [README](https://github.com/tenstorrent/riscv_arch_tests/tree/main/riscv_tests/rvv)
+6. RV-V
 7. Zfh
 8. Zba, Zbb, Zbc, Zbs
 
