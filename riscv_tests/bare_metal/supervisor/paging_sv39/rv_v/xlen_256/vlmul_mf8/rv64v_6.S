@@ -1,0 +1,4835 @@
+## equates ##
+# Test configuration:
+.equ PRIV_MODE_MACHINE                  , 1
+.equ PRIV_MODE_SUPER                    , 0
+.equ PRIV_MODE_USER                     , 0
+.equ ENV_BARE_METAL                     , 1
+.equ ENV_VIRTUALIZED                    , 0
+.equ PAGING_MODE_DISABLE                , 1
+.equ PAGING_MODE_SV32                   , 0
+.equ PAGING_MODE_SV39                   , 0
+.equ PAGING_MODE_SV48                   , 0
+.equ PAGING_MODE_SV57                   , 0
+.equ MP_ENABLED                         , 0
+.equ MP_SIMULTANEOUS                    , 0
+.equ MP_PARALLEL                        , 1
+.equ MP_PARALLEL_SCHEDULING_MODE_ROUND_ROBIN, 0
+.equ MP_PARALLEL_SCHEDULING_MODE_EXHAUSTIVE, 1
+.equ PAGING_G_MODE_DISABLE              , 1
+.equ PAGING_G_MODE_SV32                 , 0
+.equ PAGING_G_MODE_SV39                 , 0
+.equ PAGING_G_MODE_SV48                 , 0
+.equ PAGING_G_MODE_SV57                 , 0
+
+# Test random data:
+
+# Test addresses:
+.equ data                               , 0x00000000fb7a6000
+.equ __section_data                     , 0x00000000fb7a6000
+.equ text                               , 0x0000000080000000
+.equ __section_text                     , 0x0000000080000000
+.equ __section__text_1                  , 0x0000000080001000
+.equ __section__text_1_phys             , 0x0000000080001000
+.equ __section__text_2                  , 0x0000000080002000
+.equ __section__text_2_phys             , 0x0000000080002000
+.equ __section__text_3                  , 0x0000000080003000
+.equ __section__text_3_phys             , 0x0000000080003000
+.equ __section__text_4                  , 0x0000000080004000
+.equ __section__text_4_phys             , 0x0000000080004000
+.equ __section__text_5                  , 0x0000000080005000
+.equ __section__text_5_phys             , 0x0000000080005000
+.equ __section__text_6                  , 0x0000000080006000
+.equ __section__text_6_phys             , 0x0000000080006000
+.equ __section__text_7                  , 0x0000000080007000
+.equ __section__text_7_phys             , 0x0000000080007000
+.equ __section__text_8                  , 0x0000000080008000
+.equ __section__text_8_phys             , 0x0000000080008000
+.equ __section__text_9                  , 0x0000000080009000
+.equ __section__text_9_phys             , 0x0000000080009000
+.equ __section__text_10                 , 0x000000008000a000
+.equ __section__text_10_phys            , 0x000000008000a000
+.equ __section__text_11                 , 0x000000008000b000
+.equ __section__text_11_phys            , 0x000000008000b000
+.equ __section__text_12                 , 0x000000008000c000
+.equ __section__text_12_phys            , 0x000000008000c000
+.equ __section__text_13                 , 0x000000008000d000
+.equ __section__text_13_phys            , 0x000000008000d000
+.equ __section__text_14                 , 0x000000008000e000
+.equ __section__text_14_phys            , 0x000000008000e000
+.equ __section__text_15                 , 0x000000008000f000
+.equ __section__text_15_phys            , 0x000000008000f000
+.equ code                               , 0x0000000080010050
+.equ __section_code                     , 0x0000000080010000
+.equ __section__code_1                  , 0x0000000080011000
+.equ __section__code_1_phys             , 0x0000000080011000
+.equ __section__code_2                  , 0x0000000080012000
+.equ __section__code_2_phys             , 0x0000000080012000
+.equ __section__code_3                  , 0x0000000080013000
+.equ __section__code_3_phys             , 0x0000000080013000
+.equ __section__code_4                  , 0x0000000080014000
+.equ __section__code_4_phys             , 0x0000000080014000
+.equ __section__code_5                  , 0x0000000080015000
+.equ __section__code_5_phys             , 0x0000000080015000
+.equ __section__code_6                  , 0x0000000080016000
+.equ __section__code_6_phys             , 0x0000000080016000
+.equ __section__code_7                  , 0x0000000080017000
+.equ __section__code_7_phys             , 0x0000000080017000
+.equ __section__code_8                  , 0x0000000080018000
+.equ __section__code_8_phys             , 0x0000000080018000
+.equ __section__code_9                  , 0x0000000080019000
+.equ __section__code_9_phys             , 0x0000000080019000
+.equ __section__code_10                 , 0x000000008001a000
+.equ __section__code_10_phys            , 0x000000008001a000
+.equ __section__code_11                 , 0x000000008001b000
+.equ __section__code_11_phys            , 0x000000008001b000
+.equ __section__code_12                 , 0x000000008001c000
+.equ __section__code_12_phys            , 0x000000008001c000
+.equ __section__code_13                 , 0x000000008001d000
+.equ __section__code_13_phys            , 0x000000008001d000
+.equ __section__code_14                 , 0x000000008001e000
+.equ __section__code_14_phys            , 0x000000008001e000
+.equ __section__code_15                 , 0x000000008001f000
+.equ __section__code_15_phys            , 0x000000008001f000
+.equ __section__code_16                 , 0x0000000080020000
+.equ __section__code_16_phys            , 0x0000000080020000
+.equ __section__code_17                 , 0x0000000080021000
+.equ __section__code_17_phys            , 0x0000000080021000
+.equ __section__code_18                 , 0x0000000080022000
+.equ __section__code_18_phys            , 0x0000000080022000
+.equ __section__code_19                 , 0x0000000080023000
+.equ __section__code_19_phys            , 0x0000000080023000
+.equ __section__code_20                 , 0x0000000080024000
+.equ __section__code_20_phys            , 0x0000000080024000
+.equ __section__code_21                 , 0x0000000080025000
+.equ __section__code_21_phys            , 0x0000000080025000
+.equ __section__code_22                 , 0x0000000080026000
+.equ __section__code_22_phys            , 0x0000000080026000
+.equ __section__code_23                 , 0x0000000080027000
+.equ __section__code_23_phys            , 0x0000000080027000
+.equ __section__code_24                 , 0x0000000080028000
+.equ __section__code_24_phys            , 0x0000000080028000
+.equ __section__code_25                 , 0x0000000080029000
+.equ __section__code_25_phys            , 0x0000000080029000
+.equ __section__code_26                 , 0x000000008002a000
+.equ __section__code_26_phys            , 0x000000008002a000
+.equ __section__code_27                 , 0x000000008002b000
+.equ __section__code_27_phys            , 0x000000008002b000
+.equ __section__code_28                 , 0x000000008002c000
+.equ __section__code_28_phys            , 0x000000008002c000
+.equ __section__code_29                 , 0x000000008002d000
+.equ __section__code_29_phys            , 0x000000008002d000
+.equ __section__code_30                 , 0x000000008002e000
+.equ __section__code_30_phys            , 0x000000008002e000
+.equ __section__code_31                 , 0x000000008002f000
+.equ __section__code_31_phys            , 0x000000008002f000
+.equ __section__code_32                 , 0x0000000080030000
+.equ __section__code_32_phys            , 0x0000000080030000
+.equ __section__code_33                 , 0x0000000080031000
+.equ __section__code_33_phys            , 0x0000000080031000
+.equ __section__code_34                 , 0x0000000080032000
+.equ __section__code_34_phys            , 0x0000000080032000
+.equ __section__code_35                 , 0x0000000080033000
+.equ __section__code_35_phys            , 0x0000000080033000
+.equ __section__code_36                 , 0x0000000080034000
+.equ __section__code_36_phys            , 0x0000000080034000
+.equ __section__code_37                 , 0x0000000080035000
+.equ __section__code_37_phys            , 0x0000000080035000
+.equ __section__code_38                 , 0x0000000080036000
+.equ __section__code_38_phys            , 0x0000000080036000
+.equ __section__code_39                 , 0x0000000080037000
+.equ __section__code_39_phys            , 0x0000000080037000
+.equ __section__code_40                 , 0x0000000080038000
+.equ __section__code_40_phys            , 0x0000000080038000
+.equ __section__code_41                 , 0x0000000080039000
+.equ __section__code_41_phys            , 0x0000000080039000
+.equ __section__code_42                 , 0x000000008003a000
+.equ __section__code_42_phys            , 0x000000008003a000
+.equ __section__code_43                 , 0x000000008003b000
+.equ __section__code_43_phys            , 0x000000008003b000
+.equ __section__code_44                 , 0x000000008003c000
+.equ __section__code_44_phys            , 0x000000008003c000
+.equ __section__code_45                 , 0x000000008003d000
+.equ __section__code_45_phys            , 0x000000008003d000
+.equ __section__code_46                 , 0x000000008003e000
+.equ __section__code_46_phys            , 0x000000008003e000
+.equ __section__code_47                 , 0x000000008003f000
+.equ __section__code_47_phys            , 0x000000008003f000
+.equ __section__code_48                 , 0x0000000080040000
+.equ __section__code_48_phys            , 0x0000000080040000
+.equ __section__code_49                 , 0x0000000080041000
+.equ __section__code_49_phys            , 0x0000000080041000
+.equ __section__code_50                 , 0x0000000080042000
+.equ __section__code_50_phys            , 0x0000000080042000
+.equ __section__code_51                 , 0x0000000080043000
+.equ __section__code_51_phys            , 0x0000000080043000
+.equ __section__code_52                 , 0x0000000080044000
+.equ __section__code_52_phys            , 0x0000000080044000
+.equ __section__code_53                 , 0x0000000080045000
+.equ __section__code_53_phys            , 0x0000000080045000
+.equ __section__code_54                 , 0x0000000080046000
+.equ __section__code_54_phys            , 0x0000000080046000
+.equ __section__code_55                 , 0x0000000080047000
+.equ __section__code_55_phys            , 0x0000000080047000
+.equ __section__code_56                 , 0x0000000080048000
+.equ __section__code_56_phys            , 0x0000000080048000
+.equ __section__code_57                 , 0x0000000080049000
+.equ __section__code_57_phys            , 0x0000000080049000
+.equ __section__code_58                 , 0x000000008004a000
+.equ __section__code_58_phys            , 0x000000008004a000
+.equ __section__code_59                 , 0x000000008004b000
+.equ __section__code_59_phys            , 0x000000008004b000
+.equ __section__code_60                 , 0x000000008004c000
+.equ __section__code_60_phys            , 0x000000008004c000
+.equ __section__code_61                 , 0x000000008004d000
+.equ __section__code_61_phys            , 0x000000008004d000
+.equ __section__code_62                 , 0x000000008004e000
+.equ __section__code_62_phys            , 0x000000008004e000
+.equ __section__code_63                 , 0x000000008004f000
+.equ __section__code_63_phys            , 0x000000008004f000
+.equ __section__code_64                 , 0x0000000080050000
+.equ __section__code_64_phys            , 0x0000000080050000
+.equ __section__code_65                 , 0x0000000080051000
+.equ __section__code_65_phys            , 0x0000000080051000
+.equ __section__code_66                 , 0x0000000080052000
+.equ __section__code_66_phys            , 0x0000000080052000
+.equ __section__code_67                 , 0x0000000080053000
+.equ __section__code_67_phys            , 0x0000000080053000
+.equ __section__code_68                 , 0x0000000080054000
+.equ __section__code_68_phys            , 0x0000000080054000
+.equ __section__code_69                 , 0x0000000080055000
+.equ __section__code_69_phys            , 0x0000000080055000
+.equ __section__code_70                 , 0x0000000080056000
+.equ __section__code_70_phys            , 0x0000000080056000
+.equ __section__code_71                 , 0x0000000080057000
+.equ __section__code_71_phys            , 0x0000000080057000
+.equ __section__code_72                 , 0x0000000080058000
+.equ __section__code_72_phys            , 0x0000000080058000
+.equ __section__code_73                 , 0x0000000080059000
+.equ __section__code_73_phys            , 0x0000000080059000
+.equ __section__code_74                 , 0x000000008005a000
+.equ __section__code_74_phys            , 0x000000008005a000
+.equ __section__code_75                 , 0x000000008005b000
+.equ __section__code_75_phys            , 0x000000008005b000
+.equ __section__code_76                 , 0x000000008005c000
+.equ __section__code_76_phys            , 0x000000008005c000
+.equ __section__code_77                 , 0x000000008005d000
+.equ __section__code_77_phys            , 0x000000008005d000
+.equ __section__code_78                 , 0x000000008005e000
+.equ __section__code_78_phys            , 0x000000008005e000
+.equ __section__code_79                 , 0x000000008005f000
+.equ __section__code_79_phys            , 0x000000008005f000
+.equ __section__code_80                 , 0x0000000080060000
+.equ __section__code_80_phys            , 0x0000000080060000
+.equ __section__code_81                 , 0x0000000080061000
+.equ __section__code_81_phys            , 0x0000000080061000
+.equ __section__code_82                 , 0x0000000080062000
+.equ __section__code_82_phys            , 0x0000000080062000
+.equ __section__code_83                 , 0x0000000080063000
+.equ __section__code_83_phys            , 0x0000000080063000
+.equ __section__code_84                 , 0x0000000080064000
+.equ __section__code_84_phys            , 0x0000000080064000
+.equ __section__code_85                 , 0x0000000080065000
+.equ __section__code_85_phys            , 0x0000000080065000
+.equ __section__code_86                 , 0x0000000080066000
+.equ __section__code_86_phys            , 0x0000000080066000
+.equ __section__code_87                 , 0x0000000080067000
+.equ __section__code_87_phys            , 0x0000000080067000
+.equ __section__code_88                 , 0x0000000080068000
+.equ __section__code_88_phys            , 0x0000000080068000
+.equ __section__code_89                 , 0x0000000080069000
+.equ __section__code_89_phys            , 0x0000000080069000
+.equ __section__code_90                 , 0x000000008006a000
+.equ __section__code_90_phys            , 0x000000008006a000
+.equ __section__code_91                 , 0x000000008006b000
+.equ __section__code_91_phys            , 0x000000008006b000
+.equ __section__code_92                 , 0x000000008006c000
+.equ __section__code_92_phys            , 0x000000008006c000
+.equ __section__code_93                 , 0x000000008006d000
+.equ __section__code_93_phys            , 0x000000008006d000
+.equ __section__code_94                 , 0x000000008006e000
+.equ __section__code_94_phys            , 0x000000008006e000
+.equ __section__code_95                 , 0x000000008006f000
+.equ __section__code_95_phys            , 0x000000008006f000
+.equ __section__code_96                 , 0x0000000080070000
+.equ __section__code_96_phys            , 0x0000000080070000
+.equ __section__code_97                 , 0x0000000080071000
+.equ __section__code_97_phys            , 0x0000000080071000
+.equ __section__code_98                 , 0x0000000080072000
+.equ __section__code_98_phys            , 0x0000000080072000
+.equ __section__code_99                 , 0x0000000080073000
+.equ __section__code_99_phys            , 0x0000000080073000
+.equ __section__code_100                , 0x0000000080074000
+.equ __section__code_100_phys           , 0x0000000080074000
+.equ __section__code_101                , 0x0000000080075000
+.equ __section__code_101_phys           , 0x0000000080075000
+.equ __section__code_102                , 0x0000000080076000
+.equ __section__code_102_phys           , 0x0000000080076000
+.equ __section__code_103                , 0x0000000080077000
+.equ __section__code_103_phys           , 0x0000000080077000
+.equ __section__code_104                , 0x0000000080078000
+.equ __section__code_104_phys           , 0x0000000080078000
+.equ __section__code_105                , 0x0000000080079000
+.equ __section__code_105_phys           , 0x0000000080079000
+.equ __section__code_106                , 0x000000008007a000
+.equ __section__code_106_phys           , 0x000000008007a000
+.equ __section__code_107                , 0x000000008007b000
+.equ __section__code_107_phys           , 0x000000008007b000
+.equ __section__code_108                , 0x000000008007c000
+.equ __section__code_108_phys           , 0x000000008007c000
+.equ __section__code_109                , 0x000000008007d000
+.equ __section__code_109_phys           , 0x000000008007d000
+.equ __section__code_110                , 0x000000008007e000
+.equ __section__code_110_phys           , 0x000000008007e000
+.equ __section__code_111                , 0x000000008007f000
+.equ __section__code_111_phys           , 0x000000008007f000
+.equ __section__code_112                , 0x0000000080080000
+.equ __section__code_112_phys           , 0x0000000080080000
+.equ __section__code_113                , 0x0000000080081000
+.equ __section__code_113_phys           , 0x0000000080081000
+.equ __section__code_114                , 0x0000000080082000
+.equ __section__code_114_phys           , 0x0000000080082000
+.equ __section__code_115                , 0x0000000080083000
+.equ __section__code_115_phys           , 0x0000000080083000
+.equ __section__code_116                , 0x0000000080084000
+.equ __section__code_116_phys           , 0x0000000080084000
+.equ __section__code_117                , 0x0000000080085000
+.equ __section__code_117_phys           , 0x0000000080085000
+.equ __section__code_118                , 0x0000000080086000
+.equ __section__code_118_phys           , 0x0000000080086000
+.equ __section__code_119                , 0x0000000080087000
+.equ __section__code_119_phys           , 0x0000000080087000
+.equ __section__code_120                , 0x0000000080088000
+.equ __section__code_120_phys           , 0x0000000080088000
+.equ __section__code_121                , 0x0000000080089000
+.equ __section__code_121_phys           , 0x0000000080089000
+.equ __section__code_122                , 0x000000008008a000
+.equ __section__code_122_phys           , 0x000000008008a000
+.equ __section__code_123                , 0x000000008008b000
+.equ __section__code_123_phys           , 0x000000008008b000
+.equ __section__code_124                , 0x000000008008c000
+.equ __section__code_124_phys           , 0x000000008008c000
+.equ __section__code_125                , 0x000000008008d000
+.equ __section__code_125_phys           , 0x000000008008d000
+.equ __section__code_126                , 0x000000008008e000
+.equ __section__code_126_phys           , 0x000000008008e000
+.equ __section__code_127                , 0x000000008008f000
+.equ __section__code_127_phys           , 0x000000008008f000
+.equ code_super_0                       , 0x0000000080090000
+.equ __section_code_super_0             , 0x0000000080090000
+.equ code_super_1                       , 0x0000000080091000
+.equ __section_code_super_1             , 0x0000000080091000
+.equ code_super_2                       , 0x0000000080092000
+.equ __section_code_super_2             , 0x0000000080092000
+.equ code_super_3                       , 0x0000000080093000
+.equ __section_code_super_3             , 0x0000000080093000
+.equ code_super_4                       , 0x0000000080094000
+.equ __section_code_super_4             , 0x0000000080094000
+.equ code_super_5                       , 0x0000000080095000
+.equ __section_code_super_5             , 0x0000000080095000
+.equ code_super_6                       , 0x0000000080096000
+.equ __section_code_super_6             , 0x0000000080096000
+.equ code_super_7                       , 0x0000000080097000
+.equ __section_code_super_7             , 0x0000000080097000
+.equ code_user_0                        , 0x0000000080098000
+.equ __section_code_user_0              , 0x0000000080098000
+.equ code_user_1                        , 0x0000000080099000
+.equ __section_code_user_1              , 0x0000000080099000
+.equ code_user_2                        , 0x000000008009a000
+.equ __section_code_user_2              , 0x000000008009a000
+.equ code_user_3                        , 0x000000008009b000
+.equ __section_code_user_3              , 0x000000008009b000
+.equ code_user_4                        , 0x000000008009c000
+.equ __section_code_user_4              , 0x000000008009c000
+.equ code_user_5                        , 0x000000008009d000
+.equ __section_code_user_5              , 0x000000008009d000
+.equ code_user_6                        , 0x000000008009e000
+.equ __section_code_user_6              , 0x000000008009e000
+.equ code_user_7                        , 0x000000008009f000
+.equ __section_code_user_7              , 0x000000008009f000
+.equ code_machine_0                     , 0x00000000800a0000
+.equ __section_code_machine_0           , 0x00000000800a0000
+.equ code_machine_1                     , 0x00000000800a1000
+.equ __section_code_machine_1           , 0x00000000800a1000
+.equ code_machine_2                     , 0x00000000800a2000
+.equ __section_code_machine_2           , 0x00000000800a2000
+.equ code_machine_3                     , 0x00000000800a3000
+.equ __section_code_machine_3           , 0x00000000800a3000
+.equ code_machine_4                     , 0x00000000800a4000
+.equ __section_code_machine_4           , 0x00000000800a4000
+.equ code_machine_5                     , 0x00000000800a5000
+.equ __section_code_machine_5           , 0x00000000800a5000
+.equ code_machine_6                     , 0x00000000800a6000
+.equ __section_code_machine_6           , 0x00000000800a6000
+.equ code_machine_7                     , 0x00000000800a7000
+.equ __section_code_machine_7           , 0x00000000800a7000
+.equ os_data                            , 0x00000000fe65a000
+.equ __section_os_data                  , 0x00000000fe65a000
+.equ os_stack                           , 0x00000000055d4a80
+.equ __section_os_stack                 , 0x00000000055d4a80
+.equ __section__os_stack_1              , 0x00000000055d5a80
+.equ __section__os_stack_1_phys         , 0x00000000055d5a80
+.equ map_os_sptbr                       , 0x00000000fbb3a000
+.equ vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin, 0x00000000914d9000
+.equ vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_phy, 0x00000000914d9000
+.equ vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin, 0x00000000fba3e000
+.equ vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_phy, 0x00000000fba3e000
+.equ VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, 0x00000000f5218000
+.equ VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, 0x00000000f5218000
+.equ vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, 0x00000000f7180000
+.equ vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, 0x00000000f7180000
+.equ vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fb7a8000
+.equ vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fb7a8000
+.equ vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fb800000
+.equ vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fb800000
+.equ vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin, 0x0000000088cfd000
+.equ vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_phy, 0x0000000088cfd000
+.equ vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, 0x00000000ab628000
+.equ vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, 0x00000000ab628000
+.equ VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, 0x00000000fb7be000
+.equ VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, 0x00000000fb7be000
+.equ vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin, 0x00000000fb7da000
+.equ vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_phy, 0x00000000fb7da000
+.equ vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000aaae4000
+.equ vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000aaae4000
+.equ VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux, 0x00000000aab85000
+.equ VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_phy_aux, 0x00000000aab85000
+.equ vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, 0x00000000a1ed7000
+.equ vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, 0x00000000a1ed7000
+.equ vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin, 0x00000000fb801000
+.equ vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_phy, 0x00000000fb801000
+.equ vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fbb36000
+.equ vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fbb36000
+.equ vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin, 0x00000000aa1ad000
+.equ vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_phy, 0x00000000aa1ad000
+.equ VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, 0x0000000084849000
+.equ VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, 0x0000000084849000
+.equ vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, 0x00000000db1e2000
+.equ vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, 0x00000000db1e2000
+.equ vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, 0x00000000ffef3000
+.equ vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, 0x00000000ffef3000
+.equ vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin, 0x0000000092e78000
+.equ vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_phy, 0x0000000092e78000
+.equ vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin, 0x00000000fb7e5000
+.equ vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_phy, 0x00000000fb7e5000
+.equ vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fb7d9000
+.equ vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fb7d9000
+.equ vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fbb35000
+.equ vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fbb35000
+.equ vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin, 0x00000000f7aa6000
+.equ vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_phy, 0x00000000f7aa6000
+.equ vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, 0x00000000f7041000
+.equ vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, 0x00000000f7041000
+.equ vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin, 0x00000000a66dd000
+.equ vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_phy, 0x00000000a66dd000
+.equ vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin, 0x00000000aaa36000
+.equ vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_phy, 0x00000000aaa36000
+.equ vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, 0x00000000aa888000
+.equ vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, 0x00000000aa888000
+.equ vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin, 0x0000000091ecb000
+.equ vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_phy, 0x0000000091ecb000
+.equ vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, 0x00000000fbb38000
+.equ vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, 0x00000000fbb38000
+.equ vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin, 0x00000000fba40000
+.equ vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_phy, 0x00000000fba40000
+.equ VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux, 0x000000009dd3e000
+.equ VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_phy_aux, 0x000000009dd3e000
+.equ vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin, 0x00000000aaa37000
+.equ vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_phy, 0x00000000aaa37000
+.equ vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000d1898000
+.equ vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000d1898000
+.equ vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin, 0x00000000d1897000
+.equ vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_phy, 0x00000000d1897000
+.equ VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, 0x00000000fffcd000
+.equ VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, 0x00000000fffcd000
+.equ vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, 0x00000000fbb37000
+.equ vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, 0x00000000fbb37000
+.equ vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin, 0x00000000f7097000
+.equ vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_phy, 0x00000000f7097000
+.equ vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin, 0x00000000847d5000
+.equ vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_phy, 0x00000000847d5000
+.equ vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin, 0x00000000fffe4000
+.equ vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_phy, 0x00000000fffe4000
+.equ vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, 0x000000009e9a7000
+.equ vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, 0x000000009e9a7000
+.equ VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, 0x0000000091c6b000
+.equ VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, 0x0000000091c6b000
+.equ vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin, 0x000000008483d000
+.equ vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_phy, 0x000000008483d000
+.equ vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin, 0x00000000fbb0d000
+.equ vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_phy, 0x00000000fbb0d000
+.equ vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fffe6000
+.equ vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fffe6000
+.equ vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin, 0x00000000aa603000
+.equ vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_phy, 0x00000000aa603000
+.equ vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, 0x0000000082137000
+.equ vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, 0x0000000082137000
+.equ vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, 0x0000000091ecc000
+.equ vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, 0x0000000091ecc000
+.equ vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin, 0x0000000083e45000
+.equ vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_phy, 0x0000000083e45000
+.equ vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin, 0x00000000fffe5000
+.equ vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_phy, 0x00000000fffe5000
+.equ vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin, 0x000000009e763000
+.equ vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_phy, 0x000000009e763000
+.equ vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin, 0x00000000aaacd000
+.equ vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_phy, 0x00000000aaacd000
+.equ vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, 0x00000000aaa93000
+.equ vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, 0x00000000aaa93000
+.equ vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin, 0x00000000fb87f000
+.equ vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_phy, 0x00000000fb87f000
+.equ vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fb7a9000
+.equ vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fb7a9000
+.equ vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000b15cb000
+.equ vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000b15cb000
+.equ vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, 0x00000000fbb1e000
+.equ vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, 0x00000000fbb1e000
+.equ vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin, 0x0000000083e46000
+.equ vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_phy, 0x0000000083e46000
+.equ vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin, 0x00000000fbb39000
+.equ vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_phy, 0x00000000fbb39000
+.equ vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, 0x00000000bedfd000
+.equ vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, 0x00000000bedfd000
+.equ vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, 0x00000000fffe7000
+.equ vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, 0x00000000fffe7000
+.equ vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin, 0x00000000aaad3000
+.equ vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_phy, 0x00000000aaad3000
+.equ vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin, 0x0000000084847000
+.equ vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_phy, 0x0000000084847000
+.equ vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, 0x00000000fbb20000
+.equ vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, 0x00000000fbb20000
+.equ vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin, 0x00000000fe9f9000
+.equ vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_phy, 0x00000000fe9f9000
+.equ vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin, 0x000000008146f000
+.equ vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_phy, 0x000000008146f000
+.equ vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin, 0x000000008245a000
+.equ vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_phy, 0x000000008245a000
+.equ vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin, 0x00000000f711b000
+.equ vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_phy, 0x00000000f711b000
+.equ vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, 0x00000000ca04e000
+.equ vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, 0x00000000ca04e000
+.equ vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, 0x00000000fb7ad000
+.equ vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, 0x00000000fb7ad000
+.equ vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin, 0x0000000084848000
+.equ vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_phy, 0x0000000084848000
+.equ vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, 0x00000000f70d6000
+.equ vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, 0x00000000f70d6000
+.equ vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin, 0x000000008e805000
+.equ vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_phy, 0x000000008e805000
+.equ vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin, 0x00000000fb7f5000
+.equ vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_phy, 0x00000000fb7f5000
+.equ vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, 0x00000000ffff4000
+.equ vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, 0x00000000ffff4000
+.equ vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin, 0x00000000a03d6000
+.equ vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_phy, 0x00000000a03d6000
+.equ vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin, 0x00000000fd62b000
+.equ vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_phy, 0x00000000fd62b000
+.equ vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin, 0x00000000fb7e0000
+.equ vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_phy, 0x00000000fb7e0000
+.equ vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, 0x0000000091f3a000
+.equ vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, 0x0000000091f3a000
+.equ vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, 0x00000000a37a5000
+.equ vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, 0x00000000a37a5000
+.equ vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin, 0x00000000f608b000
+.equ vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_phy, 0x00000000f608b000
+.equ vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin, 0x00000000b9f71000
+.equ vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_phy, 0x00000000b9f71000
+.equ vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin, 0x0000000084582000
+.equ vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_phy, 0x0000000084582000
+.equ vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin, 0x00000000aaad0000
+.equ vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_phy, 0x00000000aaad0000
+.equ vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin, 0x00000000fb7ab000
+.equ vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_phy, 0x00000000fb7ab000
+.equ vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, 0x0000000084750000
+.equ vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, 0x0000000084750000
+.equ vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin, 0x000000009e7c5000
+.equ vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_phy, 0x000000009e7c5000
+.equ vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, 0x0000000084841000
+.equ vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, 0x0000000084841000
+
+# Test OS data hack:
+
+.equ check_excp                         , os_data + 0
+.equ check_excp_expected_pc             , os_data + 8
+.equ check_excp_actual_pc               , os_data + 16
+.equ check_excp_return_pc               , os_data + 24
+.equ check_excp_expected_tval           , os_data + 32
+.equ check_excp_actual_tval             , os_data + 40
+.equ check_excp_expected_cause          , os_data + 48
+.equ check_excp_actual_cause            , os_data + 56
+.equ os_save_ecall_fn_epc                  , os_data + 64
+.equ passed_addr                        , os_data + 72
+.equ failed_addr                        , os_data + 80
+.equ machine_flags                      , os_data + 88
+.equ user_flags                         , os_data + 96
+.equ super_flags                        , os_data + 104
+.equ machine_area                       , os_data + 112
+.equ user_area                          , os_data + 120
+.equ super_area                         , os_data + 128
+.equ os_passed_addr                     , os_data + 136
+.equ os_failed_addr                     , os_data + 144
+        
+# Exception causes:
+.equ INSTRUCTION_ADDRESS_MISALIGNED     , 0
+.equ INSTRUCTION_ACCESS_FAULT           , 1
+.equ ILLEGAL_INSTRUCTION                , 2
+.equ BREAKPOINT                         , 3
+.equ LOAD_ADDRESS_MISALIGNED            , 4
+.equ LOAD_ACCESS_FAULT                  , 5
+.equ STORE_ADDRESS_MISALIGNED           , 6
+.equ STORE_ACCESS_FAULT                 , 7
+.equ ECALL_FROM_USER                    , 8
+.equ ECALL_FROM_SUPER                   , 9
+.equ ECALL_FROM_VS                      , 10
+.equ ECALL_FROM_MACHINE                 , 11
+.equ INSTRUCTION_PAGE_FAULT             , 12
+.equ LOAD_PAGE_FAULT                    , 13
+.equ STORE_PAGE_FAULT                   , 15
+.equ INSTRUCTION_GUEST_PAGE_FAULT       , 20
+.equ LOAD_GUEST_PAGE_FAULT              , 21
+.equ VIRTUAL_INSTRUCTION                , 22
+.equ STORE_GUEST_PAGE_FAULT             , 23
+
+.equ ECALL            , ECALL_FROM_MACHINE
+
+.equ OS_DELEG_EXCP_TO_SUPER, 0
+.equ OS_DELEG_EXCP_TO_MACHINE, 1
+
+.equ PMA_ENABLED, 0
+;#test.name       sample_test
+;#test.author     dkoshiya@tenstorrent.com
+;#test.arch       rv64
+;#test.priv       machine
+;#test.env        virtualized bare_metal
+;#test.cpus       1
+;#test.paging     disable
+;#test.category   arch
+;#test.class      vector
+;#test.features   ext_v.enable ext_fp.disable
+## macros ##
+.macro OS_SETUP_CHECK_EXCP expected_cause, expected_pc, return_pc, expected_tval=0
+            
+            # Setup exception check
+            li x1, check_excp_expected_cause
+            
+            li x2, \expected_cause
+            sw x2, 0(x1)
+
+            # Expected PC
+            li x1, check_excp_expected_pc
+            
+            la x2, \expected_pc
+            sd x2, 0(x1)
+
+            # Expected TVAL
+            li x1, check_excp_expected_tval
+            
+            li x2, \expected_tval
+            sd x2, 0(x1)
+
+            # Return pc
+            li x1, check_excp_return_pc
+            
+            la x2, \return_pc
+            sd x2, 0(x1)
+
+        
+.endm
+.macro MACHINE_SYSCALL payload_label:req
+        .if OS_DELEG_EXCP_TO_MACHINE
+            la a0, \payload_label
+            li x31, 0xf0001001 # Switch to machine mode
+            ecall
+        .else
+        fail_not_delegating_exceptions_to_machine:
+            j failed
+        .endif
+
+        
+.endm
+.macro GET_HART_ID test_label:req, hartid_counter_label:req
+            li a0, \hartid_counter_label
+            li t0, 1
+            amoadd.w.aq t1, t0, (a0) # FIXME What happens when overflow occurs?
+            li t2, 1
+            remu a0, t1, t2
+        
+.endm
+.macro GET_MHART_ID MACHINE_SYSCALL os_get_hartid
+.endm
+.macro MUTEX_ACQUIRE_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_retry_acquire_lock:
+            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+        \test_label\()_acquired_lock:
+            fence
+
+        
+.endm
+.macro MUTEX_RELEASE_AMO test_label:req, lock_addr_reg=a0
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_released_lock:
+
+        
+.endm
+.macro MUTEX_ACQUIRE_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0
+            \test_label\()_cas_acquire:
+                lr.d \work_reg, (\lock_addr_reg) # Load original value.
+                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
+                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
+                li \return_val_reg, 0 # Set return to success.
+                j \test_label\()_cas_acquired_lock
+
+            \test_label\()_cas_acquire_fail:
+                li \return_val_reg, 1 # Set return to failure.
+            \test_label\()_cas_acquired_lock:
+                fence
+        
+.endm
+.macro MUTEX_RELEASE_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0
+            \test_label\()_cas_acquire:
+                lr.d \work_reg, (\lock_addr_reg) # Load original value.
+                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
+                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
+                li \return_val_reg, 0 # Set return to success.
+                j \test_label\()_cas_acquired_lock
+
+            \test_label\()_cas_acquire_fail:
+                li \return_val_reg, 1 # Set return to failure.
+            \test_label\()_cas_acquired_lock:
+                fence
+        
+.endm
+.macro SEMAPHORE_ACQUIRE_TICKET test_label:req, semaphore_addr_reg=a0, lock_addr_reg=a1, swap_val_reg=t0, return_val_reg=a2, work_reg=t2
+            \test_label\()_acquire_ticket:
+                
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_acquire_semaphore_retry_acquire_lock:
+            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
+        \test_label\()_acquire_semaphore_acquired_lock:
+            fence
+
+        
+                ld \work_reg, (\semaphore_addr_reg)
+                bge x0, \work_reg, \test_label\()_acquire_ticket_fail
+
+                # Decrement semaphore
+                addi \work_reg, \work_reg, -1
+                sd \work_reg, (\semaphore_addr_reg)
+                j \test_label\()_acquired_ticket
+
+            \test_label\()_acquire_ticket_fail:
+                li \return_val_reg, 1
+                j \test_label\()_semaphore_release_lock
+
+            \test_label\()_acquired_ticket:
+                li \return_val_reg, 0
+
+            \test_label\()_semaphore_release_lock:
+            
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_acquire_semaphore_released_lock:
+
+        
+            fence
+        
+.endm
+.macro SEMAPHORE_RELEASE_TICKET test_label:req, semaphore_addr_reg=a0, lock_addr_reg=a1, swap_val_reg=t0, return_val_reg=a2, work_reg=t2
+            fence
+            \test_label\()_release_ticket:
+                
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_release_semaphore_retry_acquire_lock:
+            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
+        \test_label\()_release_semaphore_acquired_lock:
+            fence
+
+        
+                ld \work_reg, (\semaphore_addr_reg)
+                addi \work_reg, \work_reg, 1
+                sd \work_reg, (\semaphore_addr_reg)
+
+            \test_label\()_released_ticket:
+                li \return_val_reg, 0
+
+            
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_release_semaphore_released_lock:
+
+        
+        
+.endm
+.macro CRITICAL_SECTION_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1, critical_section_addr_reg=a1
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_retry_acquire_lock:
+            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+        \test_label\()_acquired_lock:
+            fence
+
+        jalr ra, \critical_section_addr_reg
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_released_lock:
+
+        
+.endm
+.macro CRITICAL_SECTION_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0, critical_section_addr_reg=a4
+            \test_label\()_cas_acquire:
+                lr.d \work_reg, (\lock_addr_reg) # Load original value.
+                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
+                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
+                li eturn_val_reg, 0 # Set return to success.
+                j \test_label\()_cas_acquired_lock
+
+            \test_label\()_cas_acquire_fail:
+                li eturn_val_reg, 1 # Set return to failure.
+            \test_label\()_cas_acquired_lock:
+                fence
+        bnez eturn_val_reg, \test_label\()_exitjalr ra, \critical_section_addr_reg
+            fence
+            \test_label\()_cas_release:
+                lr.d \work_reg, (\lock_addr_reg) # Load original value.
+                bne \work_reg, \desired_val_reg, \test_label\()_cas_release# Doesn't match, retry
+                sc.d \work_reg, \expected_val_reg, (\lock_addr_reg) # Try to update.
+                bnez \work_reg, \test_label\()_cas_release # Retry if store-conditional failed.
+                li eturn_val_reg, 0 # Set return to success.
+                j \test_label\()_cas_released_lock
+
+            \test_label\()_cas_release_fail:
+                li eturn_val_reg, 1
+                j failed
+            \test_label\()_cas_released_lock:
+        \test_label\()_exit:
+.endm
+.macro OS_SYNC_HARTS test_label:req, lock_addr_reg=a0, arrive_counter_addr_reg=a1, depart_counter_addr_reg=a2, flag_addr_reg=a3, swap_val_reg=t0, work_reg_1=t1, work_reg_2=t2
+        li \lock_addr_reg, barrier_lock
+        li \arrive_counter_addr_reg, barrier_arrive_counter
+        li \depart_counter_addr_reg, barrier_depart_counter
+        li \flag_addr_reg, barrier_flag
+
+        
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_0_retry_acquire_lock:
+            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
+        \test_label\()_0_acquired_lock:
+            fence
+
+        
+        # Branch if arrive_counter not equal to zero
+        lw \work_reg_1, 0(\arrive_counter_addr_reg)
+        bnez \work_reg_1, \test_label\()_arrive_count_not_zero
+            # Branch if depart_counter not equal to num_harts
+            lw \work_reg_1, 0(\depart_counter_addr_reg)
+            li \work_reg_2, 1
+            bne \work_reg_1, \work_reg_2, \test_label\()_depart_count_not_num_harts
+                # Set flag to zero
+                sw x0, 0(\flag_addr_reg)
+                j \test_label\()_arrive_count_not_zero
+            \test_label\()_depart_count_not_num_harts:
+                
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_0_released_lock:
+
+        
+                \test_label\()_wait_while_depart_count_not_num_harts:
+                    lw \work_reg_1, 0(\depart_counter_addr_reg)
+                    bne \work_reg_1, \work_reg_2, \test_label\()_wait_while_depart_count_not_num_harts
+                
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_1_retry_acquire_lock:
+            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
+        \test_label\()_1_acquired_lock:
+            fence
+
+        
+                # Set flag to zero
+                sw x0, 0(\flag_addr_reg)
+
+        \test_label\()_arrive_count_not_zero:
+            li \work_reg_2, 1
+            amoadd.w \work_reg_1, \work_reg_2, (\arrive_counter_addr_reg)
+            addi \work_reg_1, \work_reg_1, 1
+            
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_1_released_lock:
+
+        
+
+            # Branch if arrive_count not equal to num_harts
+            li \work_reg_2, 1
+            bne \work_reg_1, \work_reg_2, \test_label\()_arrive_count_not_num_harts # Last to arrive must reset variables
+                # Set arrive_count to zero
+                sw x0, 0(\arrive_counter_addr_reg)
+                # Set depart_counter to 1
+                li \work_reg_1, 1
+                sw \work_reg_1, 0(\depart_counter_addr_reg)
+                # Set flag to one
+                sw \work_reg_1, 0(\flag_addr_reg)
+                j \test_label\()_barrier_complete
+            \test_label\()_arrive_count_not_num_harts:
+                \test_label\()_wait_while_flag_zero:
+                    lw \work_reg_1, 0(\flag_addr_reg)
+                    beqz \work_reg_1, \test_label\()_wait_while_flag_zero
+                
+        li \lock_addr_reg, barrier_lock
+        li \swap_val_reg, 1        # Initialize swap value.
+        \test_label\()_2_retry_acquire_lock:
+            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+            bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
+            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+            bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
+        \test_label\()_2_acquired_lock:
+            fence
+
+        
+                li \work_reg_1, 1
+                amoadd.w \work_reg_2, \work_reg_1, (\depart_counter_addr_reg)
+                
+        fence
+        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+        \test_label\()_2_released_lock:
+
+        
+
+        \test_label\()_barrier_complete:
+            fence
+
+        
+.endm
+## loader ##
+
+
+
+        .section .text
+        .globl _start
+        .option norvc
+
+        _start:
+            nop
+
+
+        init:
+        loader_init:
+            li x1, 0x0
+            li x2, 0x0
+            li x3, 0x0
+            li x4, 0x0
+            li x5, 0x0
+            li x6, 0x0
+            li x7, 0x0
+            li x8, 0x0
+            li x9, 0x0
+            li x10, 0x0
+            li x11, 0x0
+            li x12, 0x0
+            li x13, 0x0
+            li x14, 0x0
+            li x15, 0x0
+            li x16, 0x0
+            li x17, 0x0
+            li x18, 0x0
+            li x19, 0x0
+            li x20, 0x0
+            li x21, 0x0
+            li x22, 0x0
+            li x23, 0x0
+            li x24, 0x0
+            li x25, 0x0
+            li x26, 0x0
+            li x27, 0x0
+            li x28, 0x0
+            li x29, 0x0
+            li x30, 0x0
+            li x31, 0x0
+
+        
+
+        init_tests:
+            # Initialize test configuration like privilege
+            # We should be in Machine mode at this point
+            # li x1, 0x40341123
+            li t0, 0x80000000003411af
+            csrw misa, t0
+            csrr t0, misa
+
+        
+        cache_mhartid:
+            csrr s1, mhartid
+
+        
+        set_mstatus_sum:
+            # Set mstatus.SUM=1, so we can access user pages from supervisor
+            li t0, 0x00040000
+            csrrs t0, mstatus, t0
+
+        
+        set_mstatus_fsvs:
+            li t0, 0x2200
+            csrrs x0, mstatus, t0
+
+            # Initialize FP registers
+            li t0, check_excp
+            fld f0 , 0(t0)
+            fld f1 , 0(t0)
+            fld f2 , 0(t0)
+            fld f3 , 0(t0)
+            fld f4 , 0(t0)
+            fld f5 , 0(t0)
+            fld f6 , 0(t0)
+            fld f7 , 0(t0)
+            fld f8 , 0(t0)
+            fld f9 , 0(t0)
+            fld f10, 0(t0)
+            fld f11, 0(t0)
+            fld f12, 0(t0)
+            fld f13, 0(t0)
+            fld f14, 0(t0)
+            fld f15, 0(t0)
+            fld f16, 0(t0)
+            fld f17, 0(t0)
+            fld f18, 0(t0)
+            fld f19, 0(t0)
+            fld f20, 0(t0)
+            fld f21, 0(t0)
+            fld f22, 0(t0)
+            fld f23, 0(t0)
+            fld f24, 0(t0)
+            fld f25, 0(t0)
+            fld f26, 0(t0)
+            fld f27, 0(t0)
+            fld f28, 0(t0)
+            fld f29, 0(t0)
+            fld f30, 0(t0)
+            fld f31, 0(t0)
+
+            #Initialize Vector Registers
+            li x4, 0x0
+            li x5, 0x4
+            li x6, 0xd8
+            li t0, check_excp
+            vsetvl x4,x5,x6
+            vmv.v.x v0,  x0
+            vmv.v.x v1,  x0
+            vmv.v.x v2,  x0
+            vmv.v.x v3,  x0
+            vmv.v.x v4,  x0
+            vmv.v.x v5,  x0
+            vmv.v.x v6,  x0
+            vmv.v.x v7,  x0
+            vmv.v.x v8,  x0
+            vmv.v.x v9,  x0
+            vmv.v.x v10, x0
+            vmv.v.x v11, x0
+            vmv.v.x v12, x0
+            vmv.v.x v13, x0
+            vmv.v.x v14, x0
+            vmv.v.x v15, x0
+            vmv.v.x v16, x0
+            vmv.v.x v17, x0
+            vmv.v.x v18, x0
+            vmv.v.x v19, x0
+            vmv.v.x v20, x0
+            vmv.v.x v21, x0
+            vmv.v.x v22, x0
+            vmv.v.x v23, x0
+            vmv.v.x v24, x0
+            vmv.v.x v25, x0
+            vmv.v.x v26, x0
+            vmv.v.x v27, x0
+            vmv.v.x v28, x0
+            vmv.v.x v29, x0
+            vmv.v.x v30, x0
+            vmv.v.x v31, x0
+
+        nop
+nop
+nop
+nop
+post_switch_to_super:
+
+                setup_stvec:
+                    # Setup stvec, so we can handle the ecall. STVEC contains the base address
+                    # of the interrupt handler
+                    # bit[0] = 0 => direct mode (all exceptions are directed to the base addr)
+                    # la t0, enter_scheduler
+                    la t0, excp_entry
+                    csrw mtvec, t0
+                
+            li t0, passed_addr
+            la t1, passed
+            sd t1, 0(t0)
+
+            li t0, os_passed_addr
+            la t1, test_passed
+            sd t1, 0(t0)
+
+            li t0, failed_addr
+            la t1, failed
+            sd t1, 0(t0)
+
+            li t0, os_failed_addr
+            la t1, test_failed
+            sd t1, 0(t0)
+        
+        init_mepc_label:
+            j schedule_tests
+
+        ## excp ##
+
+        .section .text
+
+        .align 2
+        excp_entry:
+            # Save the exception cause / code
+            csrr t1, mcause
+            li t3, check_excp_actual_cause
+            sd t1, 0(t3)
+
+            # Save exception PC
+            csrr t0, mepc
+            li t3, check_excp_actual_pc
+            sd t0, 0(t3)
+        
+        li t0, 8
+        beq t1, t0, os_check_functions
+        li t0, 9
+        beq t1, t0, os_check_functions
+        li t0, 11
+        beq t1, t0, os_check_functions
+        li t0, 10
+        beq t1, t0, os_check_functions
+        j os_check_exception
+        
+        os_check_functions:
+            # The function number is in x31
+
+            li t0, 0xf0000001  # schedule next test
+            beq t0, x31, enter_scheduler
+
+            li t0, 0xf0000002  # fail test
+            beq t0, x31, test_failed
+
+            li t0, 0xf0001001    # Switch to machine mode
+            beq x31, t0, os_fn_f0001001
+
+            li t0, 0xf0001002    # Switch to super mode
+            beq x31, t0, os_fn_f0001002
+
+            li t0, 0xf0001003    # Switch to user mode
+            beq x31, t0, os_fn_f0001003
+
+            li t0, 0xf0001004    # Switch to test mode
+            beq x31, t0, os_fn_f0001004
+
+        
+        os_check_exception:
+        
+                # Check if check_exception is enabled
+                li t3, check_excp
+                lb t0, 0(t3)
+                beq t0, x0, return_to_host
+
+                # Check for correct exception code
+                li t3, check_excp_expected_cause
+                ld t0, 0(t3)
+                sd x0, 0(t3)
+                bne t1, t0, test_failed
+
+                # TODO: Check for the correct pc value check_excp_expected_pc
+                li t3, check_excp_expected_pc
+                ld t1, 0(t3)
+                sd x0, 0(t3)
+                li t3, check_excp_actual_pc
+                ld t0, 0(t3)
+                sd x0, 0(t3)
+                bne t1, t0, test_failed
+                j return_to_host
+            
+        
+            ecall_from_machine:
+            ecall_from_supervisor:
+            return_to_host:
+        
+                # Update the return PC from check_excp_return_pc
+                li t3, check_excp_return_pc
+                ld t0, 0(t3)
+                sd x0, 0(t3)
+                csrw mepc, t0
+
+                # Return from exception
+                mret
+
+            
+            os_fn_f0001001:
+                # f0001001 : Switch to machine mode
+            
+                # If already in machine mode, do nothing
+                
+            li t0, code_machine_0
+        
+                j ret_from_os_fn
+            
+            os_fn_f0001002:
+                # f0001002 : Switch to super mode
+
+            
+            # Update mstatus csr to switch to super mode
+            li t0, 0x00001800
+            csrrc x0, mstatus, t0
+            li t0, 0x00000800
+            csrrs x0, mstatus, t0
+        
+                sfence.vma
+                # When switching to supervisor mode, we will need to switch a new page
+                # that has u=0
+                
+            li t0, code_super_0
+        
+                j ret_from_os_fn
+            
+            os_fn_f0001003:
+                # f0001003 : Switch to user mode
+            
+            # Update mstatus csr to switch to user mode
+            li t0, 0x00001800
+            csrrc x0, mstatus, t0
+            li t0, 0x00000000
+            csrrs x0, mstatus, t0
+        
+                # Load return pc from os_save_ecall_fn_epc and move it to t0
+                # which will be used to update epc
+                
+            li t0, code_user_0
+        
+
+                j ret_from_os_fn
+            
+            os_fn_f0001004:
+                # f0001004 : Switch to test mode
+            
+            # Update mstatus csr to switch to machine mode
+            li t0, 0x00001800
+            csrrc x0, mstatus, t0
+            li t0, 0x00001800
+            csrrs x0, mstatus, t0
+        
+            # Here, we want to go back to the test code. The PC is saved in os_save_ecall_epc
+            # Load it into t0 and ret_from_os_fn will move t0 to epc
+            li t3, os_save_ecall_fn_epc
+            ld t0, 0(t3)
+
+            j ret_from_os_fn
+        
+        ret_from_os_fn:
+            # csrr t0, mepc
+            # addi t0, t0, 4
+            # save current epc to os_save_ecall_fn_epc
+            csrr t1, mepc
+            addi t1, t1, 4
+            li t3, os_save_ecall_fn_epc
+            sd t1, 0(t3)
+            csrw mepc, t0
+
+            # Clear x31, so we don't accidentally jump to an OS function next time
+            li x31, -1
+
+            # Return from exception
+            mret
+        
+        .section .code, "ax"
+        # .org 0x0
+        
+test_setup:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+########################
+# test1 : VAND.VV
+########################
+
+;#discrete_test(test=test1)
+test1:
+	vsetivli x5, 0x0, e16, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x19, vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin
+	li x31, 0
+	add x19, x19, x31
+	vle16.v v24, (x19)
+	li x19, vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin
+	li x31, 256
+	add x19, x19, x31
+	vle16.v v21, (x19)
+	li x19, vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin
+	li x31, 512
+	add x19, x19, x31
+	vle16.v v2, (x19)
+	vsetivli x5, 0x0, e64, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x19, vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin
+	li x31, 0
+	add x19, x19, x31
+	vle64.v v0, (x19)
+	vsetivli x5, 0x0, e16, m1, tu, mu
+vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine :
+	vand.vv v2, v24, v21, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test2 : VFMAX.VF
+########################
+
+;#discrete_test(test=test2)
+test2:
+	li x2,0
+	li x8, 0x50
+	vsetvl x5, x2, x8
+;#random_addr(name=VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, phys_name=VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x19, VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+	fld f17, 0x0(x19)
+;#random_addr(name=vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x21, vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x12, 0
+	add x21, x21, x12
+	vle32.v v2, (x21)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine :
+	vfmax.vf v21, v2, f17
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test3 : VFMACC.VV
+########################
+
+;#discrete_test(test=test3)
+test3:
+	vsetvli x5, x0, e64, m8, ta, ma
+;#random_addr(name=vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+;#random_addr(name=vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x30, vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 0
+	add x30, x30, x27
+	vle64.v v24, (x30)
+	li x30, vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 2048
+	add x30, x30, x27
+	vle64.v v16, (x30)
+	li x30, vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 0
+	add x30, x30, x27
+	vle64.v v0, (x30)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine :
+	vfmacc.vv v0, v16, v24
+	li x28,0xf4ae05e2d2169867
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xc107c87c786b6b95
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xe9effd0bf2711590
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xfe3fcb1a600759b7
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x6e6ce55d08fa2cf4
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xc400eb22e8e6e8a1
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xe115166aa737fb9c
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x7dc6774d9fdfd25f
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xdf76f339d411f701
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x7ff0000000000000
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xd11f1bea4e6869eb
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xe8a11e80ada42e9e
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x625b9d99865bb17d
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xcc90ccee9ba5c308
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x32e88f83f07bb2c3
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xae37e2777ecc32c3
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x3a947f283db061e6
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xc031d42e2275f4f6
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xf88ab5d1f2c8b7b3
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x58394fb11c85b588
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xdf8270d487289f1a
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x7ff0000000000000
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0xfff0000000000000
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xfbda09b074b16e85
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x7ff0000000000000
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x7fd36910cd847da8
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x486f61f640c8a0b5
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xd86aeca61c7ee20b
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x9b67f703819e30c8
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0x7d9f7969e20bfe64
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	vslide1down.vx v0, v16, x0
+	li x28,0x54ae8e89c42f658a
+	vmv.x.s x6, v0
+	bne x28, x6, 1f
+	vslide1down.vx v16, v0, x0
+	li x28,0xd720948e255fe8ab
+	vmv.x.s x6, v16
+	bne x28, x6, 1f
+	li x28,0x0000000000000005
+	csrr x6, fflags
+	bne x28, x6, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test4 : VMULHSU.VX
+########################
+
+;#discrete_test(test=test4)
+test4:
+	li x28,0
+	li x7, 0xc7
+	vsetvl x5, x28, x7
+;#random_addr(name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x26, vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x5, 0
+	add x26, x26, x5
+	vle8.v v30, (x26)
+	li x26, vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x5, 128
+	add x26, x26, x5
+	vle8.v v8, (x26)
+	li x28,0
+	li x29, 0xd8
+	vsetvl x5, x28, x29
+;#random_addr(name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x26, vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+	li x5, 0
+	add x26, x26, x5
+	vle64.v v0, (x26)
+	li x28,0
+	li x23, 0xc7
+	vsetvl x5, x28, x23
+	li x21, 0x7fffffffffffffff
+vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine :
+	vmulhsu.vx v8, v30, x21, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test5 : VFNMSUB.VF
+########################
+
+;#discrete_test(test=test5)
+test5:
+	vsetivli x5, 0x0, e32, m4, ta, mu
+;#random_addr(name=VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, phys_name=VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x2, VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux
+	fld f18, 0x0(x2)
+;#random_addr(name=vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x6, vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin
+	li x4, 0
+	add x6, x6, x4
+	vle32.v v20, (x6)
+	li x6, vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin
+	li x4, 1024
+	add x6, x6, x4
+	vle32.v v28, (x6)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine :
+	vfnmsub.vf v28, f18, v20, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test6 : VZEXT.VF8
+########################
+
+;#discrete_test(test=test6)
+test6:
+	vsetvli x5, x0, e64, m1, tu, ma
+;#random_addr(name=vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x18, vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x4, 0
+	add x18, x18, x4
+	vle64.v v5, (x18)
+vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine :
+	vzext.vf8 v8, v5
+	li x26,0x0
+	vmv.x.s x27, v8
+	bne x26, x27, 1f
+	vslide1down.vx v0, v8, x0
+	li x26,0x0
+	vmv.x.s x27, v0
+	bne x26, x27, 1f
+	vslide1down.vx v8, v0, x0
+	li x26,0x0
+	vmv.x.s x27, v8
+	bne x26, x27, 1f
+	vslide1down.vx v0, v8, x0
+	li x26,0x0
+	vmv.x.s x27, v0
+	bne x26, x27, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test7 : VFMERGE.VFM
+########################
+
+;#discrete_test(test=test7)
+test7:
+	li x15, 0x53
+	vsetvl x5, x0, x15
+;#random_addr(name=VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux, phys_name=VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x8, VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux
+	fld f23, 0x0(x8)
+;#random_addr(name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+	li x31, 0
+	add x11, x11, x31
+	vle32.v v24, (x11)
+	li x30, 0x58
+	vsetvl x5, x0, x30
+;#random_addr(name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin, phys_name=vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin
+	li x31, 0
+	add x11, x11, x31
+	vle64.v v0, (x11)
+	li x13, 0x53
+	vsetvl x5, x0, x13
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine :
+	vfmerge.vfm v8, v24, f23, v0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x116b24c6
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x62eab7ad
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffd1de3519
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffd9f539d3
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xe3c7346
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffff9d76c93f
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffa1787b5c
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffff89f82ca5
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x46278dbb
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x12bf6d86
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffa28c4cfa
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffa9f63041
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x7a1c6649
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x197ccf27
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x494be3b8
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x2bd583f9
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xe08849b
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffdd7e40a4
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x2ebb8cee
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x60a1ec57
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffbdd09409
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffdb1dfd77
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xfffffffff8339c16
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x7a7cd290
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffc31ca96d
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffad3cf230
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffc9a312db
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffcdade830
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0xffffffffb43ec681
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x2d2f65a1
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0xffffffffe244de21
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x13618eb7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	vslide1down.vx v8, v24, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v8
+	bne x12, x9, 1f
+	vslide1down.vx v24, v8, x0
+	li x12,0x72ba1ca7
+	vmv.x.s x9, v24
+	bne x12, x9, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test8 : VMADD.VV
+########################
+
+;#discrete_test(test=test8)
+test8:
+	vsetvli x5, x0, e8, mf8, ta, mu
+;#random_addr(name=vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x8, 0
+	add x25, x25, x8
+	vle8.v v23, (x25)
+	li x25, vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x8, 32
+	add x25, x25, x8
+	vle8.v v29, (x25)
+	li x25, vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x8, 64
+	add x25, x25, x8
+	vle8.v v11, (x25)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine :
+	vmadd.vv v11, v29, v23
+	li x31,0x2
+	vmv.x.s x3, v11
+	bne x31, x3, 1f
+	vslide1down.vx v29, v11, x0
+	li x31,0x24
+	vmv.x.s x3, v29
+	bne x31, x3, 1f
+	vslide1down.vx v11, v29, x0
+	li x31,0x4c
+	vmv.x.s x3, v11
+	bne x31, x3, 1f
+	vslide1down.vx v29, v11, x0
+	li x31,0x77
+	vmv.x.s x3, v29
+	bne x31, x3, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test9 : VMACC.VX
+########################
+
+;#discrete_test(test=test9)
+test9:
+	li x13, 0x9a
+	vsetvl x5, x0, x13
+	li x14, 0x7eb30b1d05a40855
+;#random_addr(name=vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x27, vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+	li x7, 0
+	add x27, x27, x7
+	vle64.v v20, (x27)
+	li x27, vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+	li x7, 1024
+	add x27, x27, x7
+	vle64.v v28, (x27)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine :
+	vmacc.vx v28, x14, v20
+	li x9,0x7b90a7e4b5e1906f
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0x814cf4e2fa5bf7aa
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0x814cf4e2fa5bf7ab
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0xffffffffffffffff
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0x14cf4e2fa5bf7aa
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0xe88d701fb979eb2c
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0x8000000000000000
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0xc4cab62ffceb6e93
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0x3429ad6735771543
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0xe394ad5d74c1a67f
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0x8000000000000000
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0xf31f4136ebb6e857
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0xf23239ca2c1bbf3f
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0x391192343eb27188
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	vslide1down.vx v28, v12, x0
+	li x9,0xee50018e22d7140c
+	vmv.x.s x3, v28
+	bne x9, x3, 1f
+	vslide1down.vx v12, v28, x0
+	li x9,0x8b0636da7b0e0216
+	vmv.x.s x3, v12
+	bne x9, x3, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test10 : VFMSUB.VF
+########################
+
+;#discrete_test(test=test10)
+test10:
+	vsetivli x5, 0x0, e32, mf2, tu, mu
+;#random_addr(name=VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, phys_name=VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x15, VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+	fld f24, 0x0(x15)
+;#random_addr(name=vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x30, vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+	li x20, 0
+	add x30, x30, x20
+	vle32.v v1, (x30)
+	li x30, vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+	li x20, 128
+	add x30, x30, x20
+	vle32.v v23, (x30)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine :
+	vfmsub.vf v23, f24, v1
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test11 : VZEXT.VF2
+########################
+
+;#discrete_test(test=test11)
+test11:
+	li x25, 0x91
+	vsetvl x5, x0, x25
+;#random_addr(name=vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x2, vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+	li x4, 0
+	add x2, x2, x4
+	vle32.v v28, (x2)
+vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine :
+	vzext.vf2 v16, v28
+	li x24,0xdd0
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0xe
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0xa9bb
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x2
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0x9639
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x3f7
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0xffff
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x7fff
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0x0
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x0
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0xffff
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0xffff
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0x98d2
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x251
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	vslide1down.vx v16, v8, x0
+	li x24,0x0
+	vmv.x.s x21, v16
+	bne x24, x21, 1f
+	vslide1down.vx v8, v16, x0
+	li x24,0x8000
+	vmv.x.s x21, v8
+	bne x24, x21, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test12 : VSUB.VX
+########################
+
+;#discrete_test(test=test12)
+test12:
+	vsetvli x5, x0, e32, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x15, vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin
+	li x26, 0
+	add x15, x15, x26
+	vle32.v v26, (x15)
+	li x15, vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin
+	li x26, 256
+	add x15, x15, x26
+	vle32.v v28, (x15)
+	vsetvli x5, x0, e64, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x15, vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin
+	li x26, 0
+	add x15, x15, x26
+	vle64.v v0, (x15)
+	vsetvli x5, x0, e32, m1, tu, mu
+	li x3, 0x7fffffffffffffff
+vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine :
+	vsub.vx v28, v26, x3, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test13 : VMV4R.V
+########################
+
+;#discrete_test(test=test13)
+test13:
+	vsetvli x5, x0, e64, m4, ta, ma
+;#random_addr(name=vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x3, vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x7, 0
+	add x3, x3, x7
+	vle64.v v0, (x3)
+	vsetvli x5, x0, e64, m4, ta, ma
+vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine :
+	vmv4r.v v0, v0
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test14 : VMERGE.VIM
+########################
+
+;#discrete_test(test=test14)
+test14:
+	vsetvli x5, x0, e8, m1, ta, ma
+;#random_addr(name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x16, vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x31, 0
+	add x16, x16, x31
+	vle8.v v27, (x16)
+	li x16, vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x31, 256
+	add x16, x16, x31
+	vle8.v v7, (x16)
+	vsetvli x5, x0, e64, m1, ta, ma
+;#random_addr(name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x16, vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin
+	li x31, 0
+	add x16, x16, x31
+	vle64.v v0, (x16)
+	vsetvli x5, x0, e8, m1, ta, ma
+vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine :
+	vmerge.vim v27, v7, -11, v0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffff80
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0x0
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffffff
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xffffffffffffff80
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffff91
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffffa8
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xffffffffffffffe9
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffffff
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xe
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0x2
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0x7f
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0x7f
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0x0
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0x6
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xfffffffffffffff5
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0x0
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	vslide1down.vx v27, v19, x0
+	li x19,0xffffffffffffffff
+	vmv.x.s x10, v27
+	bne x19, x10, 1f
+	vslide1down.vx v19, v27, x0
+	li x19,0xffffffffffffffdf
+	vmv.x.s x10, v19
+	bne x19, x10, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test15 : VSRA.VX
+########################
+
+;#discrete_test(test=test15)
+test15:
+	vsetivli x5, 0x0, e32, mf2, tu, mu
+;#random_addr(name=vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x2, vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+	li x9, 0
+	add x2, x2, x9
+	vle32.v v1, (x2)
+	li x2, vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+	li x9, 128
+	add x2, x2, x9
+	vle32.v v20, (x2)
+	li x25, 0x80bacd0ac3b924e5
+vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine :
+	vsra.vx v20, v1, x25
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test16 : VSLL.VX
+########################
+
+;#discrete_test(test=test16)
+test16:
+	li x19,0
+	li x28, 0x93
+	vsetvl x5, x19, x28
+;#random_addr(name=vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x21, vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin
+	li x29, 0
+	add x21, x21, x29
+	vle32.v v8, (x21)
+	li x21, vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin
+	li x29, 2048
+	add x21, x21, x29
+	vle32.v v24, (x21)
+	li x24, 0xd432b80516a4afd7
+vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine :
+	vsll.vx v24, v8, x24
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test17 : VMSGTU.VX
+########################
+
+;#discrete_test(test=test17)
+test17:
+	li x22,0
+	li x5, 0xc1
+	vsetvl x5, x22, x5
+;#random_addr(name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x6, 0
+	add x11, x11, x6
+	vle8.v v6, (x11)
+	li x11, vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x6, 512
+	add x11, x11, x6
+	vle8.v v24, (x11)
+	li x22,0
+	li x17, 0xd8
+	vsetvl x5, x22, x17
+;#random_addr(name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+	li x6, 0
+	add x11, x11, x6
+	vle64.v v0, (x11)
+	li x22,0
+	li x10, 0xc1
+	vsetvl x5, x22, x10
+	li x24, 0x8000000000000000
+vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine :
+	vmsgtu.vx v24, v6, x24, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test18 : VMUL.VX
+########################
+
+;#discrete_test(test=test18)
+test18:
+	li x26, 0x85
+	vsetvl x5, x0, x26
+;#random_addr(name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x22, vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x5, 0
+	add x22, x22, x5
+	vle8.v v11, (x22)
+	li x22, vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x5, 32
+	add x22, x22, x5
+	vle8.v v14, (x22)
+	li x2, 0x98
+	vsetvl x5, x0, x2
+;#random_addr(name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x22, vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+	li x5, 0
+	add x22, x22, x5
+	vle64.v v0, (x22)
+	li x11, 0x85
+	vsetvl x5, x0, x11
+	li x4, 0x7fffffffffffffff
+vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine :
+	vmul.vx v14, v11, x4, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test19 : VAND.VX
+########################
+
+;#discrete_test(test=test19)
+test19:
+	li x13,0
+	li x17, 0x51
+	vsetvl x5, x13, x17
+;#random_addr(name=vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x21, 0
+	add x25, x25, x21
+	vle32.v v18, (x25)
+	li x25, vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x21, 512
+	add x25, x25, x21
+	vle32.v v6, (x25)
+	li x1, 0xbc9755f61a5d248b
+vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine :
+	vand.vx v6, v18, x1
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test20 : VFRSUB.VF
+########################
+
+;#discrete_test(test=test20)
+test20:
+	vsetvli x5, x0, e32, m2, ta, mu
+;#random_addr(name=VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux, phys_name=VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x27, VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux
+	fld f9, 0x0(x27)
+;#random_addr(name=vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x18, vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin
+	li x28, 0
+	add x18, x18, x28
+	vle32.v v4, (x18)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine :
+	vfrsub.vf v16, v4, f9, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test21 : VMSLTU.VV
+########################
+
+;#discrete_test(test=test21)
+test21:
+	vsetvli x5, x0, e8, m4, tu, mu
+;#random_addr(name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x4, vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x26, 0
+	add x4, x4, x26
+	vle8.v v24, (x4)
+	li x4, vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x26, 1024
+	add x4, x4, x26
+	vle8.v v28, (x4)
+	li x4, vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x26, 2048
+	add x4, x4, x26
+	vle8.v v16, (x4)
+vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine :
+	vmsltu.vv v16, v24, v28
+	li x1, 0x0
+	li x16, 9999
+# Checking vtype: 0, vl: 9999, vlmul: 1, vsew: 8
+	vsetvl x5, x16, x1
+;#random_addr(name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 1, vsew = 8
+	li x17, 0x0
+	li x31, 32
+	vsetvl x5, x31, x17
+	li x17, vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x31, 0
+	add x17, x17, x31
+	vle8.v v28, (x17)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x17, 0x0
+	li x31, 32
+	vsetvl x5, x31, x17
+	li x17, vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x31, 256
+	add x17, x17, x31
+	vle8.v v0, (x17)
+	vmsne.vv v0, v16, v28
+	vfirst.m x17, v0
+	li x31, -1
+	beq x17, x31, 3f
+	li x31, 31
+	blt x17, x31, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test22 : VFNMADD.VF
+########################
+
+;#discrete_test(test=test22)
+test22:
+	li x4,0
+	li x14, 0x50
+	vsetvl x5, x4, x14
+;#random_addr(name=VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, phys_name=VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x26, VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+	fld f17, 0x0(x26)
+;#random_addr(name=vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x29, vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x16, 0
+	add x29, x29, x16
+	vle32.v v9, (x29)
+	li x29, vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x16, 256
+	add x29, x29, x16
+	vle32.v v11, (x29)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine :
+	vfnmadd.vf v11, f17, v9
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test23 : VMSLE.VI
+########################
+
+;#discrete_test(test=test23)
+test23:
+	li x30,0
+	vsetvli x5, x30, e16, mf2, tu, ma
+;#random_addr(name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x10, vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin
+	li x6, 0
+	add x10, x10, x6
+	vle16.v v20, (x10)
+	li x10, vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin
+	li x6, 128
+	add x10, x10, x6
+	vle16.v v28, (x10)
+	li x30,0
+	vsetvli x5, x30, e64, m1, tu, ma
+;#random_addr(name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x10, vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin
+	li x6, 0
+	add x10, x10, x6
+	vle64.v v0, (x10)
+	li x30,0
+	vsetvli x5, x30, e16, mf2, tu, ma
+vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine :
+	vmsle.vi v28, v20, -12, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test24 : VMINU.VX
+########################
+
+;#discrete_test(test=test24)
+test24:
+	vsetivli x5, 0x1f, e64, m4, tu, mu
+;#random_addr(name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin
+	li x6, 0
+	add x11, x11, x6
+	vle64.v v20, (x11)
+	li x11, vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin
+	li x6, 1024
+	add x11, x11, x6
+	vle64.v v8, (x11)
+	vsetivli x5, 0x1f, e64, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x11, vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin
+	li x6, 0
+	add x11, x11, x6
+	vle64.v v0, (x11)
+	vsetivli x5, 0x1f, e64, m4, tu, mu
+	li x22, 0x11bee0861e77b0
+vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine :
+	vminu.vx v8, v20, x22, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test25 : VFMADD.VF
+########################
+
+;#discrete_test(test=test25)
+test25:
+	li x28,0
+	vsetvli x5, x28, e64, m8, tu, ma
+;#random_addr(name=VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, phys_name=VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_phy_aux, v=1, r=1, w=1, a=1, d=1)
+	li x25, VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux
+	fld f23, 0x0(x25)
+;#random_addr(name=vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x22, vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin
+	li x30, 0
+	add x22, x22, x30
+	vle64.v v8, (x22)
+	li x22, vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin
+	li x30, 2048
+	add x22, x22, x30
+	vle64.v v24, (x22)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine :
+	vfmadd.vf v24, f23, v8, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test26 : VOR.VV
+########################
+
+;#discrete_test(test=test26)
+test26:
+	li x17,0
+	li x1, 0x47
+	vsetvl x5, x17, x1
+;#random_addr(name=vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x6, vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x29, 0
+	add x6, x6, x29
+	vle8.v v19, (x6)
+	li x6, vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x29, 128
+	add x6, x6, x29
+	vle8.v v26, (x6)
+	li x6, vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x29, 256
+	add x6, x6, x29
+	vle8.v v9, (x6)
+vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine :
+	vor.vv v9, v19, v26
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test27 : VMIN.VV
+########################
+
+;#discrete_test(test=test27)
+test27:
+	vsetvli x5, x0, e8, m4, ta, mu
+;#random_addr(name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x19, vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x20, 0
+	add x19, x19, x20
+	vle8.v v16, (x19)
+	li x19, vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x20, 1024
+	add x19, x19, x20
+	vle8.v v12, (x19)
+	li x19, vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+	li x20, 2048
+	add x19, x19, x20
+	vle8.v v28, (x19)
+vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine :
+	vmin.vv v28, v16, v12
+	li x7, 0x40
+	li x11, 9999
+# Checking vtype: 64, vl: 9999, vlmul: 1, vsew: 8
+	vsetvl x5, x11, x7
+;#random_addr(name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 1, vsew = 8
+	li x28, 0x40
+	li x27, 32
+	vsetvl x5, x27, x28
+	li x28, vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x27, 0
+	add x28, x28, x27
+	vle8.v v12, (x28)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x28, 0x40
+	li x27, 32
+	vsetvl x5, x27, x28
+	li x28, vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x27, 256
+	add x28, x28, x27
+	vle8.v v0, (x28)
+	vmsne.vv v0, v28, v12
+	vfirst.m x28, v0
+	li x27, -1
+	beq x28, x27, 3f
+	li x27, 31
+	blt x28, x27, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test28 : VMSEQ.VX
+########################
+
+;#discrete_test(test=test28)
+test28:
+	li x2, 0x88
+	vsetvl x5, x0, x2
+;#random_addr(name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x17, vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x8, 0
+	add x17, x17, x8
+	vle16.v v11, (x17)
+	li x17, vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x8, 256
+	add x17, x17, x8
+	vle16.v v4, (x17)
+	li x31, 0x98
+	vsetvl x5, x0, x31
+;#random_addr(name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x17, vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+	li x8, 0
+	add x17, x17, x8
+	vle64.v v0, (x17)
+	li x21, 0x88
+	vsetvl x5, x0, x21
+	li x10, 0xea56f20340d6d13e
+vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine :
+	vmseq.vx v4, v11, x10, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test29 : VSEXT.VF8
+########################
+
+;#discrete_test(test=test29)
+test29:
+	li x13,0
+	vsetvli x5, x13, e64, m1, ta, mu
+;#random_addr(name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin
+	li x8, 0
+	add x25, x25, x8
+	vle64.v v3, (x25)
+	li x13,0
+	vsetvli x5, x13, e64, m1, ta, mu
+;#random_addr(name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin
+	li x8, 0
+	add x25, x25, x8
+	vle64.v v0, (x25)
+	li x13,0
+	vsetvli x5, x13, e64, m1, ta, mu
+vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine :
+	vsext.vf8 v1, v3, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test30 : VMAXU.VX
+########################
+
+;#discrete_test(test=test30)
+test30:
+	vsetivli x5, 0x0, e8, m4, ta, mu
+;#random_addr(name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x6, vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin
+	li x1, 0
+	add x6, x6, x1
+	vle8.v v12, (x6)
+	li x6, vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin
+	li x1, 1024
+	add x6, x6, x1
+	vle8.v v28, (x6)
+	vsetivli x5, 0x0, e64, m1, ta, mu
+;#random_addr(name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x6, vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin
+	li x1, 0
+	add x6, x6, x1
+	vle64.v v0, (x6)
+	vsetivli x5, 0x0, e8, m4, ta, mu
+	li x10, 0x8000000000000000
+vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine :
+	vmaxu.vx v28, v12, x10, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test31 : VSLL.VI
+########################
+
+;#discrete_test(test=test31)
+test31:
+	li x22, 0x90
+	vsetvl x5, x0, x22
+;#random_addr(name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x16, vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+	li x10, 0
+	add x16, x16, x10
+	vle32.v v23, (x16)
+	li x16, vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+	li x10, 256
+	add x16, x16, x10
+	vle32.v v4, (x16)
+vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine :
+	vsll.vi v4, v23, 26
+;#random_addr(name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 1, vsew = 32
+	li x12, 0x90
+	li x28, 8
+	vsetvl x5, x28, x12
+	li x12, vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin
+	li x28, 0
+	add x12, x12, x28
+	vle32.v v5, (x12)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x12, 0x80
+	li x28, 32
+	vsetvl x5, x28, x12
+	li x12, vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin
+	li x28, 256
+	add x12, x12, x28
+	vle8.v v0, (x12)
+	vmsne.vv v0, v4, v5
+	vfirst.m x12, v0
+	li x28, -1
+	beq x12, x28, 3f
+	li x28, 7
+	blt x12, x28, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test32 : VNMSUB.VV
+########################
+
+;#discrete_test(test=test32)
+test32:
+	vsetvli x5, x0, e32, m1, ta, ma
+;#random_addr(name=vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x19, vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x21, 0
+	add x19, x19, x21
+	vle32.v v30, (x19)
+	li x19, vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x21, 256
+	add x19, x19, x21
+	vle32.v v13, (x19)
+	li x19, vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x21, 512
+	add x19, x19, x21
+	vle32.v v28, (x19)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine :
+	vnmsub.vv v28, v13, v30
+	li x15,0xffffffffffffffff
+	vmv.x.s x27, v28
+	bne x15, x27, 1f
+	vslide1down.vx v30, v28, x0
+	li x15,0x0
+	vmv.x.s x27, v30
+	bne x15, x27, 1f
+	vslide1down.vx v28, v30, x0
+	li x15,0xffffffffb82b3591
+	vmv.x.s x27, v28
+	bne x15, x27, 1f
+	vslide1down.vx v30, v28, x0
+	li x15,0xffffffff93c56037
+	vmv.x.s x27, v30
+	bne x15, x27, 1f
+	vslide1down.vx v28, v30, x0
+	li x15,0xffffffff80000000
+	vmv.x.s x27, v28
+	bne x15, x27, 1f
+	vslide1down.vx v30, v28, x0
+	li x15,0xffffffff80000000
+	vmv.x.s x27, v30
+	bne x15, x27, 1f
+	vslide1down.vx v28, v30, x0
+	li x15,0xffffffffedd7243f
+	vmv.x.s x27, v28
+	bne x15, x27, 1f
+	vslide1down.vx v30, v28, x0
+	li x15,0xffffffff8086e05a
+	vmv.x.s x27, v30
+	bne x15, x27, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test33 : VSUB.VV
+########################
+
+;#discrete_test(test=test33)
+test33:
+	vsetvli x5, x0, e64, m8, tu, ma
+;#random_addr(name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+;#random_addr(name=vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x15, vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 0
+	add x15, x15, x27
+	vle64.v v16, (x15)
+	li x15, vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 2048
+	add x15, x15, x27
+	vle64.v v0, (x15)
+	li x15, vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+	li x27, 0
+	add x15, x15, x27
+	vle64.v v8, (x15)
+vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine :
+	vsub.vv v8, v16, v0
+;#random_addr(name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 8, vsew = 64
+	li x13, 0x9b
+	li x28, 32
+	vsetvl x5, x28, x13
+	li x13, vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x28, 0
+	add x13, x13, x28
+	vle64.v v0, (x13)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x13, 0x80
+	li x28, 32
+	vsetvl x5, x28, x13
+	li x13, vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin
+	li x28, 2048
+	add x13, x13, x28
+	vle8.v v16, (x13)
+	vmsne.vv v16, v8, v0
+	vfirst.m x13, v16
+	li x28, -1
+	beq x13, x28, 3f
+	li x28, 31
+	blt x13, x28, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test34 : VMV.V.V
+########################
+
+;#discrete_test(test=test34)
+test34:
+	li x23,0
+	vsetvli x5, x23, e16, mf4, tu, ma
+;#random_addr(name=vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x24, vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin
+	li x27, 0
+	add x24, x24, x27
+	vle16.v v10, (x24)
+	li x24, vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin
+	li x27, 64
+	add x24, x24, x27
+	vle16.v v5, (x24)
+vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine :
+	vmv.v.v v10, v5
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test35 : VFNMACC.VV
+########################
+
+;#discrete_test(test=test35)
+test35:
+	li x9,0
+	li x2, 0xd3
+	vsetvl x5, x9, x2
+;#random_addr(name=vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+;#random_addr(name=vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x13, vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin
+	li x14, 0
+	add x13, x13, x14
+	vle32.v v24, (x13)
+	li x13, vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin
+	li x14, 2048
+	add x13, x13, x14
+	vle32.v v8, (x13)
+	li x13, vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin
+	li x14, 0
+	add x13, x13, x14
+	vle32.v v16, (x13)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine :
+	vfnmacc.vv v16, v8, v24
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test36 : VFNMADD.VV
+########################
+
+;#discrete_test(test=test36)
+test36:
+	vsetivli x5, 0x1f, e64, m4, ta, mu
+;#random_addr(name=vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x14, vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin
+	li x5, 0
+	add x14, x14, x5
+	vle64.v v24, (x14)
+	li x14, vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin
+	li x5, 1024
+	add x14, x14, x5
+	vle64.v v28, (x14)
+	li x14, vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin
+	li x5, 2048
+	add x14, x14, x5
+	vle64.v v0, (x14)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine :
+	vfnmadd.vv v0, v28, v24
+	li x30,0x71d0352872930d4e
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0x67e54d6a9b3cc91c
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0xc822658f7db321cb
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0x6ac57ea0795da121
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0xbfaaeefb47fc5f84
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xcc0a168d9a643c8c
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0xf64518bd6be2e478
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xc1f582deda59340b
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0x6aabd048b70d8431
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xc6b020f4296a69fc
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0x2e0c3e0cf265d03b
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xbbfd8e4841c33d12
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0x41c98bec9edc5f46
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xc121ca3fc327de82
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	vslide1down.vx v0, v4, x0
+	li x30,0xd28a686e6d536d39
+	vmv.x.s x26, v0
+	bne x30, x26, 1f
+	vslide1down.vx v4, v0, x0
+	li x30,0xfff0000000000000
+	vmv.x.s x26, v4
+	bne x30, x26, 1f
+	li x30,0x0000000000000005
+	csrr x26, fflags
+	bne x30, x26, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test37 : VMSLE.VX
+########################
+
+;#discrete_test(test=test37)
+test37:
+	li x23,0
+	li x21, 0x81
+	vsetvl x5, x23, x21
+;#random_addr(name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x5, vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin
+	li x10, 0
+	add x5, x5, x10
+	vle8.v v10, (x5)
+	li x5, vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin
+	li x10, 512
+	add x5, x5, x10
+	vle8.v v20, (x5)
+	li x23,0
+	li x31, 0x98
+	vsetvl x5, x23, x31
+;#random_addr(name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x5, vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin
+	li x10, 0
+	add x5, x5, x10
+	vle64.v v0, (x5)
+	li x23,0
+	li x29, 0x81
+	vsetvl x5, x23, x29
+	li x3, 0xe6716915449a1745
+vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine :
+	vmsle.vx v20, v10, x3, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test38 : VRSUB.VI
+########################
+
+;#discrete_test(test=test38)
+test38:
+	li x23,0
+	li x4, 0x47
+	vsetvl x5, x23, x4
+;#random_addr(name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x29, vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin
+	li x2, 0
+	add x29, x29, x2
+	vle8.v v23, (x29)
+	li x29, vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin
+	li x2, 128
+	add x29, x29, x2
+	vle8.v v2, (x29)
+	li x23,0
+	li x20, 0x58
+	vsetvl x5, x23, x20
+;#random_addr(name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x29, vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin
+	li x2, 0
+	add x29, x29, x2
+	vle64.v v0, (x29)
+	li x23,0
+	li x11, 0x47
+	vsetvl x5, x23, x11
+vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine :
+	vrsub.vi v2, v23, -7, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test39 : VMAX.VV
+########################
+
+;#discrete_test(test=test39)
+test39:
+	li x23,0
+	vsetvli x5, x23, e8, mf8, ta, ma
+;#random_addr(name=vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x1, vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x24, 0
+	add x1, x1, x24
+	vle8.v v8, (x1)
+	li x1, vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x24, 32
+	add x1, x1, x24
+	vle8.v v14, (x1)
+	li x1, vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x24, 64
+	add x1, x1, x24
+	vle8.v v11, (x1)
+vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine :
+	vmax.vv v11, v8, v14
+	li x11, 0xc5
+	li x17, 9999
+# Checking vtype: 197, vl: 9999, vlmul: 0.125, vsew: 8
+	vsetvl x5, x17, x11
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test40 : VMV.V.I
+########################
+
+;#discrete_test(test=test40)
+test40:
+	li x27, 0xe
+	vsetvl x5, x0, x27
+;#random_addr(name=vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x8, vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin
+	li x5, 0
+	add x8, x8, x5
+	vle16.v v0, (x8)
+vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine :
+	vmv.v.i v0, -9
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test41 : VSRL.VI
+########################
+
+;#discrete_test(test=test41)
+test41:
+	li x19, 0x8a
+	vsetvl x5, x0, x19
+;#random_addr(name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x16, vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x13, 0
+	add x16, x16, x13
+	vle16.v v20, (x16)
+	li x16, vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x13, 1024
+	add x16, x16, x13
+	vle16.v v8, (x16)
+	li x11, 0x98
+	vsetvl x5, x0, x11
+;#random_addr(name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x16, vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+	li x13, 0
+	add x16, x16, x13
+	vle64.v v0, (x16)
+	li x12, 0x8a
+	vsetvl x5, x0, x12
+vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine :
+	vsrl.vi v8, v20, 28, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test42 : VFSUB.VV
+########################
+
+;#discrete_test(test=test42)
+test42:
+	vsetivli x5, 0x1f, e16, mf2, tu, ma
+;#random_addr(name=vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x2, vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin
+	li x23, 0
+	add x2, x2, x23
+	vle16.v v6, (x2)
+	li x2, vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin
+	li x23, 128
+	add x2, x2, x23
+	vle16.v v27, (x2)
+	csrrw x0,fflags,x0
+	csrr x1,fflags
+vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine :
+	vfsub.vv v15, v6, v27
+	li x7,0xffffffffffffada2
+	vmv.x.s x10, v15
+	bne x7, x10, 1f
+	vslide1down.vx v29, v15, x0
+	li x7,0x7a5c
+	vmv.x.s x10, v29
+	bne x7, x10, 1f
+	vslide1down.vx v15, v29, x0
+	li x7,0x6268
+	vmv.x.s x10, v15
+	bne x7, x10, 1f
+	vslide1down.vx v29, v15, x0
+	li x7,0x60a0
+	vmv.x.s x10, v29
+	bne x7, x10, 1f
+	vslide1down.vx v15, v29, x0
+	li x7,0x0000000000000001
+	csrr x10, fflags
+	bne x7, x10, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test43 : VSLL.VV
+########################
+
+;#discrete_test(test=test43)
+test43:
+	li x19, 0x52
+	vsetvl x5, x0, x19
+;#random_addr(name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, phys_name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x18, vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+	li x28, 0
+	add x18, x18, x28
+	vle32.v v20, (x18)
+	li x18, vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+	li x28, 1024
+	add x18, x18, x28
+	vle32.v v0, (x18)
+	li x18, vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+	li x28, 2048
+	add x18, x18, x28
+	vle32.v v12, (x18)
+vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine :
+	vsll.vv v12, v20, v0
+;#random_addr(name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 4, vsew = 32
+	li x4, 0x52
+	li x9, 32
+	vsetvl x5, x9, x4
+	li x4, vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin
+	li x9, 0
+	add x4, x4, x9
+	vle32.v v0, (x4)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x4, 0x40
+	li x9, 32
+	vsetvl x5, x9, x4
+	li x4, vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin
+	li x9, 1024
+	add x4, x4, x9
+	vle8.v v20, (x4)
+	vmsne.vv v20, v12, v0
+	vfirst.m x4, v20
+	li x9, -1
+	beq x4, x9, 3f
+	li x9, 31
+	blt x4, x9, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test44 : VMSGTU.VI
+########################
+
+;#discrete_test(test=test44)
+test44:
+	li x8,0
+	li x1, 0xc0
+	vsetvl x5, x8, x1
+;#random_addr(name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x10, 0
+	add x25, x25, x10
+	vle8.v v3, (x25)
+	li x25, vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin
+	li x10, 256
+	add x25, x25, x10
+	vle8.v v6, (x25)
+	li x8,0
+	li x20, 0xd8
+	vsetvl x5, x8, x20
+;#random_addr(name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x25, vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+	li x10, 0
+	add x25, x25, x10
+	vle64.v v0, (x25)
+	li x8,0
+	li x28, 0xc0
+	vsetvl x5, x8, x28
+vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine :
+	vmsgtu.vi v6, v3, 9, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test45 : VMV2R.V
+########################
+
+;#discrete_test(test=test45)
+test45:
+	li x21, 0x49
+	vsetvl x5, x0, x21
+;#random_addr(name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x10, vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x27, 0
+	add x10, x10, x27
+	vle16.v v20, (x10)
+	li x10, vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin
+	li x27, 512
+	add x10, x10, x27
+	vle16.v v12, (x10)
+	li x23, 0x49
+	vsetvl x5, x0, x23
+vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine :
+	vmv2r.v v12, v20
+;#random_addr(name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 2, vsew = 16
+	li x20, 0x49
+	li x2, 32
+	vsetvl x5, x2, x20
+	li x20, vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin
+	li x2, 0
+	add x20, x20, x2
+	vle16.v v4, (x20)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x20, 0x40
+	li x2, 32
+	vsetvl x5, x2, x20
+	li x20, vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin
+	li x2, 512
+	add x20, x20, x2
+	vle8.v v0, (x20)
+	vmsne.vv v0, v12, v4
+	vfirst.m x20, v0
+	li x2, -1
+	beq x20, x2, 3f
+	li x2, 31
+	blt x20, x2, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test46 : VOR.VI
+########################
+
+;#discrete_test(test=test46)
+test46:
+	li x6,0
+	li x26, 0x80
+	vsetvl x5, x6, x26
+;#random_addr(name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x10, vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin
+	li x19, 0
+	add x10, x10, x19
+	vle8.v v7, (x10)
+	li x10, vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin
+	li x19, 256
+	add x10, x10, x19
+	vle8.v v10, (x10)
+	li x6,0
+	li x16, 0x98
+	vsetvl x5, x6, x16
+;#random_addr(name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x10, vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin
+	li x19, 0
+	add x10, x10, x19
+	vle64.v v0, (x10)
+	li x6,0
+	li x4, 0x80
+	vsetvl x5, x6, x4
+vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine :
+	vor.vi v10, v7, -8, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test47 : VMV8R.V
+########################
+
+;#discrete_test(test=test47)
+test47:
+	vsetvli x5, x0, e16, m8, ta, ma
+;#random_addr(name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x27, vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x8, 0
+	add x27, x27, x8
+	vle16.v v24, (x27)
+	li x27, vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x8, 2048
+	add x27, x27, x8
+	vle16.v v0, (x27)
+	vsetvli x5, x0, e16, m8, ta, ma
+vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine :
+	vmv8r.v v0, v24
+;#random_addr(name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin, phys_name=vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_phy, v=1, r=1, w=1, a=1, d=1)
+
+	# Vtype is: vlmul = 8, vsew = 16
+	li x10, 0xcb
+	li x5, 128
+	vsetvl x5, x5, x10
+	li x10, vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin
+	li x5, 0
+	add x10, x10, x5
+	vle16.v v8, (x10)
+	# Vtype is: vlmul = 1, vsew = 8
+	li x10, 0xc0
+	li x5, 32
+	vsetvl x5, x5, x10
+	li x10, vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin
+	li x5, 2048
+	add x10, x10, x5
+	vle8.v v24, (x10)
+	vmsne.vv v24, v0, v8
+	vfirst.m x10, v24
+	li x5, -1
+	beq x10, x5, 3f
+	li x5, 127
+	blt x10, x5, 1f
+	3:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+	2:
+########################
+# test48 : VMSNE.VV
+########################
+
+;#discrete_test(test=test48)
+test48:
+	li x10, 0xc7
+	vsetvl x5, x0, x10
+;#random_addr(name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x18, vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x4, 0
+	add x18, x18, x4
+	vle8.v v9, (x18)
+	li x18, vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x4, 128
+	add x18, x18, x4
+	vle8.v v25, (x18)
+	li x18, vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin
+	li x4, 256
+	add x18, x18, x4
+	vle8.v v15, (x18)
+	li x26, 0xd8
+	vsetvl x5, x0, x26
+;#random_addr(name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x18, vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+	li x4, 0
+	add x18, x18, x4
+	vle64.v v0, (x18)
+	li x5, 0xc7
+	vsetvl x5, x0, x5
+vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine :
+	vmsne.vv v15, v9, v25, v0.t
+	li x6, 0xc7
+	li x15, 9999
+# Checking vtype: 199, vl: 9999, vlmul: 0.5, vsew: 8
+	vsetvl x5, x15, x6
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test49 : VMULH.VV
+########################
+
+;#discrete_test(test=test49)
+test49:
+	li x16,0
+	vsetvli x5, x16, e8, m1, ta, ma
+;#random_addr(name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin, phys_name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x7, vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin
+	li x5, 0
+	add x7, x7, x5
+	vle8.v v30, (x7)
+	li x7, vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin
+	li x5, 256
+	add x7, x7, x5
+	vle8.v v27, (x7)
+	li x7, vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin
+	li x5, 512
+	add x7, x7, x5
+	vle8.v v4, (x7)
+	li x16,0
+	vsetvli x5, x16, e64, m1, ta, ma
+;#random_addr(name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x7, vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin
+	li x5, 0
+	add x7, x7, x5
+	vle64.v v0, (x7)
+	li x16,0
+	vsetvli x5, x16, e8, m1, ta, ma
+vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine :
+	vmulh.vv v4, v30, v27, v0.t
+	li x28, 0xc0
+	li x12, 9999
+# Checking vtype: 192, vl: 9999, vlmul: 1, vsew: 8
+	vsetvl x5, x12, x28
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test50 : VMSGT.VI
+########################
+
+;#discrete_test(test=test50)
+test50:
+	li x1,0
+	vsetvli x5, x1, e16, m4, ta, ma
+;#random_addr(name=vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, phys_name=vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x30, vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x11, 0
+	add x30, x30, x11
+	vle16.v v12, (x30)
+	li x30, vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+	li x11, 1024
+	add x30, x30, x11
+	vle16.v v4, (x30)
+vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine :
+	vmsgt.vi v4, v12, 4
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test51 : VMSLEU.VX
+########################
+
+;#discrete_test(test=test51)
+test51:
+	vsetivli x5, 0x1f, e16, m8, tu, mu
+;#random_addr(name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin, phys_name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x15, vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin
+	li x4, 0
+	add x15, x15, x4
+	vle16.v v8, (x15)
+	li x15, vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin
+	li x4, 2048
+	add x15, x15, x4
+	vle16.v v24, (x15)
+	vsetivli x5, 0x1f, e64, m1, tu, mu
+;#random_addr(name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, type=linear, size=4096, and_mask=0xfffffffffffff000)
+;#random_addr(name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, type=physical, size=4096, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, phys_name=vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_phy, v=1, r=1, w=1, a=1, d=1)
+
+	li x15, vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin
+	li x4, 0
+	add x15, x15, x4
+	vle64.v v0, (x15)
+	vsetivli x5, 0x1f, e16, m8, tu, mu
+	li x25, 0x474e
+vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine :
+	vmsleu.vx v24, v8, x25, v0.t
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+test_cleanup:
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+passed:
+    li t0, os_passed_addr
+    ld t1, 0(t0)
+    jr t1
+
+failed:
+    li t0, os_failed_addr
+    ld t1, 0(t0)
+    jr t1
+## os ##
+
+        .section .text
+
+        enter_scheduler:
+            # Check if t0 has a pass or fail condition
+            li t1, 0xbaadc0de
+            beq t0, t1, test_failed
+            # git hartid
+
+        
+        test_passed:
+            # li gp, 0x1
+            # j os_end_test
+            j schedule_tests
+
+    
+        test_failed:
+            li gp, 0x3
+            j os_end_test
+
+        
+        os_rng_orig:
+            
+                # simple XORshift random number generator
+                # https://www.javamex.com/tutorials/random_numbers/xorshift.shtml#.VlcaYzKwEV8
+
+                # Calculate seed addr offset
+                mv t2, s1
+                mv t1, a3
+                mul t2, t2, t1
+
+                # Load seed element for this hart
+                mv t1, a1
+                add t1, t1, t2
+                ld t0, (t1)
+
+                # Generate new seed
+                slli t1, t0, 21
+                xor t0, t0, t1
+                srli t1, t0, 35
+                xor t0, t0, t1
+                slli t1, t0, 4
+                xor t0, t0, t1
+
+                # Store updated seed element for this hart
+                mv t1, a1
+                add t1, t1, t2
+                sd t0, (t1)
+
+                # Obtain random number
+                mv t1, a2
+                remu t0, t0, t1
+                # Ignore * elements at the beginning of the array
+                #mv t1, a5
+                #add t0, t0, t1
+                # Offset scale is the number of bytes per element for indexing into an array
+                #mv t1, a4
+                #mul t0, t0, t1
+
+                # Store in return register
+                mv a0, t0
+        
+            ret
+
+        
+        schedule_seed:
+            .dword 1024367907
+        schedule_setup:
+        				.dword 1
+
+        schedule_tests:
+            # Insert CSR read randomization logic here if allowed
+            csrr t0, stval
+csrr t0, mcause
+csrr t0, stvec
+csrr t0, mcause
+csrr t0, scounteren
+csrr t0, mimpid
+csrr t0, mhartid
+csrr t0, stval
+csrr t0, stval
+csrr t0, mstatus
+
+
+            la t0, schedule_setup
+
+            
+            
+            
+
+            ld t1, 0(t0)
+
+            
+
+            
+            sd x0, 0(t0)
+            
+
+            mv t0, x0
+            bnez t1, schedule_next_test
+            
+            endless:
+
+            
+
+            # Load test pointer (all harts need to do this)
+            la t0, num_runs
+            load_test_pointer:
+            lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+            
+            
+            lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+            
+            li gp, 0x1
+            beqz t1, os_end_test # end program, if zero
+            # Decrement num_runs and store it back
+            decrement_num_runs:
+            addi t2, t1, -1
+
+            
+
+            
+            sw t2, 0(t0)
+            
+
+            
+                scheduler:
+                mv t0, t1
+                slli t0, t0, 3
+
+                
+        schedule_next_test:
+            # Get the pointer to the next test label
+            la t1, os_test_sequence
+            add t0, t0, t1 # t0 = current os_test_sequence pointer
+            ld t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+
+        
+            # Schedule next test, t1 has the test_label
+            # priv_mode: MACHINE
+
+            # Need barrier here so tests don't read num_runs after hart 0 updated it
+            
+
+            jr t1   # jump to t1
+            # For user mode use sret to jump to test
+
+        
+
+        os_end_test:
+            #    la t1, test_done
+            #    jalr x0, t1, 0
+            #
+            # test_done:
+            #    li gp, 0x1
+            #    j write_tohost
+
+        os_write_tohost:
+           # sw gp, tohost, t5
+            la t0, tohost
+            sw gp, 0(t0)
+
+        
+        _exit:
+           j os_write_tohost
+
+        
+
+        num_runs:
+            # We need +1 below since we have cleanup as the last entry in the dtests_seq
+            .dword 52
+        os_test_sequence:
+            .dword test_setup
+    .dword test_cleanup
+    .dword test33
+    .dword test4
+    .dword test23
+    .dword test12
+    .dword test20
+    .dword test43
+    .dword test38
+    .dword test17
+    .dword test51
+    .dword test36
+    .dword test6
+    .dword test15
+    .dword test10
+    .dword test29
+    .dword test46
+    .dword test22
+    .dword test27
+    .dword test11
+    .dword test50
+    .dword test34
+    .dword test49
+    .dword test5
+    .dword test37
+    .dword test48
+    .dword test2
+    .dword test21
+    .dword test1
+    .dword test8
+    .dword test14
+    .dword test26
+    .dword test16
+    .dword test41
+    .dword test35
+    .dword test47
+    .dword test9
+    .dword test30
+    .dword test7
+    .dword test40
+    .dword test32
+    .dword test18
+    .dword test13
+    .dword test45
+    .dword test39
+    .dword test24
+    .dword test19
+    .dword test25
+    .dword test3
+    .dword test42
+    .dword test28
+    .dword test44
+    .dword test31
+
+
+        
+        # Pseudorandom number generator between 0 and 10 using LCG algorithm
+        # Seed value
+        li a0, 42       # Set initial seed value (can be any value)
+
+        # LCG parameters
+        li a1, 1664525  # Multiplier
+        li a2, 1013904223  # Increment
+        li a3, 2^32     # Modulus (2^32 for a 32-bit pseudorandom number)
+
+        # Generate pseudorandom number
+        mul a0, a0, a1   # a0 = a0 * multiplier
+        add a0, a0, a2  # a0 = a0 + increment
+        rem a0, a0, a3   # a0 = a0 % modulus (remainder)
+
+        # Calculate pseudorandom number between 0 and 10
+        li a1, 11        # Maximum value (10 + 1)
+        rem a0, a0, a1   # a0 = a0 % maximum value
+
+        ret
+
+        # The pseudorandom number between 0 and 10 will be stored in a0
+
+        
+
+        # Define tohost and fromhost labels for Spike to end the test
+        .align 6; .global tohost; tohost: .dword 0;
+        .align 6; .global fromhost; fromhost: .dword 0;
+
+        
+            .section .os_data, "aw"
+            # OS data
+            check_excp:
+                .dword 0x1
+            check_excp_expected_pc:
+                .dword -1
+            check_excp_actual_pc:
+                .dword -1
+            check_excp_return_pc:
+                .dword -1
+            check_excp_expected_tval:
+                .dword -1
+            check_excp_expected_cause:
+                # 0xff is the default value. If we see 0xff, exception was not expected.
+                # So, we can go to fail
+                .dword 0xff
+            check_excp_actual_cause:
+                .dword 0xff
+            os_save_ecall_fn_epc:
+                .dword -1
+            passed_addr:
+                .dword 0x0
+            failed_addr:
+                .dword 0x0
+            machine_flags:
+                .dword 0x0
+            user_flags:
+                .dword 0x0
+            super_flags:
+                .dword 0x0
+            machine_area:
+                .dword 0x0
+            user_area:
+                .dword 0x0
+            super_area:
+                .dword 0x0
+            .section .data
+
+;#init_memory @vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0xb07d, 0x5ac, 0x7fff, 0xffff, 0xf318, 0x7fff, 0xc877, 0x7fff, 0x0, 0x0, 0x7fff, 0xb893, 0x52, 0x7fff, 0x8bdc, 0xa247
+	.org 256
+	.hword 0x8000, 0xffff, 0xffff, 0xffff, 0x7fff, 0x7fff, 0x7fff, 0x1db8, 0x1, 0xfc22, 0x8000, 0xb85f, 0x7fff, 0x1328, 0x7fff, 0xa06
+	.org 512
+	.hword 0xc6a1, 0x1501, 0x7fff, 0xf628, 0x7fff, 0xbe91, 0xf93b, 0x0, 0x1, 0xe714, 0xe3bb, 0x8e8e, 0xffff, 0x8000, 0x7fff, 0xffff
+
+;#init_memory @vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vand.vv_0_m1_16_0_0_vsetivli_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x7f0, 0xe9426dd2880f19fb, 0xffffffffffffffff, 0xffffffffffffffff
+
+;#init_memory @VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+.section .VFMAX.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xffffffffcfee7b5c
+;#init_memory @vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vfmax.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xecc738f6, 0x32402f39, 0x9ae16595, 0xaf108d21, 0xf9579b3f, 0xde445ede, 0xd2445512, 0x2dbcf5b9
+
+;#init_memory @vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x3bb9d1595ee3d7fa, 0xd66a064d6ff58793, 0x3a067f6205934362, 0xdd7c8b72896c9940, 0xa4275eeeda3bee93, 0x71ab022eedaee955, 0x21d8cba3aa0c64d4, 0x99c9cf7ad52d2ab9, 0x36ca8c42f70e4763, 0xe17d0ffb73fd2785, 0xb6e272ad4febbd59, 0x639549b2dee5655d, 0x9ce4d015941cc618, 0x47a6145ee85d1f9d, 0x3833cf729f4c7ea9, 0x826412e5fa3e9391, 0x82ffa69ba18707d, 0x239d27b6fc22e074, 0x6e76d4a7a838ef64, 0xd18935534d3cb73e, 0x4bd27c49b4ea5923, 0x52c4e6632fad9c31, 0x7e9fc25853cbdd74, 0x6a54703de2ead03f, 0x589327709466e956, 0x5793542aa01469ca, 0x63000eed294d3a4e, 0xd94aeab56dae48d9, 0x8f88429c566e568f, 0x5a1e9fadc2f9adce, 0x7412d35459676fd2, 0x39284b8ff9e5c549
+	.org 2048
+	.dword 0x8d97ad4ea958ffbc, 0x2a8d3e6ec3d2be78, 0x3f084801b51565ff, 0x92912e54753ffd2b, 0x73ee628bc74fb536, 0x92440b93e613af9d, 0xe23f26471adc0f12, 0x8b5b6a02ea1fa746, 0xe89ba9d002b88f36, 0xefb13c0e1639fb9e, 0xd109e0f741b9b659, 0xc4f9bbc9d16888e1, 0x5450d284a8bfb85f, 0xc4d8595af9744354, 0x36be59a1651071e8, 0xb49f187ba953bd42, 0x4b9a674b48be1387, 0xa6524b205898aa1f, 0xca02b80577dab818, 0xc6a010bc2e981be6, 0xd39fec2a69e9535f, 0x7020a7db9d36107f, 0xc988295ed0c8f1b3, 0xd1746228686bd7ea, 0x717317a8065b65cb, 0x6830114cc6f6a5c4, 0x255f44ca93d7623d, 0x3f1001273d72894a, 0x3d1498d854b58f19, 0xdf5ba4b5d24d2e28, 0x2089f87598c16c32, 0xdde5d6a66778f6f0
+;#init_memory @vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_1_vfmacc.vv_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0xf4ae05e2d2169867, 0x933aea36c06ef01c, 0xe9effd0bf2711590, 0xfe3fcb1a600759b7, 0x6e6ce55d08fa2cf4, 0x3fea528f4977df6b, 0xe115166aa737fb9c, 0x7dc6774d9fdfd25f, 0xd225a2334afffe0a, 0x9131276bc53d8778, 0xd11f1bea4e6869eb, 0x73c167306ffd1d2, 0x625b9d99865bb17d, 0x2b2ce42d9edf419d, 0x32e88f83f07bb2c3, 0xae37e2777ecc32c3, 0x3a947f283db061e6, 0xc031d42e2275f4f6, 0xee8fc83a8bb8c021, 0xcb99d8b543029471, 0xa649d5b5400b9c10, 0xfa1ee7c432a6a4ec, 0x42a557a4726abebd, 0x4e6c2a386fbbd843, 0xa692cd7cd0e498a5, 0xd59a5122fa366a00, 0x184420a6550a6e90, 0xc4f86048e5c6639a, 0x9b67f703819e30c8, 0x7d9f7969e20bfe64, 0x96f87c75700f99eb, 0x96460bc2b9f95d89
+
+;#init_memory @vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x7f, 0xe, 0xb, 0xb3, 0x0, 0x0, 0xcb, 0xff, 0xe3, 0x92, 0x0, 0x7f, 0xc7, 0xff, 0xe, 0x26
+	.org 128
+	.byte 0x1, 0xff, 0x0, 0xff, 0x0, 0x0, 0x3, 0x2, 0x7f, 0x80, 0x7f, 0xff, 0x80, 0x2, 0x4, 0x8a
+
+;#init_memory @vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmulhsu.vx_0_mf2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x18e66a186ca3, 0x0, 0x7fffffffffffffff, 0x1b54028605b
+
+;#init_memory @VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux
+.section .VFNMSUB.VF_0_M4_32_1_0_VSETIVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xffffffffd28725cb
+;#init_memory @vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vfnmsub.vf_0_m4_32_1_0_vsetivli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xcd9b96ab, 0x63cdb1a, 0x8dc066b6, 0xb2067fc1, 0xc7cf2d20, 0x437681d6, 0x372dda51, 0xd6e94287, 0xdbd5dbc4, 0x5b70dd0c, 0xd8ad1036, 0x2f7044dc, 0xcff9e184, 0x8ed64a, 0xb4fed337, 0xf936351f, 0x61b0a3db, 0xab912731, 0x45ad9295, 0x55b41545, 0xa634875a, 0x2ee60fc6, 0x6a980c4a, 0x9d63a88, 0xf2e2334c, 0xc0c6d30e, 0x68f88736, 0x3d07aa79, 0xababf83e, 0x96fca0ea, 0x56e6a952, 0xcbac161e
+	.org 1024
+	.word 0x541fbaf7, 0xced8e907, 0x48800168, 0x8e0c1e2d, 0xbe72667e, 0xa409d390, 0x6ad5b292, 0x783b6bab, 0x217c1492, 0xb116c40, 0xd1ffd7b9, 0x7ce3068d, 0x3b33dd49, 0x61b5829c, 0x69aa810e, 0x8daa2e02, 0xe831fd87, 0xc70dd2d2, 0x6818bfd9, 0x1c4600b6, 0x271544d1, 0x8cc994b0, 0x7a0c298d, 0xfb0a5187, 0xacf1a6e3, 0x2c711e74, 0xaaf5b22e, 0x2996d11f, 0xfbb1961d, 0xacaaa577, 0x58d689b2, 0xe7778f66
+
+;#init_memory @vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vzext.vf8_0_mf8_8_0_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x8000000000000000, 0x10156c49a435, 0x63ca6ec, 0x544d3e1
+
+;#init_memory @VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux
+.section .VFMERGE.VFM_0_M8_32_1_0_VSETVL_VLMAX_NOMASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xffffffff72ba1ca7
+;#init_memory @vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x71216fe0, 0xd5c0fb4, 0x5d173794, 0x116b24c6, 0x492aa4a2, 0x62eab7ad, 0xfa0cb90d, 0xd1de3519, 0x68897ea1, 0xd70d0a1c, 0xd9f539d3, 0xe3c7346, 0x9d76c93f, 0xa1787b5c, 0xd31d246, 0xca67aec5, 0x36250f8a, 0x89f82ca5, 0x46278dbb, 0xd602cec6, 0x12bf6d86, 0x782a9275, 0xa28c4cfa, 0xfd0cb6ef, 0xa9f63041, 0x9c4738e6, 0x7a1c6649, 0xd913b02e, 0x6a069b56, 0x7eaa6847, 0x197ccf27, 0x494be3b8, 0xa6ef9c59, 0x2bd583f9, 0xcc028624, 0xe08849b, 0xdd7e40a4, 0xb639104a, 0x2ebb8cee, 0x60a1ec57, 0xa3906052, 0xbdd09409, 0xdb1dfd77, 0x942acc98, 0xf8339c16, 0xc0b5905e, 0xb9beeb7e, 0x7a7cd290, 0xc31ca96d, 0xad3cf230, 0x75e48467, 0xc9a312db, 0x32c830f7, 0xcdade830, 0xb43ec681, 0x8cf3c3e5, 0x2d2f65a1, 0x535fdf57, 0xc24f1f4d, 0xe244de21, 0x13618eb7, 0x695597ac, 0x55da608c, 0xc328961e
+
+;#init_memory @vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin
+.section .vreg_inits_0_vfmerge.vfm_0_m8_32_1_0_vsetvl_vlmax_nomask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xe69469253aa9c357, 0x2c54be765506883, 0xa8a5d6dc4fe003a7, 0x7fffffffffffffff
+
+;#init_memory @vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmadd.vv_0_mf8_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x2, 0x82, 0x5, 0x0
+	.org 32
+	.byte 0x2, 0x9, 0xff, 0x89
+	.org 64
+	.byte 0x0, 0x12, 0xb9, 0xff
+
+;#init_memory @vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmacc.vx_0_m4_64_0_1_vsetvl_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x1efa7eb0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0, 0x7fffffffffffffff, 0x33ffeb85a7c, 0x8000000000000000, 0x0, 0x8000000000000000, 0x1789360d8ad783, 0x8000000000000000, 0xe7e40a30798c3604, 0xacebe50240, 0x9c6ad3, 0xd7e880466b873fdc, 0xd64f18bbdb77562b
+	.org 1024
+	.dword 0xffffffffffffffff, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x8000000000000000, 0x0, 0xc4cab62ffceb6e93, 0xb429ad6735771543, 0x8000000000000000, 0x0, 0xd2a875fd7fe8d903, 0x7fffffffffffffff, 0xe335f4fd99406179, 0x8000000000000000, 0xff11989dd7310dcf
+
+;#init_memory @VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+.section .VFMSUB.VF_0_MF2_32_0_0_VSETIVLI_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xffffffffd12f21ce
+;#init_memory @vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vfmsub.vf_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x5e4d29a3, 0x813f6b5, 0x92c57814, 0x187c40b4
+	.org 128
+	.word 0xd0f80fec, 0x58223bd4, 0xb46bd9b8, 0x8bb1eb6a
+
+;#init_memory @vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vzext.vf2_0_m2_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xe0dd0, 0x2a9bb, 0x3f79639, 0x7fffffff, 0x0, 0xffffffff, 0x25198d2, 0x80000000, 0x80000000, 0x80000000, 0x0, 0x80000000, 0xe90, 0x1c4a74, 0xb250daef, 0x7fffffff
+
+;#init_memory @vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x7fffffff, 0xae645ece, 0xc0455e82, 0xc944da2c, 0x0, 0x80000000, 0xd63f9bb2, 0xb9e88b9a
+	.org 256
+	.word 0xf36d6169, 0x80000000, 0xbc7988ba, 0xffffffff, 0x0, 0x9656a35a, 0x7fffffff, 0x1adc2
+
+;#init_memory @vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vsub.vx_0_m1_32_0_0_vsetvli_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x8000000000000000, 0x0, 0x0, 0xffffffffffffffff
+
+;#init_memory @vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmv4r.v_0_m8_64_1_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x1c858093914, 0x178af, 0x411673208, 0x26, 0xdb, 0x7fffffffffffffff, 0xf1a6e644a2a33ff4, 0xf0c79d3f3b18421c, 0xd94dbb78b5908992, 0x7fffffffffffffff, 0x1a6cb10, 0x2acdffd7d6c0d25, 0x0, 0x8000000000000000, 0x700c1, 0x7fffffffffffffff
+
+;#init_memory @vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xff, 0x80, 0xff, 0xe5, 0xf, 0x1, 0xcf, 0x87, 0x95, 0xf1, 0x7f, 0x0, 0x9, 0x8c, 0x7f, 0x80, 0x80, 0x7f, 0x0, 0xff, 0xff, 0x80, 0x7f, 0xff, 0x80, 0xf4, 0x80, 0x7f, 0x1, 0xcf, 0x2, 0x91
+	.org 256
+	.byte 0x92, 0x80, 0x8, 0x80, 0x0, 0xff, 0xe9, 0xff, 0x80, 0x0, 0x80, 0x91, 0xef, 0xa8, 0x7f, 0x85, 0xe9, 0xff, 0xe, 0x2, 0x7f, 0x0, 0x2, 0x7f, 0x3, 0x7f, 0x0, 0x6, 0x7f, 0x0, 0xff, 0xdf
+
+;#init_memory @vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin
+.section .vreg_inits_0_vmerge.vim_0_m1_8_1_1_vsetvli_vlmax_nomask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xab11e0d36d, 0x460, 0x66b2dac15ffcae5, 0x1e96a0f948cb8c
+
+;#init_memory @vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vsra.vx_0_mf2_32_0_0_vsetivli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x80ac3a7f, 0x54, 0xffffffff, 0x80000000
+	.org 128
+	.word 0x0, 0x80000000, 0xffffffff, 0x0
+
+;#init_memory @vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vsll.vx_0_m8_32_0_1_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xb00d2bf0, 0x3, 0xc1e7d4cc, 0x80000000, 0x80000000, 0x7fffffff, 0xf07, 0x8251, 0xffffffff, 0xea299f22, 0x7f3dca, 0x855, 0xffffffff, 0x0, 0x80000000, 0xba9b54ac, 0xb55f5295, 0xbde1e26d, 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x0, 0xffffffff, 0x60391, 0x7fffffff, 0x7fffffff, 0xde1332, 0x7fffffff, 0x7fffffff, 0xdd02f6b6, 0x7fffffff, 0xcf05de52, 0x978c046a, 0x1dd9c36b, 0x89629d9e, 0x80000000, 0xeed7ccc7, 0xffffffff, 0x7fffffff, 0xffffffff, 0x23, 0xffffffff, 0xd77b, 0x0, 0x7fffffff, 0x80000000, 0xe395c992, 0xd8b3724e, 0x80000000, 0x0, 0x7fffffff, 0x2614c6f6, 0x0, 0x50, 0xffffffff, 0xffffffff, 0x1caf6, 0x0, 0x7fffffff, 0x135, 0x2a5b4, 0xffffffff, 0xffffffff, 0x4696
+	.org 2048
+	.word 0xffffffff, 0x7fffffff, 0xa96970b9, 0x7fffffff, 0x0, 0xffffffff, 0x2dcc8, 0x7fffffff, 0xffffffff, 0x0, 0x26863, 0xcd841f50, 0xffffffff, 0xeef24e51, 0x9a60a8f0, 0x0, 0x68, 0xffffffff, 0x7fffffff, 0x1388bbef, 0x483b, 0xecda749d, 0x80000000, 0x0, 0x0, 0xffffffff, 0x80000000, 0x383f8, 0x7fffffff, 0x80000000, 0x15d37, 0x7fffffff, 0x1d7d10, 0x19523, 0xcae958ef, 0x80000000, 0xe5138796, 0xffffffff, 0xe19ab351, 0x0, 0x7fffffff, 0x3b5, 0xd536a04e, 0xf762, 0xffffffff, 0x0, 0xffffffff, 0x559ba4, 0x7fffffff, 0x80000000, 0x7fffffff, 0x0, 0x5896, 0xc9669f06, 0x0, 0x0, 0xffffffff, 0xcfc34a7b, 0xb60b2093, 0xfb49f0b7, 0x9943dacc, 0x58, 0x0, 0x14582a0
+
+;#init_memory @vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x7f, 0xe6, 0x0, 0xd, 0xff, 0x0, 0x80, 0x80, 0x7f, 0xfa, 0xff, 0x7f, 0xd0, 0xcb, 0x1a, 0x25, 0x0, 0x7f, 0x80, 0x1, 0x80, 0x1, 0x7f, 0xa, 0x80, 0x7f, 0xff, 0x81, 0x8, 0x7f, 0xe6, 0xea, 0x3c, 0x82, 0x0, 0x80, 0xec, 0xd, 0xff, 0x80, 0x0, 0x80, 0x1b, 0xad, 0x0, 0xbc, 0x7f, 0x3d, 0xc9, 0x1, 0xe4, 0x2, 0xff, 0xa1, 0xeb, 0x80, 0x0, 0xd9, 0x87, 0x5, 0x7f, 0xd, 0x89, 0x4
+	.org 512
+	.byte 0xff, 0x0, 0x28, 0x99, 0x1, 0x36, 0x0, 0xc7, 0x0, 0x7f, 0xff, 0x7f, 0x0, 0x8, 0xff, 0x7f, 0x1, 0x19, 0xac, 0xff, 0x3, 0xca, 0x1, 0x80, 0x83, 0x80, 0x80, 0xa7, 0x9a, 0x17, 0xbd, 0xc7, 0x0, 0x0, 0x80, 0xff, 0x0, 0x80, 0x10, 0x8, 0x1, 0x80, 0x9, 0x80, 0x0, 0xc6, 0x4, 0x80, 0x1, 0x0, 0x1, 0x1, 0x0, 0x0, 0x2, 0x80, 0xff, 0x80, 0x0, 0x7f, 0xc7, 0x21, 0xf6, 0x1
+
+;#init_memory @vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsgtu.vx_0_m2_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x8000000000000000, 0xccf9277d5cf15566, 0xd002ef64525f0f41, 0xffffffffffffffff
+
+;#init_memory @vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x80, 0x0, 0xa1, 0x0
+	.org 32
+	.byte 0x0, 0x7f, 0x0, 0x88
+
+;#init_memory @vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmul.vx_0_mf8_8_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xffffffffffffffff, 0xd8d93badf150e73c, 0x8000000000000000, 0x8000000000000000
+
+;#init_memory @vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vand.vx_0_m2_32_1_0_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x6, 0xffffffff, 0xd837161d, 0x14e7, 0x0, 0x233257, 0x80000000, 0xffffffff, 0xffffffff, 0x80000000, 0x7fffffff, 0x0, 0xbdf1d04d, 0x80000000, 0x80000000, 0x7fffffff
+	.org 512
+	.word 0xaed, 0x0, 0xffffffff, 0x2f0, 0x7fffffff, 0x80000000, 0xb07f7394, 0xbd53ceb1, 0x0, 0x3, 0xff9a9dfb, 0xffffffff, 0x384744d, 0xffffffff, 0x7fffffff, 0xaca2dc0b
+
+;#init_memory @VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux
+.section .VFRSUB.VF_0_M2_32_1_0_VSETVLI_VLMAX_MASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xffffffffaa9b8cd1
+;#init_memory @vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vfrsub.vf_0_m2_32_1_0_vsetvli_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xa33fd271, 0xf8adf0d2, 0x592269bc, 0x58052ae6, 0x212f230f, 0x697528e, 0xd831af77, 0xaddaacfb, 0x19ee9798, 0x9e131cd1, 0x1e5231d2, 0x1308b2fe, 0x76e4f990, 0x46cfc64a, 0x9d0c3d04, 0xc803385b
+
+;#init_memory @vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x2, 0x80, 0xff, 0x0, 0xf6, 0x9a, 0x3, 0x80, 0x10, 0x7f, 0xff, 0xf9, 0x14, 0x80, 0x94, 0xb, 0x9, 0x80, 0x18, 0x7f, 0x80, 0x0, 0xb9, 0xc2, 0xbb, 0xec, 0x0, 0xdb, 0x96, 0x80, 0xff, 0x7f, 0x0, 0xd3, 0xff, 0x80, 0xff, 0x7f, 0x0, 0x1, 0xff, 0x4, 0xa9, 0xa0, 0x0, 0x96, 0x6, 0x80, 0xff, 0x7f, 0xac, 0x1a, 0x7f, 0x0, 0x7f, 0x92, 0xce, 0x3, 0x7f, 0x80, 0x0, 0x80, 0x3, 0x7f, 0x2, 0x7f, 0xff, 0x83, 0xff, 0x0, 0xfb, 0xff, 0x9c, 0x0, 0x7f, 0x0, 0xe, 0x16, 0xfd, 0x93, 0x80, 0xff, 0x8d, 0xf, 0xa, 0x7f, 0x7f, 0x80, 0x80, 0x0, 0x28, 0xff, 0x7f, 0xdf, 0x9, 0x80, 0x80, 0xb5, 0x3, 0x80, 0xff, 0x0, 0xcf, 0xff, 0xef, 0xa2, 0x80, 0xd4, 0x0, 0xff, 0xff, 0xff, 0x80, 0xf3, 0xcd, 0x80, 0x7f, 0x80, 0x0, 0x0, 0x7f, 0xd7, 0xe7, 0xf0, 0x9, 0x0, 0x7f, 0xff
+	.org 1024
+	.byte 0xe3, 0x1, 0xc, 0x7f, 0x7f, 0x9d, 0xca, 0x0, 0x80, 0x0, 0xab, 0xe6, 0x92, 0x88, 0x80, 0x0, 0x3, 0x0, 0x7f, 0x8a, 0xf1, 0x1, 0xfe, 0xff, 0x1, 0x0, 0x80, 0xff, 0xb3, 0xb6, 0x27, 0xe7, 0x7, 0x8e, 0x19, 0xbd, 0x30, 0xa3, 0x4, 0xff, 0xff, 0x0, 0x0, 0x0, 0x80, 0x2, 0x5, 0xe6, 0x0, 0x15, 0x0, 0xaf, 0x7f, 0xe3, 0xff, 0x0, 0xa5, 0x0, 0x8d, 0x0, 0x5, 0xff, 0x80, 0x0, 0xdf, 0x80, 0x8f, 0x80, 0x2, 0x80, 0x80, 0x80, 0x28, 0x98, 0xc, 0x80, 0xff, 0xff, 0x7f, 0x0, 0xff, 0xea, 0x0, 0xff, 0x80, 0x1e, 0x80, 0x80, 0xf, 0x2, 0x9e, 0x0, 0x7f, 0x0, 0xa8, 0x9e, 0x0, 0xc3, 0x0, 0xac, 0x88, 0x80, 0xdf, 0x80, 0x3c, 0xec, 0xff, 0xff, 0x1c, 0x7f, 0x18, 0x0, 0x8, 0x95, 0x0, 0xd, 0x7f, 0x80, 0x0, 0x80, 0xff, 0x80, 0xcc, 0xee, 0x9b, 0x0, 0x80, 0x0
+	.org 2048
+	.byte 0xa2, 0x13, 0x80, 0xff, 0x4, 0xff, 0x80, 0x7f, 0xfb, 0xd1, 0x7f, 0x7f, 0x18, 0x80, 0x80, 0xec, 0xd7, 0x0, 0x80, 0x0, 0x80, 0x80, 0xff, 0xdc, 0x80, 0x7f, 0x1, 0x0, 0x80, 0x80, 0xf3, 0xff, 0x7f, 0xff, 0x30, 0x39, 0x80, 0x1, 0x96, 0xb, 0xf9, 0xff, 0x7f, 0xff, 0x6, 0x92, 0x7f, 0x7f, 0x7f, 0x80, 0x7f, 0x1, 0xaa, 0x3c, 0xd, 0x4, 0x0, 0xff, 0x0, 0xd3, 0xc3, 0x80, 0x80, 0xff, 0x1, 0x89, 0xd5, 0x1f, 0x0, 0x7, 0x97, 0x7f, 0xa9, 0x7f, 0xd5, 0xff, 0x80, 0x13, 0x0, 0x80, 0xe8, 0x3, 0x0, 0x1, 0x94, 0x80, 0xff, 0xe6, 0x7f, 0xbb, 0x7f, 0x80, 0x80, 0x7f, 0x2, 0x14, 0x80, 0xff, 0x0, 0xa9, 0x0, 0x7f, 0x7f, 0x7f, 0x6, 0x80, 0x80, 0x8, 0x80, 0xdd, 0x7f, 0x80, 0x0, 0x7, 0x2, 0x80, 0x13, 0xff, 0xff, 0x1, 0x80, 0x9d, 0x2, 0xff, 0xa9, 0xa6, 0x80, 0xff
+
+;#init_memory @vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vmsltu.vv_0_m4_8_0_0_vsetvli_vlmax_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.byte 0x69, 0x31, 0xfc, 0xbc, 0xe9, 0x90, 0x68, 0x74, 0x23, 0x3a, 0x59, 0xc6, 0x6a, 0x1e, 0x80, 0x51, 0xd7, 0x00, 0x80, 0x00, 0x80, 0x80, 0xff, 0xdc, 0x80, 0x7f, 0x01, 0x00, 0x80, 0x80, 0xf3, 0xff
+	.org 256
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux
+.section .VFNMADD.VF_0_M1_32_1_0_VSETVL_ZERO_NOMASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0xfffffffffb02bcea
+;#init_memory @vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vfnmadd.vf_0_m1_32_1_0_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x848f9e5a, 0xd03c794e, 0x666c083d, 0xf434598e, 0xe90db8b1, 0xec762a40, 0xacba1411, 0x920b74ff
+	.org 256
+	.word 0x3af7620a, 0xb1fc8d3e, 0xb5fa6c4c, 0xf6e7f778, 0x5e65ef6c, 0x69a76084, 0x3c6d2bed, 0x8bc4ff54
+
+;#init_memory @vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0xfe30, 0x0, 0x8000, 0x8000, 0xffff, 0x32bd, 0x0, 0x657
+	.org 128
+	.hword 0x8000, 0x0, 0xb8b8, 0x7fff, 0xffff, 0x8000, 0xe476, 0x0
+
+;#init_memory @vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsle.vi_0_mf2_16_0_1_vsetvli_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x359e2419c0517, 0xcac506aef04a0265, 0x9ee8939102e90e8f, 0x8000000000000000
+
+;#init_memory @vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0xbcb65474e85b2e25, 0xdc63beed920ff20c, 0x8000000000000000, 0xffffffffffffffff, 0x0, 0x8000000000000000, 0x8000000000000000, 0xcc2d89e25bfe134a, 0x7fffffffffffffff, 0xffffffffffffffff, 0x7fffffffffffffff, 0x0, 0x8000000000000000, 0xf79792a03d93a979, 0x7fffffffffffffff, 0x8000000000000000
+	.org 1024
+	.dword 0x24c21a6bc047f5, 0xffffffffffffffff, 0x8000000000000000, 0xd2086bd1eb55708d, 0x830b67ed013d58c6, 0x7fffffffffffffff, 0x0, 0xa121099dd62f539e, 0x28b0bfe869, 0xd3329b5fb13fb20e, 0x4, 0xffffffffffffffff, 0x0, 0x14f, 0x0, 0x22a2b
+
+;#init_memory @vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vminu.vx_0_m4_64_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x7fffffffffffffff, 0x5cbf48, 0xef9327b8e8d5259e, 0xac643c07b88e8841
+
+;#init_memory @VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux
+.section .VFMADD.VF_0_M8_64_0_1_VSETVLI_ZERO_MASK_DISABLE_MACHINE_lin_aux, "ax"
+	.org 0x0
+	.dword 0x198831a9ce84ecf3
+;#init_memory @vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vfmadd.vf_0_m8_64_0_1_vsetvli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0xddc5408e58287965, 0x99fffbe4ca19110c, 0xba19b90dad824177, 0x8179ad2ea8b8c3b8, 0xccf1ead5b55c2d75, 0x650af9d1db9c0e54, 0xa19dad0e9b006109, 0x132842cf8704b103, 0x1b3332351ed35ae1, 0xfc6f2939e987aef8, 0x215dde9000da0b22, 0xce50a77bb233e849, 0x6b69776023e2ca7, 0x70ce4257c910c202, 0x512f053bf794f7ab, 0x9eaf78c9195b8415, 0x3c62e277dac4c8c2, 0xd00c9e392fc53435, 0xfcd85912794783a8, 0x6ff77ba01f760dd5, 0x7097ec7e556a362b, 0xf9ff31dc8a419d15, 0xe9e7c26362373cb1, 0xf8d3b69fdb283f26, 0xaecda843df9af1d5, 0x721cd6577bbe347c, 0xbb16b54319ee8953, 0x31540623ca984df0, 0x94dcff23c06768c5, 0x780acb2c8c7addb7, 0xf3dd354e5dc2da40, 0x4dda14bdc73761e6
+	.org 2048
+	.dword 0xa2ca743f2624fd48, 0x527d16d8cc7534f2, 0xb5c2ab18c3a96b9b, 0x5c35278a6ff2f662, 0xe16e1f20f302d46d, 0xe998007af15013a6, 0xd9971cfe05cd347e, 0x2aade43d2a709bdc, 0x1161bb906f9b3b1, 0x90ee1004895a80f1, 0x7957efe63079af65, 0x2db130ffd5305125, 0x9267ee4617568230, 0x4be59d7ccb8d178a, 0xbb1d40f00869af04, 0x5de670dd481c63, 0x2b0f59d8a1e3f1ec, 0xe8ecce8818453e55, 0x7b060edc7c1175ee, 0xdb792da25a19d548, 0x1b240364ec752710, 0x35f042ebaf6eb2fa, 0xc2412e8af85ca003, 0x138883f66029142a, 0x31006d5c681585a2, 0xf64201a1d2f8b19f, 0xb2f5f8ab67166f9a, 0xd40d37ef10bf0096, 0x2bb2206a5f6a7bb, 0x5030f1401d6e5e4f, 0x13427c58fa20628b, 0xd4b5d813ebd67aad
+
+;#init_memory @vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vor.vv_0_mf2_8_1_0_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xe4, 0x80, 0xff, 0x0, 0x9, 0xff, 0x7f, 0x1, 0xff, 0xff, 0x84, 0x1, 0xff, 0xff, 0x80, 0xff
+	.org 128
+	.byte 0x0, 0xb0, 0xd, 0xbf, 0x0, 0xe, 0xff, 0xff, 0x9, 0x7f, 0x80, 0x80, 0x2, 0xe5, 0x1, 0x0
+	.org 256
+	.byte 0x7f, 0x1, 0xff, 0x7f, 0xff, 0xff, 0x80, 0x80, 0xbf, 0xe6, 0xba, 0x0, 0xff, 0x80, 0x1, 0x80
+
+;#init_memory @vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x7, 0x0, 0xb6, 0x8, 0x7f, 0x8, 0x15, 0xff, 0x94, 0x80, 0x7f, 0x23, 0xe3, 0x20, 0x80, 0x80, 0xa8, 0x80, 0x0, 0x7f, 0x87, 0x7f, 0xff, 0xa9, 0x9, 0xff, 0x1, 0x0, 0xff, 0xf6, 0x80, 0x7f, 0x1, 0x3, 0x7f, 0x7f, 0xb7, 0x7f, 0xba, 0xd, 0x9e, 0x80, 0x0, 0x30, 0xa6, 0x7, 0xff, 0x3, 0x0, 0x3, 0x88, 0x0, 0x90, 0x2, 0xff, 0xf, 0x5, 0x7f, 0x1a, 0xf8, 0x7f, 0xab, 0xff, 0x7f, 0x0, 0x80, 0xd6, 0x7f, 0xa2, 0x7f, 0xff, 0xff, 0xff, 0x27, 0x3, 0x92, 0xa6, 0xff, 0xe3, 0x7f, 0x80, 0x7f, 0x0, 0x9c, 0x7f, 0xd6, 0xd7, 0xd, 0x80, 0x0, 0x0, 0x0, 0x80, 0x0, 0xd8, 0x7f, 0xae, 0x0, 0x0, 0xb3, 0xff, 0xb1, 0x80, 0xc5, 0xb, 0x80, 0x0, 0xd, 0x80, 0xe2, 0x7f, 0xfc, 0x7f, 0x0, 0xbc, 0x0, 0x83, 0x80, 0xff, 0xbd, 0x6, 0xff, 0xff, 0x18, 0x0, 0xa2, 0xff, 0xff
+	.org 1024
+	.byte 0x0, 0xc5, 0xd8, 0x0, 0x3d, 0x0, 0xd1, 0xc, 0x7, 0x80, 0x1e, 0xbf, 0x0, 0x1, 0xff, 0xac, 0x0, 0x7, 0x8f, 0xa0, 0x1, 0x92, 0xe5, 0xd9, 0x3, 0x7f, 0x0, 0xdc, 0x3, 0x0, 0xff, 0x8f, 0x7f, 0x0, 0xd3, 0x0, 0xff, 0xff, 0xff, 0xff, 0x0, 0x1, 0x80, 0x4, 0x7f, 0x0, 0xff, 0xee, 0xb1, 0xe1, 0x0, 0x0, 0xcf, 0x0, 0x9b, 0x17, 0xb4, 0x8f, 0x0, 0xab, 0xff, 0x80, 0x80, 0x0, 0x0, 0x0, 0x83, 0x3e, 0x0, 0x1f, 0x5, 0x9f, 0x3, 0x0, 0xf2, 0xff, 0x7f, 0xa6, 0x80, 0x97, 0x80, 0xff, 0x80, 0x14, 0x7f, 0xff, 0xff, 0xf7, 0x1, 0xff, 0xff, 0x4, 0xee, 0x2, 0x0, 0xc2, 0x4, 0x81, 0xb, 0x0, 0x0, 0x80, 0x0, 0x0, 0x5, 0x8a, 0x7f, 0x96, 0x1, 0x0, 0xd0, 0x7f, 0x7f, 0xff, 0x7f, 0x7f, 0x80, 0x5, 0xff, 0x7f, 0x7f, 0x80, 0x7f, 0xa, 0xbf, 0x86, 0x7f, 0x0
+	.org 2048
+	.byte 0x7f, 0x7f, 0xa3, 0xf1, 0xd, 0xa6, 0x0, 0x0, 0x80, 0x1, 0x9b, 0x8a, 0x2, 0x5, 0x93, 0x1, 0x2, 0x5, 0x80, 0x0, 0xcd, 0x3, 0x80, 0x6, 0x2, 0xaf, 0xff, 0x0, 0x0, 0xd7, 0x0, 0x80, 0x1, 0x7f, 0xff, 0x15, 0xff, 0x2, 0x1, 0xa3, 0xb, 0x7f, 0x0, 0x0, 0xc8, 0xa9, 0x0, 0xff, 0xff, 0x7f, 0x7f, 0x13, 0xf0, 0x19, 0x7f, 0x7f, 0x7f, 0xa, 0xff, 0x7f, 0xb7, 0x2, 0x80, 0x6, 0x84, 0x0, 0x7, 0x80, 0x80, 0x0, 0x7f, 0x13, 0xd8, 0x7f, 0xff, 0x7f, 0xdd, 0x7f, 0x34, 0x80, 0xc7, 0xcc, 0x7f, 0xa0, 0xeb, 0x0, 0x8f, 0xe9, 0x0, 0x80, 0x1, 0x7f, 0x0, 0x0, 0x80, 0x7f, 0x7f, 0xf7, 0xff, 0x7, 0x0, 0x7, 0x93, 0x0, 0xf6, 0xc1, 0x80, 0x0, 0x7f, 0x0, 0x1, 0x0, 0x3, 0x4, 0x12, 0x16, 0x1, 0x8c, 0x98, 0xf, 0xff, 0xff, 0x0, 0x0, 0x2, 0xd, 0xf4, 0x7f
+
+;#init_memory @vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vmin.vv_0_m4_8_1_0_vsetvli_vlmax_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.byte 0x00, 0xc5, 0xb6, 0x00, 0x3d, 0x00, 0xd1, 0xff, 0x94, 0x80, 0x1e, 0xbf, 0xe3, 0x01, 0x80, 0x80, 0xa8, 0x80, 0x8f, 0xa0, 0x87, 0x92, 0xe5, 0xa9, 0x03, 0xff, 0x00, 0xdc, 0xff, 0xf6, 0x80, 0x8f
+	.org 256
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x8000, 0xc56c, 0xffff, 0x151e, 0x7fff, 0xffff, 0x37, 0xb805, 0x6, 0x8000, 0x86cc, 0x7fff, 0x1350, 0x9f22, 0x7fff, 0x0
+	.org 256
+	.hword 0x54a, 0x953a, 0x86f, 0x0, 0xf4d5, 0x8fce, 0x8000, 0x7fff, 0x8000, 0x1, 0xffff, 0xffff, 0x1, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmseq.vx_0_m1_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x0, 0x0, 0xffffffffffffffff, 0xe2ad34130a7d4ee5
+
+;#init_memory @vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x7fffffffffffffff, 0x293, 0xa36cec4b1f09efc1, 0xf48d60
+
+;#init_memory @vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vsext.vf8_0_mf8_8_1_0_vsetvli_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xffffffffffffffff, 0xaf53e5646e8e3a50, 0xee3286dd9f38a5d7, 0x8446bbdc0d35a5f3
+
+;#init_memory @vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x6, 0xd, 0x84, 0x80, 0x84, 0x7f, 0xff, 0x7, 0xe7, 0xc, 0x80, 0x1, 0x0, 0xff, 0xff, 0xe4, 0x91, 0x9d, 0x7f, 0x3, 0xff, 0x0, 0xff, 0x80, 0x0, 0x5, 0xff, 0xff, 0x0, 0xed, 0xa0, 0x7f, 0xc, 0x0, 0x80, 0x80, 0x1, 0xff, 0xa8, 0x4, 0x80, 0xc1, 0xff, 0xff, 0x0, 0xe2, 0xbe, 0x9d, 0xbf, 0xc3, 0x0, 0x0, 0xd0, 0xe, 0xff, 0x12, 0x81, 0x7f, 0xff, 0x89, 0x3, 0x7f, 0x80, 0x7f, 0x7f, 0xff, 0x96, 0x0, 0xa4, 0xc1, 0x95, 0xd3, 0x0, 0x7f, 0x0, 0x7, 0x8a, 0xb2, 0x80, 0xff, 0xc0, 0x9a, 0x3, 0x0, 0x1, 0xff, 0xff, 0x80, 0xff, 0xd7, 0x80, 0x9f, 0x0, 0x7, 0x80, 0x80, 0xff, 0xff, 0x7f, 0xff, 0x7f, 0x80, 0x13, 0x0, 0x80, 0xa, 0x6, 0x2, 0xb2, 0x7f, 0x1, 0x0, 0x11, 0xf7, 0xf, 0x1, 0xed, 0xb3, 0xff, 0x80, 0x38, 0x82, 0x0, 0x0, 0x1b, 0x0, 0x7f, 0x7f
+	.org 1024
+	.byte 0xf7, 0xff, 0xa4, 0xff, 0xbf, 0xea, 0x1e, 0xff, 0x2, 0xf, 0xff, 0x0, 0xff, 0x7f, 0xff, 0x80, 0xd1, 0x7f, 0xc9, 0x0, 0x1f, 0x80, 0x0, 0x0, 0xe9, 0x9e, 0xff, 0x0, 0xff, 0xf, 0x7f, 0x7f, 0xdc, 0x7f, 0x0, 0x7, 0x80, 0x7f, 0xf2, 0x1, 0x7f, 0x7, 0xff, 0xff, 0xff, 0x80, 0x0, 0xd0, 0x9d, 0x3, 0x7f, 0x95, 0x7f, 0x97, 0x7f, 0xff, 0x4, 0x80, 0xff, 0x7f, 0x0, 0xa, 0xff, 0x7f, 0x18, 0xff, 0xd6, 0x0, 0xff, 0xf9, 0x7f, 0x1, 0xa1, 0x80, 0xc8, 0xff, 0xff, 0x7f, 0x0, 0xcd, 0xff, 0x0, 0xf, 0xff, 0x80, 0x7f, 0x80, 0x18, 0xd8, 0xec, 0xff, 0xfd, 0x96, 0x0, 0xde, 0xff, 0x1, 0x0, 0x0, 0xd6, 0xc2, 0x7f, 0x2, 0x80, 0xe0, 0x17, 0xb, 0xf8, 0xea, 0xd8, 0xba, 0x7f, 0x1a, 0x80, 0x12, 0x0, 0x82, 0xa6, 0x8e, 0x4, 0x82, 0x1, 0x0, 0x2, 0x7f, 0x7f, 0xa9, 0x7f
+
+;#init_memory @vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmaxu.vx_0_m4_8_1_0_vsetivli_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xae054d69c9f2e636, 0xc, 0x8000000000000000, 0x78bac2c86
+
+;#init_memory @vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xd4c16b29, 0xab, 0x80000000, 0x7dbd, 0xd563f0a7, 0xe45c89d3, 0xd21c12e1, 0xad84359d
+	.org 256
+	.word 0x5fb0167, 0x80000000, 0xf62c31bf, 0xffffffff, 0x80000000, 0x8228004b, 0xffffffff, 0x433a
+
+;#init_memory @vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vsll.vi_0_m1_32_0_1_vsetvl_vlmax_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.word 0xa4000000, 0xac000000, 0x00000000, 0xf4000000, 0x9c000000, 0x4c000000, 0x84000000, 0x74000000
+	.org 256
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vnmsub.vv_0_m1_32_1_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x7fffffff, 0x0, 0xd00f461f, 0x93c56037, 0x0, 0x80000000, 0xffffffff, 0x86e05a
+	.org 256
+	.word 0x80000000, 0x0, 0xffffffff, 0x0, 0x7fffffff, 0x47b06, 0xc96b2e68, 0x7fffffff
+	.org 512
+	.word 0x7fffffff, 0xffffffff, 0xe81bef72, 0x0, 0x80000000, 0x0, 0x83059158, 0x80000000
+
+;#init_memory @vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0xc35bad12e1e7b610, 0x8000000000000000, 0x13, 0xffffffffffffffff, 0x1b, 0xba90e9c69d93c700, 0x0, 0x7fffffffffffffff, 0x0, 0xffffffffffffffff, 0xa51fc8dd3b68ed87, 0x5e573, 0x1a8e4d064e4c, 0x0, 0x7fffffffffffffff, 0xeeb32c8c20db9d78, 0x16c, 0x87226a31a3531f1d, 0x8000000000000000, 0x21766a508f9656a, 0x8000000000000000, 0xae27b9200181cfbd, 0x99403e588fb07aa9, 0x8000000000000000, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0x7fffffffffffffff, 0x576ec0c1c55a4d1, 0x8000000000000000, 0xffffffffffffffff, 0x89f6e1eb281d6c01
+	.org 2048
+	.dword 0xffffffffffffffff, 0xffffffffffffffff, 0x8000000000000000, 0x0, 0x8a8cb8813791a7, 0x7fffffffffffffff, 0xcc4b90911a1, 0x7fffffffffffffff, 0xfe7, 0x7fffffffffffffff, 0x0, 0x0, 0x8bbdb1372636bd15, 0x8000000000000000, 0xffffffffffffffff, 0xaeb508f97193051d, 0xffffffffffffffff, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0xcff35f3ab7130156, 0xdbdfb1e3fe42eb40, 0xffa2b600a8f88, 0x8000000000000000, 0xeb04ef5a19b3e918, 0x0, 0x0, 0xefce961576a2365d, 0x7fffffffffffffff, 0x7fffffffffffffff, 0x5728ecc564f9aa5, 0x7fffffffffffffff
+;#init_memory @vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_1_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0x0, 0x8000000000000000, 0x8000000000000000, 0xffffffffffffffff, 0x8000000000000000, 0x8000000000000000, 0x14bde9a68, 0xfcd7f9cae0afec63, 0xc0, 0x268aa6315cf0, 0xffffffffffffffff, 0xc5892c68d97eb04c, 0x0, 0xb299efc723c31132, 0x0, 0x7fffffffffffffff, 0xa2366cc65463c035, 0x8000000000000000, 0xf4e2440f523fc, 0x0, 0x8000000000000000, 0x0, 0x78b744676c, 0x0, 0x1f1d3ab7cfa9ae, 0x83f260c, 0x8000000000000000, 0x6caad6d, 0x0, 0xe2bc4be6040a5642, 0xc826828d3193da1f, 0x8000000000000000
+
+;#init_memory @vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vsub.vv_0_m8_64_0_1_vsetvli_vlmax_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.dword 0xc35bad12e1e7b611, 0x8000000000000001, 0x8000000000000013, 0xffffffffffffffff, 0xff7573477ec86e74, 0x3a90e9c69d93c701, 0xfffff33b46f6ee5f, 0x0000000000000000, 0xfffffffffffff019, 0x8000000000000000, 0xa51fc8dd3b68ed87, 0x000000000005e573, 0x7442695726cf9137, 0x8000000000000000, 0x8000000000000000, 0x3ffe2392af48985b, 0x000000000000016d, 0x87226a31a3531f1e, 0x8000000000000000, 0x021766a508f9656b, 0xb00ca0c548ecfeaa, 0xd248073c033ee47d, 0x9930442d2fa5eb21, 0x0000000000000000, 0x14fb10a5e64c16e7, 0xffffffffffffffff, 0xffffffffffffffff, 0x903169ea895dc9a2, 0x8576ec0c1c55a4d2, 0x0000000000000001, 0xfa8d7133a9b0655a, 0x09f6e1eb281d6c02
+	.org 2048
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vmv.v.v_0_mf4_16_0_1_vsetvli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0xb054, 0x844c, 0x25e, 0xffff
+	.org 64
+	.hword 0xffff, 0x7fff, 0x7fff, 0x7fff
+
+;#init_memory @vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x3754b523, 0x1c11945b, 0xeb1595a8, 0xf88048dd, 0x22996d43, 0xfb94c4d8, 0x84b5611b, 0x35fd1d1d, 0xa60beb29, 0xdab72dba, 0x50db7621, 0x1779f1b7, 0xe1028584, 0x808524ea, 0xa1c4740b, 0x79ed52d8, 0xe9c6fc6e, 0xbc6cedbe, 0x4dc1925e, 0x292b49d, 0x4b47de2f, 0x7b06f953, 0x5af620e5, 0xade6623a, 0xe0aefce5, 0x4e7c9e06, 0x8ed896f1, 0xa59a5631, 0x9b3ace3b, 0x80af8f1b, 0x40a93f23, 0xe53c7d8c, 0xd73869bb, 0x58c2cf50, 0xf3b2e2e8, 0xc67baf16, 0xeedafebc, 0x9e6dab27, 0x732d0292, 0xc6888e25, 0x42930fc2, 0xbdc35273, 0x9bc0b7dd, 0x1f8331aa, 0x8955cf69, 0x975dac99, 0x9c3d8692, 0x74b1247a, 0x88ecf791, 0x3c4bf322, 0x979f1fbb, 0x721ee675, 0xcfac88a1, 0x9a1ef118, 0x4feb18e1, 0xaf2a509c, 0xc18eb59f, 0x5e213329, 0x9d3c65a3, 0x88a9325c, 0x51c18f9f, 0xfb516f09, 0x6e22bda, 0xe1ba296a
+	.org 2048
+	.word 0xcd0e7a21, 0x6abd593f, 0x5c607249, 0x35ef3d55, 0x3ac715da, 0xf2b136e3, 0x45438bee, 0x3f36e138, 0x5736f667, 0x72adef8e, 0x93f2c3bc, 0xbd0b6a9e, 0x89b763be, 0x276ce81d, 0xe821debb, 0xface42d3, 0xf35937c0, 0xa6e52ce, 0x80438a96, 0xd8412d36, 0xb2fca83d, 0x84e9deea, 0x845e8c5d, 0x5d5e600f, 0x29753ed0, 0x6e0839f8, 0x1833df10, 0xf1dcf336, 0xa1f3b00b, 0x598e0c14, 0x77d14b38, 0xa3aa1b94, 0x998c1c25, 0x696c5066, 0x47075bc, 0xbd914ac7, 0xe74f27b1, 0xd3b88d8, 0xe8710a77, 0x6b6c509d, 0xa3bd5f1f, 0x87291ef8, 0x456dae67, 0x5a0f6905, 0xebc0f4c7, 0xf40c1da8, 0xa1688b37, 0x43df1e2e, 0x82d0394, 0xcd76bb9f, 0x687941c6, 0x1796fd27, 0x8a9925e0, 0x76ee32fd, 0x1b4677e2, 0xeff870fc, 0x8881a044, 0xbffcdfe6, 0xdf9313fa, 0xdda277d7, 0x4dd908ce, 0xd0872d13, 0x1da5a9ef, 0x444880c8
+;#init_memory @vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_1_vfnmacc.vv_0_m8_32_1_1_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0xf2d705a8, 0x40b2eef4, 0x873487c8, 0xdd927e6c, 0x28170134, 0x945fe08, 0x869cb708, 0x781d85f1, 0xdd344807, 0xc46d47c7, 0x3c54c22e, 0xdbe2fc9f, 0xd60593eb, 0xe074c77e, 0xa07acb07, 0x124a0bee, 0xa13c53ad, 0xa2a892f4, 0xf590002f, 0x9e856adb, 0xd6739383, 0x2c666842, 0x496abb1b, 0xf7836004, 0x2b460f09, 0xd1685b24, 0x14f7f97f, 0xb252cca, 0xb7a93285, 0x849f8e6a, 0xac5d1222, 0x24535db2, 0xbcf03990, 0x6325d749, 0x515bdba3, 0x9b9f89e3, 0xee5d312d, 0xbcd22523, 0xfa57a685, 0xefc13d00, 0x60a789c8, 0x53b87055, 0xf09c5908, 0x6df282b2, 0xe182365d, 0xc6627bdb, 0xae0947f8, 0xe02e0533, 0x729dc580, 0x18fb9064, 0xee4f110b, 0xbf8241ca, 0xdd5709ca, 0x287c971c, 0x3328f714, 0x7c7953f2, 0x268a6892, 0x6b55e20d, 0x5f851eed, 0xc9720ad1, 0x3f9cd2bd, 0x19a3d227, 0x4bbc4b51, 0x1f85af1c
+
+;#init_memory @vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vfnmadd.vv_0_m4_64_1_0_vsetivli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.dword 0xf1d0352872930d4e, 0xd6c6d63c5d49e66c, 0x8a2ce09af868ef0, 0xeac57ea0795da121, 0x3cb8ad2eb22bbb10, 0x4c0a168d9a643c8c, 0xa40e62b6a16dc33b, 0x298282fa404bfe00, 0xeaabd048b70d8431, 0xc31a09041e658a73, 0xae0c3e0cf265d03b, 0x3bfd8e4841c33d12, 0x829f1a4cfbd21eb6, 0x95c265cdaf3f6edb, 0x528a686e6d536d39, 0xfc99c1853328d658
+	.org 1024
+	.dword 0x1b015f80ca2fc2ef, 0xc1029b68b90aced7, 0x5c955e63ef1073a6, 0xb348c6585da7f49c, 0x2aaec0fda567b38, 0x75ad3c036c92723, 0x7df831872f0c6e56, 0xfb647b086b628a4e, 0x462a118c80b62581, 0xd9d4722137b88278, 0xb0281e465b6c7f7d, 0xd536672a147bee4, 0x5b07e02d233db4ad, 0x912487a154584cb9, 0xdcc759f0c79e3820, 0xe974f18fe1b454a5
+	.org 2048
+	.dword 0x6f71ec1cab793617, 0x66d251544c8976c1, 0x2b7b8ca50c18f489, 0xce9c9cf3f1160fdb, 0x7cf001bc33a9b0af, 0x94e291e0513b04e7, 0x383be766f155cbb3, 0x8680ce1dfcc74149, 0x1b8b49ec52d690ad, 0xacc93e468fc7bfb7, 0xa8e761de3dcb98aa, 0x9dc5c5e9872a5faf, 0xa6b11ea66a85885c, 0xefebbac02c64c283, 0x8bcd59ca88162ea1, 0xf0b5d21cbb5a3bc5
+
+;#init_memory @vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xa5, 0xe0, 0x7f, 0x7f, 0x0, 0x7f, 0x0, 0xda, 0xa0, 0x80, 0xde, 0xff, 0xff, 0xd3, 0xd8, 0xff, 0xc, 0xf8, 0x7f, 0x0, 0x7f, 0x7f, 0x7f, 0xb7, 0xfb, 0x0, 0x13, 0x2, 0x7f, 0x80, 0x3, 0x80, 0x80, 0x1, 0x34, 0x80, 0x0, 0x7f, 0x0, 0x1, 0x80, 0x0, 0x93, 0x3, 0xd8, 0x80, 0xff, 0x3, 0xf1, 0x7f, 0x7, 0x80, 0xff, 0xdb, 0x80, 0x4, 0xa3, 0x83, 0xb3, 0xff, 0x80, 0x0, 0xbb, 0x7f
+	.org 512
+	.byte 0x80, 0x1, 0xff, 0x80, 0xff, 0x7f, 0x0, 0x0, 0xd5, 0x9, 0x0, 0x0, 0xe1, 0x5, 0x4, 0x0, 0xd8, 0x80, 0x80, 0xff, 0x0, 0xdd, 0xfc, 0xd, 0x80, 0x83, 0x7f, 0x0, 0x0, 0xff, 0x3, 0xff, 0xef, 0x3, 0x5, 0x80, 0xff, 0x0, 0x7f, 0xff, 0x3, 0xff, 0x0, 0x80, 0xff, 0x7f, 0x80, 0x80, 0xff, 0x0, 0xff, 0x80, 0xec, 0x0, 0x8c, 0xa7, 0x7f, 0xff, 0x4, 0xa4, 0x3e, 0xa5, 0x0, 0x80
+
+;#init_memory @vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsle.vx_0_m2_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xf22aa3fbc2f6ee4d, 0x81b645e5602df0ab, 0xc47922507877fd2d, 0x1a
+
+;#init_memory @vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x83, 0x80, 0x80, 0x7f, 0xff, 0xa3, 0x0, 0xff, 0x80, 0x13, 0x0, 0x0, 0x0, 0x2, 0xff, 0x0
+	.org 128
+	.byte 0xff, 0x0, 0x3, 0x0, 0xff, 0xff, 0xff, 0x1, 0xff, 0x0, 0xfe, 0x8e, 0xeb, 0x3, 0x0, 0x1
+
+;#init_memory @vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vrsub.vi_0_mf2_8_1_0_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x0, 0xffffffffffffffff, 0xf8c6f7d1173dbdf0, 0x19be0f51c9cc1
+
+;#init_memory @vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vmax.vv_0_mf8_8_1_1_vsetvli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x80, 0xf3, 0x0, 0xff
+	.org 32
+	.byte 0x2, 0xff, 0xff, 0x7f
+	.org 64
+	.byte 0xff, 0x6, 0x7f, 0xa3
+
+;#init_memory @vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vmv.v.i_0_mf4_16_0_0_vsetvl_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x84f5, 0xe249, 0x8000, 0x8000
+
+;#init_memory @vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0xcf6f, 0xffff, 0x8, 0x7fff, 0x9a, 0x7fff, 0x0, 0x0, 0x8000, 0x43f, 0x7fff, 0x0, 0x9611, 0x8000, 0x7fff, 0x7fff, 0x8000, 0x0, 0x10b6, 0x1b5, 0x0, 0x7fff, 0x356, 0x8000, 0x0, 0x54, 0x8000, 0x7fff, 0x0, 0xffff, 0x8315, 0xffff, 0xb9ad, 0x1517, 0xffff, 0x0, 0x28, 0xffff, 0x8000, 0x8000, 0x16d, 0xffff, 0x8000, 0xffff, 0x9349, 0x3ddc, 0x2, 0xffff, 0x845f, 0x7fff, 0x7fff, 0xffff, 0x9733, 0x113, 0xe4fb, 0xffff, 0xffff, 0x7fff, 0xca72, 0x0, 0x0, 0x12, 0x88, 0x0
+	.org 1024
+	.hword 0x6, 0xffff, 0x7c, 0xb35b, 0x7fff, 0x11e1, 0x882c, 0x0, 0x0, 0xae01, 0xb537, 0x0, 0xffff, 0x8000, 0x245, 0x7fff, 0x1c63, 0x8000, 0xd26b, 0x23c, 0xddf, 0x8000, 0x8000, 0xec6b, 0xc0ad, 0xffff, 0x8000, 0x1bd, 0x1a1c, 0x7fff, 0xffff, 0xa261, 0x8000, 0xcc19, 0x8000, 0x413, 0xe708, 0x9794, 0x0, 0x0, 0x388, 0x8000, 0xffff, 0xffff, 0xefa4, 0xffff, 0xa660, 0x8000, 0xffff, 0x7fff, 0x7fff, 0x0, 0xffff, 0x945c, 0x27ce, 0xd700, 0x7fff, 0x9b15, 0xffff, 0x8000, 0xffff, 0xc941, 0xffff, 0xd010
+
+;#init_memory @vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vsrl.vi_0_m4_16_0_1_vsetvl_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xc55391dc1ae6918e, 0x29a, 0x8000000000000000, 0xb6cc518522c6d71b
+
+;#init_memory @vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vfsub.vv_0_mf2_16_0_1_vsetivli_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0xb472, 0x7a5c, 0xe17a, 0xdcb2, 0x9b39, 0x4ee0, 0xd03b, 0xa8a5
+	.org 128
+	.hword 0xb213, 0x8403, 0xe5f1, 0xe2f9, 0x33fc, 0x4ecb, 0x766, 0x1b8
+
+;#init_memory @vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin
+.section .vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_lin, "ax"
+	.org 0
+	.word 0x7fffffff, 0x643c, 0x80000000, 0xffffffff, 0xffffffff, 0x2e8, 0x7fffffff, 0xc208ac57, 0x5a4, 0x0, 0xffffffff, 0x1594b, 0x80000000, 0xffffffff, 0xffffffff, 0xffffffff, 0x7fffffff, 0xbaaca116, 0x0, 0x1ff3b0, 0xffffffff, 0x7fffffff, 0x0, 0xb386e089, 0x80000000, 0x4ffd9, 0x0, 0x98581d5e, 0x80000000, 0x0, 0x81f4d300, 0x0
+	.org 1024
+	.word 0xdc99a159, 0x14ba80, 0x5d54, 0x2f, 0x0, 0xd32c6db8, 0xb992ca0a, 0x58892, 0x0, 0x0, 0x2c06c117, 0x0, 0x7fffffff, 0x0, 0x22f60bd, 0x7fffffff, 0x428d0, 0x80000000, 0x6, 0x1b41, 0xce930fd1, 0xae7e8afb, 0xffffffff, 0x16f3cd, 0xdb2b9093, 0xd14f6288, 0xf88616a5, 0x8, 0x0, 0x256acc, 0xb55d919f, 0x59d
+	.org 2048
+	.word 0x80000000, 0x0, 0xb8fa72c9, 0xc80c8d37, 0xffffffff, 0xffffffff, 0x0, 0x80000000, 0x8dbb5481, 0x7fffffff, 0x17, 0xffffffff, 0xaf8, 0xffffffff, 0x2051c89, 0x7fffffff, 0x80000000, 0x718f6, 0x80000000, 0x863638b8, 0x0, 0x80000000, 0x18b5364, 0x80000000, 0x0, 0x86fb77ac, 0x7fffffff, 0x7fffffff, 0xffffffff, 0x7fffffff, 0xa06557b5, 0x7fffffff
+
+;#init_memory @vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vsll.vv_0_m4_32_1_0_vsetvl_vlmax_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.word 0xfe000000, 0x0000643c, 0x00000000, 0xffff8000, 0xffffffff, 0xe8000000, 0xfffffc00, 0xb15c0000, 0x000005a4, 0x00000000, 0xff800000, 0x0001594b, 0x00000000, 0xffffffff, 0xe0000000, 0x80000000, 0xffff0000, 0xbaaca116, 0x00000000, 0x003fe760, 0xfffe0000, 0xf8000000, 0x00000000, 0xdc112000, 0x00000000, 0x04ffd900, 0x00000000, 0x581d5e00, 0x80000000, 0x00000000, 0x00000000, 0x00000000
+	.org 1024
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xc4, 0x7f, 0x80, 0x7f, 0xa, 0x80, 0xe9, 0xd7, 0xf9, 0x1, 0x0, 0xff, 0x2, 0xc, 0xff, 0x0, 0x0, 0x7f, 0x7f, 0x80, 0xf4, 0xc0, 0x34, 0xa7, 0x0, 0x80, 0x9d, 0xff, 0xc7, 0xa, 0x37, 0x80
+	.org 256
+	.byte 0xfe, 0x7f, 0x80, 0x0, 0x1, 0x7f, 0x0, 0x0, 0x7f, 0xff, 0x1, 0x7f, 0x9a, 0xff, 0xff, 0xff, 0x80, 0x89, 0x1, 0x10, 0x92, 0xff, 0x81, 0x7f, 0xdb, 0xed, 0x1, 0x80, 0x7f, 0x7f, 0x94, 0x80
+
+;#init_memory @vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsgtu.vi_0_m1_8_1_1_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x87cd9c6ec4275c69, 0x8e7874fa86b3b7ef, 0x0, 0x7fffffffffffffff
+
+;#init_memory @vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x2, 0x7fff, 0x7fff, 0xffff, 0x0, 0xe91f, 0x0, 0x8000, 0xbbf7, 0xf85c, 0x1d6c, 0x0, 0xffff, 0x9, 0x7fff, 0x8000, 0x7fff, 0x0, 0xffff, 0x7fff, 0xffff, 0xfa33, 0x8000, 0x7fff, 0x2b, 0xecad, 0x26, 0x7fff, 0x7fff, 0x0, 0x9acf, 0x8000
+	.org 512
+	.hword 0x0, 0xffff, 0xeb, 0x0, 0x3, 0x7fff, 0xffff, 0xffff, 0x7fff, 0xffff, 0x8000, 0x990, 0xffff, 0x9660, 0xb, 0x21, 0xf558, 0x7fff, 0x16b4, 0xe25a, 0x7fff, 0xe06a, 0x54e, 0x7fff, 0xd, 0x8000, 0x0, 0x14b, 0x424, 0x7fff, 0x5, 0xffff
+
+;#init_memory @vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vmv2r.v_0_m4_16_1_0_vsetvl_zero_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.hword 0x0002, 0x7fff, 0x7fff, 0xffff, 0x0000, 0xe91f, 0x0000, 0x8000, 0xbbf7, 0xf85c, 0x1d6c, 0x0000, 0xffff, 0x0009, 0x7fff, 0x8000, 0x7fff, 0x0000, 0xffff, 0x7fff, 0xffff, 0xfa33, 0x8000, 0x7fff, 0x002b, 0xecad, 0x0026, 0x7fff, 0x7fff, 0x0000, 0x9acf, 0x8000
+	.org 512
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xff, 0x1, 0x4, 0x3, 0x0, 0x7f, 0x0, 0x7f, 0xff, 0x7f, 0xe1, 0x80, 0x7f, 0xff, 0x7f, 0x0, 0x0, 0xd2, 0xad, 0x7f, 0x85, 0x31, 0xff, 0x0, 0x80, 0x2, 0x0, 0xc5, 0xa3, 0xff, 0x7f, 0x0
+	.org 256
+	.byte 0xff, 0xa7, 0xf4, 0x1b, 0xec, 0x0, 0x7f, 0x80, 0x0, 0xc7, 0xff, 0x80, 0x0, 0x80, 0x80, 0x2, 0x0, 0x94, 0x4, 0xae, 0x0, 0xff, 0xf, 0x0, 0x2, 0x7f, 0xce, 0x7f, 0x3, 0x0, 0x0, 0xff
+
+;#init_memory @vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vor.vi_0_m1_8_0_1_vsetvl_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0xa4253e8c319f4859, 0x9af2be2d6ed3895e, 0x23cd26bba3b2, 0x0
+
+;#init_memory @vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x3, 0xe6ce, 0x3e9, 0x8000, 0x8000, 0x7fff, 0x8000, 0xbc26, 0x9ba1, 0x71, 0x0, 0xd46c, 0x9951, 0xd51b, 0xcb37, 0x7fff, 0x1b12, 0xffff, 0x0, 0x8000, 0xb046, 0xfd9b, 0x8000, 0x7fff, 0x7fff, 0x8000, 0x7, 0xd7f6, 0x381, 0xffff, 0x0, 0xa2d1, 0x68, 0xa3d3, 0xffff, 0x8000, 0x7fff, 0x8000, 0x1, 0x34, 0x8000, 0xcf7f, 0x0, 0x7fff, 0x0, 0xe445, 0x0, 0x1, 0x1b, 0xc95c, 0x7fff, 0xe, 0xe00c, 0x7fff, 0x9270, 0x3, 0xa68, 0x0, 0x0, 0x0, 0x0, 0x8000, 0xffff, 0xafca, 0x4, 0x8000, 0x8000, 0x1, 0xffff, 0x8000, 0xa, 0xc89b, 0x146, 0xffff, 0xb812, 0x0, 0x7fff, 0xb81a, 0xf38c, 0x8000, 0x0, 0x0, 0xcb, 0x7fff, 0xc98, 0x5, 0x7fff, 0x0, 0x1ef, 0x23bd, 0x0, 0x7fff, 0x9c68, 0x7fff, 0x9846, 0xd543, 0x0, 0x8ac6, 0x97fe, 0xfb74, 0xaa49, 0x8000, 0xf297, 0x8eb1, 0x8000, 0x0, 0xd55d, 0x7fff, 0xe, 0x0, 0x97, 0x0, 0x7fff, 0xd91, 0x8000, 0x39, 0x0, 0x17, 0x7, 0x7fff, 0x597, 0xb342, 0x7fff, 0x1, 0x0, 0xa3f6, 0x7fff, 0x9246
+	.org 2048
+	.hword 0x7fff, 0x2, 0x2, 0xae63, 0x8000, 0x7fff, 0x8000, 0x0, 0x763, 0x8add, 0xb, 0xffff, 0x3bd, 0x28, 0x8000, 0xca58, 0x84c0, 0xffff, 0x7fff, 0x0, 0xc, 0x2, 0xc906, 0x8000, 0xdb, 0x2a2, 0x7fff, 0xffff, 0x8000, 0xd938, 0xba1a, 0xbecc, 0x8000, 0xa8a, 0x7fff, 0x0, 0x0, 0xffff, 0x0, 0x1a, 0x0, 0x9c41, 0x8000, 0x97af, 0xc, 0x3, 0x137, 0x4ce, 0xbb05, 0xcd14, 0x8000, 0x30, 0x0, 0xffff, 0x0, 0xf89c, 0x0, 0xacea, 0xd7d5, 0xffff, 0xbb, 0x7fff, 0xffff, 0xffff, 0x5f9, 0x8000, 0x0, 0x97, 0x1, 0xffff, 0xb985, 0x1644, 0x0, 0x1, 0x8000, 0xffff, 0x1ca, 0x0, 0x7fff, 0x2fd, 0x0, 0x323, 0xffff, 0x8000, 0x3, 0x0, 0x0, 0xbd3f, 0xdde3, 0x8000, 0xb, 0x8000, 0x8000, 0xffff, 0x8000, 0xc6a3, 0x8aae, 0xffff, 0x7d, 0xf435, 0xac44, 0x7fff, 0x7fff, 0x9f1, 0x936c, 0xffff, 0x7fff, 0x102, 0xc285, 0xef9f, 0xffff, 0xdc, 0x96ed, 0xffff, 0x96e1, 0xc991, 0xddfd, 0xffff, 0x0, 0x7fff, 0xdc, 0x12, 0x8000, 0x7fff, 0x97d0, 0x0, 0xa679, 0xc5fb
+
+;#init_memory @vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin
+.section .vreg_inits_0_vmv8r.v_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_post_lin, "ax"
+	.org 0
+	.hword 0x0003, 0xe6ce, 0x03e9, 0x8000, 0x8000, 0x7fff, 0x8000, 0xbc26, 0x9ba1, 0x0071, 0x0000, 0xd46c, 0x9951, 0xd51b, 0xcb37, 0x7fff, 0x1b12, 0xffff, 0x0000, 0x8000, 0xb046, 0xfd9b, 0x8000, 0x7fff, 0x7fff, 0x8000, 0x0007, 0xd7f6, 0x0381, 0xffff, 0x0000, 0xa2d1, 0x0068, 0xa3d3, 0xffff, 0x8000, 0x7fff, 0x8000, 0x0001, 0x0034, 0x8000, 0xcf7f, 0x0000, 0x7fff, 0x0000, 0xe445, 0x0000, 0x0001, 0x001b, 0xc95c, 0x7fff, 0x000e, 0xe00c, 0x7fff, 0x9270, 0x0003, 0x0a68, 0x0000, 0x0000, 0x0000, 0x0000, 0x8000, 0xffff, 0xafca, 0x0004, 0x8000, 0x8000, 0x0001, 0xffff, 0x8000, 0x000a, 0xc89b, 0x0146, 0xffff, 0xb812, 0x0000, 0x7fff, 0xb81a, 0xf38c, 0x8000, 0x0000, 0x0000, 0x00cb, 0x7fff, 0x0c98, 0x0005, 0x7fff, 0x0000, 0x01ef, 0x23bd, 0x0000, 0x7fff, 0x9c68, 0x7fff, 0x9846, 0xd543, 0x0000, 0x8ac6, 0x97fe, 0xfb74, 0xaa49, 0x8000, 0xf297, 0x8eb1, 0x8000, 0x0000, 0xd55d, 0x7fff, 0x000e, 0x0000, 0x0097, 0x0000, 0x7fff, 0x0d91, 0x8000, 0x0039, 0x0000, 0x0017, 0x0007, 0x7fff, 0x0597, 0xb342, 0x7fff, 0x0001, 0x0000, 0xa3f6, 0x7fff, 0x9246
+	.org 2048
+	.byte 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+
+;#init_memory @vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0xe4, 0x80, 0x6, 0x0, 0x94, 0xd8, 0xfd, 0x9f, 0x0, 0x6, 0x7f, 0xe9, 0xa6, 0xaf, 0x0, 0x2b
+	.org 128
+	.byte 0x1, 0x80, 0x0, 0x7f, 0x0, 0x80, 0x0, 0xff, 0x2, 0xde, 0x7, 0x7f, 0xff, 0xcb, 0xa2, 0x80
+	.org 256
+	.byte 0xff, 0xff, 0x8, 0x80, 0x3, 0x1, 0x7f, 0x7f, 0x80, 0x80, 0xff, 0xff, 0xff, 0x1, 0x80, 0x8c
+
+;#init_memory @vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsne.vv_0_mf2_8_1_1_vsetvl_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x7fffffffffffffff, 0x943b659c0e8e15ff, 0xffffffffffffffff, 0x60
+
+;#init_memory @vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin
+.section .vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_lin, "ax"
+	.org 0
+	.byte 0x0, 0x2, 0x80, 0x98, 0x0, 0x4, 0x85, 0x36, 0x3, 0x0, 0x7f, 0xff, 0x7f, 0x5, 0xff, 0xff, 0xff, 0x80, 0x0, 0xf6, 0x80, 0x0, 0x7f, 0xc1, 0xb9, 0x9a, 0x3, 0x1, 0x1, 0x0, 0xff, 0x80
+	.org 256
+	.byte 0x0, 0xbf, 0x7f, 0x80, 0x7f, 0xa5, 0x3, 0x7f, 0xff, 0x7f, 0xff, 0xa7, 0xc7, 0x7f, 0x80, 0xdd, 0xc9, 0x0, 0xff, 0xff, 0xe9, 0x7f, 0xf9, 0x5, 0x7, 0x80, 0xe8, 0xb7, 0x80, 0x80, 0x7f, 0x7f
+	.org 512
+	.byte 0xff, 0x80, 0x80, 0xb9, 0x7f, 0x0, 0xea, 0xff, 0x1, 0x7f, 0xff, 0x0, 0xb, 0x0, 0x7f, 0x80, 0x16, 0xde, 0x12, 0x80, 0x0, 0x7f, 0x16, 0xff, 0xff, 0xff, 0xde, 0x7f, 0xff, 0xad, 0xff, 0xa5
+
+;#init_memory @vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmulh.vv_0_m1_8_1_1_vsetvli_zero_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x73a1e9, 0xffffffffffffffff, 0x5, 0x7fffffffffffffff
+
+;#init_memory @vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin
+.section .vreg_inits_0_vmsgt.vi_0_m4_16_1_1_vsetvli_zero_nomask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x0, 0xffff, 0x21, 0x399d, 0x1a0, 0x0, 0x730, 0xfa29, 0x2, 0xf6af, 0x75, 0x1fb1, 0xd803, 0xe141, 0xf63d, 0xba0a, 0xa1a9, 0xd9, 0x1f, 0x8000, 0x0, 0x9fcb, 0x131, 0x38e, 0x0, 0x15cc, 0xffff, 0x8000, 0xffff, 0xace, 0x7fff, 0xffff, 0x8000, 0xffff, 0x7fff, 0x9fe, 0x7fff, 0x9d4, 0xd4e7, 0x7fff, 0x208, 0xfa01, 0x0, 0x7fff, 0x0, 0xbec, 0xecdf, 0xffff, 0x7fff, 0x0, 0xbe4f, 0xc462, 0x7fff, 0xc35e, 0x8000, 0x8000, 0x160, 0x8000, 0xc7e5, 0xfda, 0xfb, 0x7fff, 0xffff, 0xdf12
+	.org 1024
+	.hword 0xcd4a, 0x6ab, 0x7fff, 0x7fff, 0xffff, 0x8000, 0x1028, 0x8000, 0x8000, 0xe061, 0xcc1b, 0x709, 0xca97, 0x7fff, 0xc923, 0x8061, 0x8000, 0x9afd, 0x7fff, 0x64c, 0x8000, 0x39c, 0x8000, 0x8000, 0xffff, 0x8000, 0xc95c, 0x8000, 0xd232, 0x9c70, 0xffff, 0x847f, 0x6e, 0xdcac, 0x0, 0xb65e, 0x8bb7, 0xd95a, 0xea04, 0x7fff, 0xffff, 0x8000, 0x15, 0x25, 0xcf0, 0x8000, 0x32, 0x1, 0x7fff, 0xffff, 0x0, 0x87, 0xeb82, 0x7fff, 0xf5c8, 0x8000, 0xf3d1, 0x8000, 0x8000, 0x0, 0xb26a, 0x0, 0x6, 0x0
+
+;#init_memory @vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin
+.section .vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_lin, "ax"
+	.org 0
+	.hword 0x9ed, 0x8000, 0x16, 0xffff, 0xffff, 0xffff, 0x9, 0xb0bf, 0xfa1b, 0xbb83, 0x0, 0x7fff, 0x7fff, 0x8000, 0x7fff, 0xffff, 0x922e, 0x7fff, 0xcf20, 0x7fff, 0x8000, 0x8cfe, 0xffff, 0x10cd, 0xa064, 0xffff, 0x12, 0x2ab, 0xfeb1, 0xc40d, 0xfdf4, 0xb879, 0xffff, 0x9, 0x8000, 0x921, 0x83bb, 0x6ae, 0x3d1, 0x7fff, 0xe663, 0xf81b, 0xfbff, 0x8000, 0xffff, 0x0, 0x271, 0x7fff, 0x7fff, 0xffff, 0xffff, 0xe1f7, 0x7c, 0xfcde, 0xcc24, 0x84, 0xffff, 0x0, 0xecac, 0xa594, 0xfcf8, 0xe8f9, 0xaa8a, 0xed5e, 0x7fff, 0x116, 0x1ab, 0xffff, 0x7fff, 0xffff, 0x8a8, 0x8000, 0xeb39, 0xffff, 0x7e, 0xffff, 0x15, 0xdd99, 0xe, 0xf581, 0x5d, 0x0, 0x8000, 0x19, 0x102e, 0x2c8, 0x8c9, 0x8000, 0x7fff, 0xffff, 0x101, 0x5, 0xc95c, 0xaecf, 0xfeb9, 0x0, 0xd94f, 0x6d, 0xf66c, 0xffff, 0x7fff, 0x8000, 0x0, 0xe6, 0x0, 0xacf2, 0x8000, 0x9ffb, 0x8000, 0x2a0f, 0x0, 0x7fff, 0xd2, 0x8000, 0xc695, 0xb15b, 0xc31, 0x24, 0x7fff, 0x8000, 0xb722, 0xffff, 0x8000, 0x7fff, 0x8000, 0x137, 0x19, 0xdc47
+	.org 2048
+	.hword 0x0, 0x2, 0x8000, 0xcd9e, 0x0, 0x7fff, 0x0, 0x2, 0xffff, 0x9e01, 0x8000, 0xffff, 0x0, 0xd8c1, 0x0, 0x8000, 0x7fff, 0xffff, 0xffff, 0xbc90, 0xffff, 0xd228, 0xd6b0, 0xdd0e, 0x8000, 0x8f, 0x0, 0xffff, 0x0, 0xe7a5, 0x7fff, 0x0, 0xa6c4, 0xbcee, 0x0, 0xffff, 0x7fff, 0xeb00, 0x0, 0x8000, 0x1, 0xcee6, 0x38, 0x7fff, 0xc24b, 0x8000, 0x29, 0xa33e, 0x8000, 0xffff, 0xfe42, 0x7fff, 0x8000, 0x7fff, 0x7fff, 0xdd2b, 0xbd6d, 0xa9, 0x0, 0xb43e, 0x0, 0xd96b, 0x8000, 0xb527, 0x6d, 0x0, 0x8000, 0xffff, 0x1, 0xffff, 0xd40a, 0x9803, 0x0, 0x0, 0x67, 0x7fff, 0x9333, 0x8000, 0xffff, 0x0, 0xe1, 0xa816, 0xc46c, 0x8000, 0xcd9d, 0x15, 0xffff, 0x151, 0xffff, 0x27d, 0xe504, 0x3, 0x1, 0x96a, 0x7fff, 0x22df, 0xa8b1, 0x8000, 0x8000, 0x7fff, 0x9344, 0xb31d, 0x8000, 0x6, 0x8000, 0x71f, 0xffff, 0x7fff, 0x0, 0x8000, 0xffff, 0xf12b, 0x0, 0xe57, 0xba54, 0x1b, 0xd, 0xb194, 0x0, 0x0, 0xffff, 0x7fff, 0x7fff, 0x93b2, 0x179, 0xea24, 0x1, 0xffff
+
+;#init_memory @vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin
+.section .vreg_inits_0_vmsleu.vx_0_m8_16_0_0_vsetivli_vlmax_mask_disable_machine_mask_lin, "ax"
+	.org 0
+	.dword 0x0, 0xe46fae8e78b6f1db, 0x0, 0xbaf16fc2dfbd13e7
