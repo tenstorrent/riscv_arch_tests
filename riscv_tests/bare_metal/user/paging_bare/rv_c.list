@@ -1,0 +1,200 @@
+name=rv64c_75 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_75 opts=default
+
+name=rv64c_10 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_10 opts=default
+
+name=rv64c_62 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_62 opts=default
+
+name=rv64c_11 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_11 opts=default
+
+name=rv64c_19 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_19 opts=default
+
+name=rv64c_69 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_69 opts=default
+
+name=rv64c_54 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_54 opts=default
+
+name=rv64c_85 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_85 opts=default
+
+name=rv64c_55 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_55 opts=default
+
+name=rv64c_35 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_35 opts=default
+
+name=rv64c_91 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_91 opts=default
+
+name=rv64c_72 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_72 opts=default
+
+name=rv64c_61 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_61 opts=default
+
+name=rv64c_22 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_22 opts=default
+
+name=rv64c_88 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_88 opts=default
+
+name=rv64c_8 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_8 opts=default
+
+name=rv64c_40 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_40 opts=default
+
+name=rv64c_41 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_41 opts=default
+
+name=rv64c_24 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_24 opts=default
+
+name=rv64c_39 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_39 opts=default
+
+name=rv64c_65 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_65 opts=default
+
+name=rv64c_68 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_68 opts=default
+
+name=rv64c_74 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_74 opts=default
+
+name=rv64c_1 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_1 opts=default
+
+name=rv64c_64 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_64 opts=default
+
+name=rv64c_46 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_46 opts=default
+
+name=rv64c_59 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_59 opts=default
+
+name=rv64c_20 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_20 opts=default
+
+name=rv64c_90 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_90 opts=default
+
+name=rv64c_9 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_9 opts=default
+
+name=rv64c_53 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_53 opts=default
+
+name=rv64c_79 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_79 opts=default
+
+name=rv64c_18 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_18 opts=default
+
+name=rv64c_36 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_36 opts=default
+
+name=rv64c_17 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_17 opts=default
+
+name=rv64c_31 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_31 opts=default
+
+name=rv64c_86 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_86 opts=default
+
+name=rv64c_58 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_58 opts=default
+
+name=rv64c_76 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_76 opts=default
+
+name=rv64c_28 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_28 opts=default
+
+name=rv64c_25 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_25 opts=default
+
+name=rv64c_29 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_29 opts=default
+
+name=rv64c_57 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_57 opts=default
+
+name=rv64c_52 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_52 opts=default
+
+name=rv64c_67 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_67 opts=default
+
+name=rv64c_2 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_2 opts=default
+
+name=rv64c_4 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_4 opts=default
+
+name=rv64c_48 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_48 opts=default
+
+name=rv64c_21 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_21 opts=default
+
+name=rv64c_26 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_26 opts=default
+
+name=rv64c_42 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_42 opts=default
+
+name=rv64c_34 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_34 opts=default
+
+name=rv64c_5 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_5 opts=default
+
+name=rv64c_94 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_94 opts=default
+
+name=rv64c_56 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_56 opts=default
+
+name=rv64c_50 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_50 opts=default
+
+name=rv64c_95 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_95 opts=default
+
+name=rv64c_96 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_96 opts=default
+
+name=rv64c_98 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_98 opts=default
+
+name=rv64c_49 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_49 opts=default
+
+name=rv64c_99 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_99 opts=default
+
+name=rv64c_44 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_44 opts=default
+
+name=rv64c_92 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_92 opts=default
+
+name=rv64c_47 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_47 opts=default
+
+name=rv64c_73 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_73 opts=default
+
+name=rv64c_15 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_15 opts=default
+
+name=rv64c_89 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_89 opts=default
+
+name=rv64c_93 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_93 opts=default
+
+name=rv64c_87 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_87 opts=default
+
+name=rv64c_70 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_70 opts=default
+
+name=rv64c_33 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_33 opts=default
+
+name=rv64c_14 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_14 opts=default
+
+name=rv64c_27 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_27 opts=default
+
+name=rv64c_3 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_3 opts=default
+
+name=rv64c_66 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_66 opts=default
+
+name=rv64c_84 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_84 opts=default
+
+name=rv64c_78 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_78 opts=default
+
+name=rv64c_30 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_30 opts=default
+
+name=rv64c_7 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_7 opts=default
+
+name=rv64c_45 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_45 opts=default
+
+name=rv64c_23 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_23 opts=default
+
+name=rv64c_60 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_60 opts=default
+
+name=rv64c_13 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_13 opts=default
+
+name=rv64c_37 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_37 opts=default
+
+name=rv64c_0 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_0 opts=default
+
+name=rv64c_63 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_63 opts=default
+
+name=rv64c_6 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_6 opts=default
+
+name=rv64c_83 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_83 opts=default
+
+name=rv64c_38 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_38 opts=default
+
+name=rv64c_71 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_71 opts=default
+
+name=rv64c_43 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_43 opts=default
+
+name=rv64c_82 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_82 opts=default
+
+name=rv64c_81 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_81 opts=default
+
+name=rv64c_97 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_97 opts=default
+
+name=rv64c_12 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_12 opts=default
+
+name=rv64c_51 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_51 opts=default
+
+name=rv64c_32 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_32 opts=default
+
+name=rv64c_80 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_80 opts=default
+
+name=rv64c_77 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_77 opts=default
+
+name=rv64c_16 tool=whisper test=riscv_tests/bare_metal/user/paging_bare/rv_c/rv64c_16 opts=default
+
