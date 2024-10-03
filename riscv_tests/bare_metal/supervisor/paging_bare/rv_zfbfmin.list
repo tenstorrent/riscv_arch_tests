@@ -1,0 +1,200 @@
+name=rv64zfbfmin_49 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_49 opts=default
+
+name=rv64zfbfmin_25 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_25 opts=default
+
+name=rv64zfbfmin_38 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_38 opts=default
+
+name=rv64zfbfmin_92 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_92 opts=default
+
+name=rv64zfbfmin_48 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_48 opts=default
+
+name=rv64zfbfmin_29 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_29 opts=default
+
+name=rv64zfbfmin_79 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_79 opts=default
+
+name=rv64zfbfmin_37 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_37 opts=default
+
+name=rv64zfbfmin_43 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_43 opts=default
+
+name=rv64zfbfmin_35 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_35 opts=default
+
+name=rv64zfbfmin_20 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_20 opts=default
+
+name=rv64zfbfmin_5 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_5 opts=default
+
+name=rv64zfbfmin_10 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_10 opts=default
+
+name=rv64zfbfmin_7 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_7 opts=default
+
+name=rv64zfbfmin_60 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_60 opts=default
+
+name=rv64zfbfmin_9 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_9 opts=default
+
+name=rv64zfbfmin_97 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_97 opts=default
+
+name=rv64zfbfmin_59 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_59 opts=default
+
+name=rv64zfbfmin_91 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_91 opts=default
+
+name=rv64zfbfmin_6 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_6 opts=default
+
+name=rv64zfbfmin_23 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_23 opts=default
+
+name=rv64zfbfmin_65 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_65 opts=default
+
+name=rv64zfbfmin_95 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_95 opts=default
+
+name=rv64zfbfmin_0 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_0 opts=default
+
+name=rv64zfbfmin_22 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_22 opts=default
+
+name=rv64zfbfmin_96 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_96 opts=default
+
+name=rv64zfbfmin_32 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_32 opts=default
+
+name=rv64zfbfmin_77 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_77 opts=default
+
+name=rv64zfbfmin_15 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_15 opts=default
+
+name=rv64zfbfmin_87 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_87 opts=default
+
+name=rv64zfbfmin_83 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_83 opts=default
+
+name=rv64zfbfmin_14 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_14 opts=default
+
+name=rv64zfbfmin_74 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_74 opts=default
+
+name=rv64zfbfmin_56 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_56 opts=default
+
+name=rv64zfbfmin_28 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_28 opts=default
+
+name=rv64zfbfmin_53 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_53 opts=default
+
+name=rv64zfbfmin_62 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_62 opts=default
+
+name=rv64zfbfmin_36 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_36 opts=default
+
+name=rv64zfbfmin_82 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_82 opts=default
+
+name=rv64zfbfmin_2 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_2 opts=default
+
+name=rv64zfbfmin_69 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_69 opts=default
+
+name=rv64zfbfmin_58 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_58 opts=default
+
+name=rv64zfbfmin_31 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_31 opts=default
+
+name=rv64zfbfmin_98 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_98 opts=default
+
+name=rv64zfbfmin_67 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_67 opts=default
+
+name=rv64zfbfmin_13 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_13 opts=default
+
+name=rv64zfbfmin_17 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_17 opts=default
+
+name=rv64zfbfmin_24 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_24 opts=default
+
+name=rv64zfbfmin_8 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_8 opts=default
+
+name=rv64zfbfmin_80 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_80 opts=default
+
+name=rv64zfbfmin_71 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_71 opts=default
+
+name=rv64zfbfmin_73 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_73 opts=default
+
+name=rv64zfbfmin_27 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_27 opts=default
+
+name=rv64zfbfmin_39 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_39 opts=default
+
+name=rv64zfbfmin_21 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_21 opts=default
+
+name=rv64zfbfmin_44 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_44 opts=default
+
+name=rv64zfbfmin_85 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_85 opts=default
+
+name=rv64zfbfmin_50 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_50 opts=default
+
+name=rv64zfbfmin_78 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_78 opts=default
+
+name=rv64zfbfmin_70 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_70 opts=default
+
+name=rv64zfbfmin_72 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_72 opts=default
+
+name=rv64zfbfmin_64 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_64 opts=default
+
+name=rv64zfbfmin_76 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_76 opts=default
+
+name=rv64zfbfmin_89 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_89 opts=default
+
+name=rv64zfbfmin_90 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_90 opts=default
+
+name=rv64zfbfmin_47 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_47 opts=default
+
+name=rv64zfbfmin_57 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_57 opts=default
+
+name=rv64zfbfmin_18 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_18 opts=default
+
+name=rv64zfbfmin_33 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_33 opts=default
+
+name=rv64zfbfmin_61 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_61 opts=default
+
+name=rv64zfbfmin_51 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_51 opts=default
+
+name=rv64zfbfmin_41 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_41 opts=default
+
+name=rv64zfbfmin_26 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_26 opts=default
+
+name=rv64zfbfmin_86 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_86 opts=default
+
+name=rv64zfbfmin_84 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_84 opts=default
+
+name=rv64zfbfmin_40 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_40 opts=default
+
+name=rv64zfbfmin_46 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_46 opts=default
+
+name=rv64zfbfmin_12 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_12 opts=default
+
+name=rv64zfbfmin_94 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_94 opts=default
+
+name=rv64zfbfmin_3 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_3 opts=default
+
+name=rv64zfbfmin_99 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_99 opts=default
+
+name=rv64zfbfmin_81 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_81 opts=default
+
+name=rv64zfbfmin_11 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_11 opts=default
+
+name=rv64zfbfmin_66 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_66 opts=default
+
+name=rv64zfbfmin_42 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_42 opts=default
+
+name=rv64zfbfmin_30 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_30 opts=default
+
+name=rv64zfbfmin_88 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_88 opts=default
+
+name=rv64zfbfmin_1 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_1 opts=default
+
+name=rv64zfbfmin_55 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_55 opts=default
+
+name=rv64zfbfmin_4 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_4 opts=default
+
+name=rv64zfbfmin_19 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_19 opts=default
+
+name=rv64zfbfmin_93 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_93 opts=default
+
+name=rv64zfbfmin_16 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_16 opts=default
+
+name=rv64zfbfmin_34 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_34 opts=default
+
+name=rv64zfbfmin_75 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_75 opts=default
+
+name=rv64zfbfmin_63 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_63 opts=default
+
+name=rv64zfbfmin_54 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_54 opts=default
+
+name=rv64zfbfmin_68 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_68 opts=default
+
+name=rv64zfbfmin_52 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_52 opts=default
+
+name=rv64zfbfmin_45 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_bare/rv_zfbfmin/rv64zfbfmin_45 opts=default
+

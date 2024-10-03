@@ -1,0 +1,200 @@
+name=rv32zbc_46 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_46 opts=default
+
+name=rv32zbc_36 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_36 opts=default
+
+name=rv32zbc_63 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_63 opts=default
+
+name=rv32zbc_59 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_59 opts=default
+
+name=rv32zbc_25 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_25 opts=default
+
+name=rv32zbc_5 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_5 opts=default
+
+name=rv32zbc_54 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_54 opts=default
+
+name=rv32zbc_14 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_14 opts=default
+
+name=rv32zbc_72 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_72 opts=default
+
+name=rv32zbc_42 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_42 opts=default
+
+name=rv32zbc_66 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_66 opts=default
+
+name=rv32zbc_27 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_27 opts=default
+
+name=rv32zbc_98 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_98 opts=default
+
+name=rv32zbc_6 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_6 opts=default
+
+name=rv32zbc_7 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_7 opts=default
+
+name=rv32zbc_82 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_82 opts=default
+
+name=rv32zbc_8 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_8 opts=default
+
+name=rv32zbc_31 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_31 opts=default
+
+name=rv32zbc_19 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_19 opts=default
+
+name=rv32zbc_13 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_13 opts=default
+
+name=rv32zbc_44 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_44 opts=default
+
+name=rv32zbc_34 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_34 opts=default
+
+name=rv32zbc_9 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_9 opts=default
+
+name=rv32zbc_90 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_90 opts=default
+
+name=rv32zbc_93 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_93 opts=default
+
+name=rv32zbc_20 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_20 opts=default
+
+name=rv32zbc_91 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_91 opts=default
+
+name=rv32zbc_28 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_28 opts=default
+
+name=rv32zbc_38 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_38 opts=default
+
+name=rv32zbc_75 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_75 opts=default
+
+name=rv32zbc_85 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_85 opts=default
+
+name=rv32zbc_49 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_49 opts=default
+
+name=rv32zbc_64 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_64 opts=default
+
+name=rv32zbc_69 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_69 opts=default
+
+name=rv32zbc_78 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_78 opts=default
+
+name=rv32zbc_70 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_70 opts=default
+
+name=rv32zbc_15 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_15 opts=default
+
+name=rv32zbc_67 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_67 opts=default
+
+name=rv32zbc_35 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_35 opts=default
+
+name=rv32zbc_57 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_57 opts=default
+
+name=rv32zbc_99 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_99 opts=default
+
+name=rv32zbc_12 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_12 opts=default
+
+name=rv32zbc_51 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_51 opts=default
+
+name=rv32zbc_33 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_33 opts=default
+
+name=rv32zbc_88 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_88 opts=default
+
+name=rv32zbc_41 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_41 opts=default
+
+name=rv32zbc_10 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_10 opts=default
+
+name=rv32zbc_84 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_84 opts=default
+
+name=rv32zbc_43 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_43 opts=default
+
+name=rv32zbc_96 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_96 opts=default
+
+name=rv32zbc_80 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_80 opts=default
+
+name=rv32zbc_39 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_39 opts=default
+
+name=rv32zbc_37 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_37 opts=default
+
+name=rv32zbc_22 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_22 opts=default
+
+name=rv32zbc_58 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_58 opts=default
+
+name=rv32zbc_95 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_95 opts=default
+
+name=rv32zbc_32 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_32 opts=default
+
+name=rv32zbc_18 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_18 opts=default
+
+name=rv32zbc_68 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_68 opts=default
+
+name=rv32zbc_53 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_53 opts=default
+
+name=rv32zbc_77 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_77 opts=default
+
+name=rv32zbc_60 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_60 opts=default
+
+name=rv32zbc_16 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_16 opts=default
+
+name=rv32zbc_73 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_73 opts=default
+
+name=rv32zbc_26 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_26 opts=default
+
+name=rv32zbc_76 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_76 opts=default
+
+name=rv32zbc_1 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_1 opts=default
+
+name=rv32zbc_11 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_11 opts=default
+
+name=rv32zbc_94 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_94 opts=default
+
+name=rv32zbc_23 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_23 opts=default
+
+name=rv32zbc_4 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_4 opts=default
+
+name=rv32zbc_97 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_97 opts=default
+
+name=rv32zbc_81 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_81 opts=default
+
+name=rv32zbc_21 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_21 opts=default
+
+name=rv32zbc_71 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_71 opts=default
+
+name=rv32zbc_86 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_86 opts=default
+
+name=rv32zbc_24 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_24 opts=default
+
+name=rv32zbc_40 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_40 opts=default
+
+name=rv32zbc_74 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_74 opts=default
+
+name=rv32zbc_17 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_17 opts=default
+
+name=rv32zbc_55 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_55 opts=default
+
+name=rv32zbc_83 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_83 opts=default
+
+name=rv32zbc_92 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_92 opts=default
+
+name=rv32zbc_3 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_3 opts=default
+
+name=rv32zbc_87 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_87 opts=default
+
+name=rv32zbc_29 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_29 opts=default
+
+name=rv32zbc_56 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_56 opts=default
+
+name=rv32zbc_50 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_50 opts=default
+
+name=rv32zbc_65 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_65 opts=default
+
+name=rv32zbc_47 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_47 opts=default
+
+name=rv32zbc_48 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_48 opts=default
+
+name=rv32zbc_62 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_62 opts=default
+
+name=rv32zbc_79 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_79 opts=default
+
+name=rv32zbc_30 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_30 opts=default
+
+name=rv32zbc_45 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_45 opts=default
+
+name=rv32zbc_52 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_52 opts=default
+
+name=rv32zbc_2 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_2 opts=default
+
+name=rv32zbc_61 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_61 opts=default
+
+name=rv32zbc_89 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_89 opts=default
+
+name=rv32zbc_0 tool=whisper test=riscv_tests/bare_metal/supervisor/paging_sv39/rv_zbc/rv32zbc_0 opts=default
+
