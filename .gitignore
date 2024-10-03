@@ -1,0 +1,5 @@
+riscv_tests/log/*
+
+riscv_tests/rv**/**/*_coverage
+
+__pycache__

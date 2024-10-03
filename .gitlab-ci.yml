@@ -1,0 +1,54 @@
+
+
+# CI to automate testing of changes
+# Smoke run should run all binaries through smoke running the latest spike and whisper
+# Also automate checking for the latest public whisper / spike
+
+include:
+    - local: 'infra/container/gitlab-container.yml'
+    # Get some common defintions: https://aus-gitlab.local.tenstorrent.com/riscv/dv/gitlab-definitions/-/blob/main/common-definitions.yml
+    -   project: "riscv/dv/gitlab-definitions"
+        file: 'common-definitions.yml'
+        ref: main
+
+  # Steal container from RPC
+    # -   project: 'riscv/risc-p-cores'
+    #     ref: ascalon
+    #     file: 'infra/container/gitlab-container.yml'
+
+.riscv_arch_tests_variables:
+    variables:
+        SCHEDULED_RUN: "NONE"
+        DEBUG: "FALSE"
+
+.arch-tests-template:
+    extends:
+        - .riscv_arch_tests_variables
+
+
+
+stages:
+    - test                # quals runs
+    - scheduled_event     # Any periodic event (checking for updates from public repos etc)
+
+
+test_smoke:
+    stage: test
+    tags:
+        - jacamar-lsf
+    extends:
+        - .bzsim-template                       # Adds some variables and uses clone script before hand to clone repo
+        - .smoke-rules-all-branches-template    # Run on MRs and all branch pushes (except for branches starting with "merge/" or "ci/")
+        - .riscv_arch_tests_variables
+    script:
+        - echo "Running Quals"
+        - git submodule update --recursive
+        - which whisper
+        - which spike
+        - echo "Running spike and whisper tests"
+        -   |
+            if [ -f "release.tar.zip" ]; then
+                ./infra/unpack.py "release.tar.zip" --tar_zip
+            fi
+        - ./infra/smoke.py
+    timeout: 2h

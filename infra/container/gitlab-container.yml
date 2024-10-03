@@ -1,0 +1,2 @@
+image:
+    name: $CI_REGISTRY_IMAGE:53a0f902fa8ee7fa34c1b16d65c248f6ea1cd25ca1058c5f492f9f617ea4f2a4
