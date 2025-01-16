@@ -255,7 +255,6 @@ class SpikeRunner(ISSRunner):
         self._default_opts = [
             f"--isa={spike_isa}",
             f"--priv={spike_priv}",
-            "--misaligned",
             "--max-instrs=500000",
             "--log-commits",
             "-l", f"{testfile}"
