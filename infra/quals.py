@@ -158,8 +158,8 @@ class Runner:
                 test.run()
                 if self.track_test_num:
                     print("\33[2K\r", flush=True, end="")
-                test_log = test.log.relative_to(self.repo_path) if test.result == PassFailEnum.FAILED else "N/A"
-                pass_fails.append(tuple([test.name, test.result.name, test_log.resolve()]))
+                test_log = test.log.resolve() if test.result == PassFailEnum.FAILED else "N/A"
+                pass_fails.append(tuple([test.name, test.result.name, test_log]))
 
         if all([t[1]=="PASS" for t in pass_fails]):
             print('all passed')
