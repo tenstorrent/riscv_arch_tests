@@ -249,6 +249,12 @@ class SpikeRunner(ISSRunner):
         else:
             vlen = None
 
+        misaligned_ok = True
+        if "bare_metal" in filepath.parts:
+            if "rv_i" in filepath.parts:
+                misaligned_ok = False
+
+
         spike_priv =  self.spike_priv_arg(str(filepath))
         spike_isa =  self.spike_isa_arg(str(filepath))
 
@@ -261,6 +267,8 @@ class SpikeRunner(ISSRunner):
         ]
         if vlen:
             self._default_opts.appned("--varch=vlen:{vlen},elen:64")
+        if misaligned_ok:
+            self._default_opts.append("--misaligned")
 
         self._tool = spike_path or self.repo_path / "spike/spike"
 
