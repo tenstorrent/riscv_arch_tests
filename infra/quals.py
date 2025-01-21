@@ -159,7 +159,7 @@ class Runner:
                 if self.track_test_num:
                     print("\33[2K\r", flush=True, end="")
                 test_log = test.log.relative_to(self.repo_path) if test.result == PassFailEnum.FAILED else "N/A"
-                pass_fails.append(tuple([test.name, test.result.name, test_log]))
+                pass_fails.append(tuple([test.name, test.result.name, test_log.resolve()]))
 
         if all([t[1]=="PASS" for t in pass_fails]):
             print('all passed')
@@ -263,13 +263,15 @@ class SpikeRunner(ISSRunner):
             f"--priv={spike_priv}",
             "--max-instrs=500000",
             "--log-commits",
-            "-l", f"{testfile}"
+            "-l",
         ]
         if vlen:
             self._default_opts.appned("--varch=vlen:{vlen},elen:64")
         if misaligned_ok:
             self._default_opts.append("--misaligned")
 
+
+        self._default_opts.append(f"{testfile}")
         self._tool = spike_path or self.repo_path / "spike/spike"
 
         if opts == "default":
