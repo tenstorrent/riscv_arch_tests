@@ -251,7 +251,8 @@ class SpikeRunner(ISSRunner):
 
         misaligned_ok = True
         if "bare_metal" in filepath.parts:
-            if "rv_i" in filepath.parts:
+            aligned_extensions = ["rv_i", "rv_a", "rv_m", "rv_f"]           # Extensions that need to be aligned
+            if any([ext in filepath.parts for ext in aligned_extensions]):
                 misaligned_ok = False
 
 
