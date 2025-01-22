@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xf1c1e000;
+	. = 0xe33a2000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x80010020;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,79 +509,82 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0xcba30000;
+	. = 0xf67e8000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xfdba3000;
-	 .amoadd.d_0_disable_machine_lin : { *(.amoadd.d_0_disable_machine_lin) } 
-
-	. = 0x9b6be000;
-	 .amoadd.w_0_disable_machine_lin : { *(.amoadd.w_0_disable_machine_lin) } 
-
-	. = 0xae08b000;
-	 .amomin.d_0_disable_machine_lin : { *(.amomin.d_0_disable_machine_lin) } 
-
-	. = 0x800a8000;
-	 .amoor.d_0_disable_machine_lin : { *(.amoor.d_0_disable_machine_lin) } 
-
-	. = 0xabc4e000;
-	 .lr.w_0_disable_machine_lin : { *(.lr.w_0_disable_machine_lin) } 
-
-	. = 0xf728c000;
-	 .amomin.w_0_disable_machine_lin : { *(.amomin.w_0_disable_machine_lin) } 
-
-	. = 0xa8018000;
-	 .amoand.w_0_disable_machine_lin : { *(.amoand.w_0_disable_machine_lin) } 
-
-	. = 0xf4942000;
-	 .amominu.w_0_disable_machine_lin : { *(.amominu.w_0_disable_machine_lin) } 
-
-	. = 0xf939d000;
-	 .amoxor.d_0_disable_machine_lin : { *(.amoxor.d_0_disable_machine_lin) } 
-
-	. = 0xaf30b000;
+	. = 0x80fca000;
 	 .amominu.d_0_disable_machine_lin : { *(.amominu.d_0_disable_machine_lin) } 
 
-	. = 0xfbb88000;
-	 .amomaxu.d_0_disable_machine_lin : { *(.amomaxu.d_0_disable_machine_lin) } 
+	. = 0x99891000;
+	 .amoand.w_0_disable_machine_lin : { *(.amoand.w_0_disable_machine_lin) } 
 
-	. = 0xf7b0b000;
-	 .lr.d_0_disable_machine_lin : { *(.lr.d_0_disable_machine_lin) } 
+	. = 0x8d026000;
+	 .amoadd.d_0_disable_machine_lin : { *(.amoadd.d_0_disable_machine_lin) } 
 
-	. = 0xfbb89000;
-	 .amoand.d_0_disable_machine_lin : { *(.amoand.d_0_disable_machine_lin) } 
-
-	. = 0xfb2e1000;
-	 .amoor.w_0_disable_machine_lin : { *(.amoor.w_0_disable_machine_lin) } 
-
-	. = 0xf9cc1000;
-	 .sc.w_0_disable_machine_lin : { *(.sc.w_0_disable_machine_lin) } 
-
-	. = 0xfbb73000;
-	 .amoswap.w_0_disable_machine_lin : { *(.amoswap.w_0_disable_machine_lin) } 
-
-	. = 0xac20e000;
-	 .amomaxu.w_0_disable_machine_lin : { *(.amomaxu.w_0_disable_machine_lin) } 
-
-	. = 0xbb7d2000;
-	 .amoswap.d_0_disable_machine_lin : { *(.amoswap.d_0_disable_machine_lin) } 
-
-	. = 0xfe0c6000;
-	 .amoxor.w_0_disable_machine_lin : { *(.amoxor.w_0_disable_machine_lin) } 
-
-	. = 0xad7b0000;
+	. = 0x89c24000;
 	 .amomax.w_0_disable_machine_lin : { *(.amomax.w_0_disable_machine_lin) } 
 
-	. = 0xa8492000;
-	 .sc.d_0_disable_machine_lin : { *(.sc.d_0_disable_machine_lin) } 
+	. = 0x91960000;
+	 .lr.d_0_disable_machine_lin : { *(.lr.d_0_disable_machine_lin) } 
 
-	. = 0x99522000;
+	. = 0xf4d72000;
+	 .amominu.w_0_disable_machine_lin : { *(.amominu.w_0_disable_machine_lin) } 
+
+	. = 0x8c79e000;
+	 .amomaxu.d_0_disable_machine_lin : { *(.amomaxu.d_0_disable_machine_lin) } 
+
+	. = 0x98519000;
+	 .amomin.d_0_disable_machine_lin : { *(.amomin.d_0_disable_machine_lin) } 
+
+	. = 0x80681000;
+	 .amomaxu.w_0_disable_machine_lin : { *(.amomaxu.w_0_disable_machine_lin) } 
+
+	. = 0x917bd000;
+	 .sc.w_0_disable_machine_lin : { *(.sc.w_0_disable_machine_lin) } 
+
+	. = 0x93b16000;
+	 .amomin.w_0_disable_machine_lin : { *(.amomin.w_0_disable_machine_lin) } 
+
+	. = 0x9268b000;
+	 .amoadd.w_0_disable_machine_lin : { *(.amoadd.w_0_disable_machine_lin) } 
+
+	. = 0x8a2c7000;
+	 .lr.w_0_disable_machine_lin : { *(.lr.w_0_disable_machine_lin) } 
+
+	. = 0x8b077000;
+	 .amoswap.w_0_disable_machine_lin : { *(.amoswap.w_0_disable_machine_lin) } 
+
+	. = 0x94995000;
+	 .amoand.d_0_disable_machine_lin : { *(.amoand.d_0_disable_machine_lin) } 
+
+	. = 0x994bc000;
+	 .amoor.w_0_disable_machine_lin : { *(.amoor.w_0_disable_machine_lin) } 
+
+	. = 0x93058000;
+	 .amoswap.d_0_disable_machine_lin : { *(.amoswap.d_0_disable_machine_lin) } 
+
+	. = 0x96993000;
+	 .amoor.d_0_disable_machine_lin : { *(.amoor.d_0_disable_machine_lin) } 
+
+	. = 0x9192b000;
 	 .amomax.d_0_disable_machine_lin : { *(.amomax.d_0_disable_machine_lin) } 
+
+	. = 0x9400a000;
+	 .amoxor.w_0_disable_machine_lin : { *(.amoxor.w_0_disable_machine_lin) } 
+
+	. = 0x93579000;
+	 .amoxor.d_0_disable_machine_lin : { *(.amoxor.d_0_disable_machine_lin) } 
+
+	. = 0x80f15000;
+	 .sc.d_0_disable_machine_lin : { *(.sc.d_0_disable_machine_lin) } 
 
 }

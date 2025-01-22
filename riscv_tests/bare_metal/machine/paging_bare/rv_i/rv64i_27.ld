@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0x9f254000;
+	. = 0xcf388000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x800100a6;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,28 +509,37 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0xf1278000;
+	. = 0xdb6ea000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xf169d000;
-	 .lhu_0_disable_machine_lin : { *(.lhu_0_disable_machine_lin) } 
-
-	. = 0xf12f9000;
+	. = 0xf8785000;
 	 .lh_0_disable_machine_lin : { *(.lh_0_disable_machine_lin) } 
 
-	. = 0xfe831000;
-	 .lb_0_disable_machine_lin : { *(.lb_0_disable_machine_lin) } 
-
-	. = 0xf7d00000;
+	. = 0xe3506000;
 	 .lwu_0_disable_machine_lin : { *(.lwu_0_disable_machine_lin) } 
 
-	. = 0xf12cf000;
-	 .lw_0_disable_machine_lin : { *(.lw_0_disable_machine_lin) } 
+	. = 0xb6b85000;
+	 .sb_0_disable_machine_lin : { *(.sb_0_disable_machine_lin) } 
+
+	. = 0xdf7b5000;
+	 .sw_0_disable_machine_lin : { *(.sw_0_disable_machine_lin) } 
+
+	. = 0xdddfd000;
+	 .lbu_0_disable_machine_lin : { *(.lbu_0_disable_machine_lin) } 
+
+	. = 0x8df92000;
+	 .ld_0_disable_machine_lin : { *(.ld_0_disable_machine_lin) } 
+
+	. = 0xe13bf000;
+	 .sh_0_disable_machine_lin : { *(.sh_0_disable_machine_lin) } 
 
 }

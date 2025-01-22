@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xc22ce000;
+	. = 0x99344000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x80010124;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,46 +509,40 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0xab404000;
+	. = 0x96f1e000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xaf1dc000;
-	 .sb_0_disable_machine_lin : { *(.sb_0_disable_machine_lin) } 
-
-	. = 0xadfdc000;
-	 .lb_0_disable_machine_lin : { *(.lb_0_disable_machine_lin) } 
-
-	. = 0xaa59f000;
+	. = 0x8adf7000;
 	 .lh_0_disable_machine_lin : { *(.lh_0_disable_machine_lin) } 
 
-	. = 0xadfdd000;
-	 .ld_0_disable_machine_lin : { *(.ld_0_disable_machine_lin) } 
-
-	. = 0xedcec000;
-	 .lbu_0_disable_machine_lin : { *(.lbu_0_disable_machine_lin) } 
-
-	. = 0xee81f000;
-	 .lw_0_disable_machine_lin : { *(.lw_0_disable_machine_lin) } 
-
-	. = 0xaaeb0000;
-	 .lhu_0_disable_machine_lin : { *(.lhu_0_disable_machine_lin) } 
-
-	. = 0xc1f9c000;
-	 .sd_0_disable_machine_lin : { *(.sd_0_disable_machine_lin) } 
-
-	. = 0xc3c66000;
+	. = 0xee0bc000;
 	 .lwu_0_disable_machine_lin : { *(.lwu_0_disable_machine_lin) } 
 
-	. = 0xfe631000;
-	 .sh_0_disable_machine_lin : { *(.sh_0_disable_machine_lin) } 
+	. = 0xbe10d000;
+	 .lb_0_disable_machine_lin : { *(.lb_0_disable_machine_lin) } 
 
-	. = 0xaccd0000;
+	. = 0x98234000;
+	 .lhu_0_disable_machine_lin : { *(.lhu_0_disable_machine_lin) } 
+
+	. = 0xe4bc4000;
 	 .sw_0_disable_machine_lin : { *(.sw_0_disable_machine_lin) } 
+
+	. = 0xe5d9c000;
+	 .ld_0_disable_machine_lin : { *(.ld_0_disable_machine_lin) } 
+
+	. = 0xe9fab000;
+	 .sd_0_disable_machine_lin : { *(.sd_0_disable_machine_lin) } 
+
+	. = 0xa4ad3000;
+	 .sb_0_disable_machine_lin : { *(.sb_0_disable_machine_lin) } 
 
 }
