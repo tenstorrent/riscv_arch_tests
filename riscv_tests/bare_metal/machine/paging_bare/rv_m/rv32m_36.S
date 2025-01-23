@@ -13,8 +13,8 @@
 .equ MP_ENABLED                         , 0
 .equ MP_SIMULTANEOUS                    , 0
 .equ MP_PARALLEL                        , 1
-.equ MP_PARALLEL_SCHEDULING_MODE_ROUND_ROBIN, 0
-.equ MP_PARALLEL_SCHEDULING_MODE_EXHAUSTIVE, 1
+.equ MP_PARALLEL_SCHEDULING_MODE_ROUND_ROBIN, 1
+.equ MP_PARALLEL_SCHEDULING_MODE_EXHAUSTIVE, 0
 .equ PAGING_G_MODE_DISABLE              , 1
 .equ PAGING_G_MODE_SV32                 , 0
 .equ PAGING_G_MODE_SV39                 , 0
@@ -24,8 +24,8 @@
 # Test random data:
 
 # Test addresses:
-.equ data                               , 0x0000000084364000
-.equ __section_data                     , 0x0000000084364000
+.equ data                               , 0x00000000d9d0a000
+.equ __section_data                     , 0x00000000d9d0a000
 .equ text                               , 0x0000000080000000
 .equ __section_text                     , 0x0000000080000000
 .equ __section__text_1                  , 0x0000000080001000
@@ -58,7 +58,7 @@
 .equ __section__text_14_phys            , 0x000000008000e000
 .equ __section__text_15                 , 0x000000008000f000
 .equ __section__text_15_phys            , 0x000000008000f000
-.equ code                               , 0x000000008001010e
+.equ code                               , 0x0000000080010000
 .equ __section_code                     , 0x0000000080010000
 .equ __section__code_1                  , 0x0000000080011000
 .equ __section__code_1_phys             , 0x0000000080011000
@@ -362,28 +362,21 @@
 .equ __section_code_machine_6           , 0x00000000800a6000
 .equ code_machine_7                     , 0x00000000800a7000
 .equ __section_code_machine_7           , 0x00000000800a7000
-.equ os_data                            , 0x0000000080612000
-.equ __section_os_data                  , 0x0000000080612000
-.equ os_stack                           , 0x00000000055d4a80
-.equ __section_os_stack                 , 0x00000000055d4a80
-.equ __section__os_stack_1              , 0x00000000055d5a80
-.equ __section__os_stack_1_phys         , 0x00000000055d5a80
-.equ map_os_sptbr                       , 0x0000000080614000
-.equ lbu_0_disable_machine_lin          , 0x0000000082f5d000
-.equ lbu_0_disable_machine_phy          , 0x0000000082f5d000
-.equ sb_0_disable_machine_lin           , 0x00000000818b6000
-.equ sb_0_disable_machine_phy           , 0x00000000818b6000
-.equ lhu_0_disable_machine_lin          , 0x000000008126e000
-.equ lhu_0_disable_machine_phy          , 0x000000008126e000
-.equ lw_0_disable_machine_lin           , 0x0000000081877000
-.equ lw_0_disable_machine_phy           , 0x0000000081877000
-.equ lh_0_disable_machine_lin           , 0x0000000082de2000
-.equ lh_0_disable_machine_phy           , 0x0000000082de2000
-.equ lb_0_disable_machine_lin           , 0x000000008126f000
-.equ lb_0_disable_machine_phy           , 0x000000008126f000
+.equ os_data                            , 0x00000000eceec000
+.equ __section_os_data                  , 0x00000000eceec000
+.equ os_stack_end                       , 0x0000000090000000
+.equ __section_os_stack                 , 0x0000000090000000
+.equ os_stack                           , 0x0000000090001000
+.equ __section_os_stack_end             , 0x0000000090001000
+.equ io_htif                            , 0x0000000070000000
+.equ io_htif_phys                       , 0x0000000070000000
+.equ map_os_sptbr                       , 0x00000000ed63a000
+.equ sw_0_disable_machine_lin           , 0x00000000ed0f6000
+.equ sw_0_disable_machine_phy           , 0x00000000ed0f6000
+.equ lb_0_disable_machine_lin           , 0x00000000ecfb0000
+.equ lb_0_disable_machine_phy           , 0x00000000ecfb0000
 
-# Test OS data hack:
-
+# Test OS data hack:# These symbols contain the addresses of OS variables that can't be LAd directly
 .equ check_excp                         , os_data + 0
 .equ check_excp_expected_pc             , os_data + 8
 .equ check_excp_actual_pc               , os_data + 16
@@ -392,7 +385,7 @@
 .equ check_excp_actual_tval             , os_data + 40
 .equ check_excp_expected_cause          , os_data + 48
 .equ check_excp_actual_cause            , os_data + 56
-.equ os_save_ecall_fn_epc                  , os_data + 64
+.equ os_save_ecall_fn_epc               , os_data + 64
 .equ passed_addr                        , os_data + 72
 .equ failed_addr                        , os_data + 80
 .equ machine_flags                      , os_data + 88
@@ -403,7 +396,12 @@
 .equ super_area                         , os_data + 128
 .equ os_passed_addr                     , os_data + 136
 .equ os_failed_addr                     , os_data + 144
-        
+.equ os_end_test_addr                   , os_data + 152
+.equ end_test_addr                      , os_data + 160
+.equ num_harts_ended                    , os_data + 168
+.equ num_hard_fails                     , os_data + 176
+.equ excp_ignored_count                 , os_data + 184
+
 # Exception causes:
 .equ INSTRUCTION_ADDRESS_MISALIGNED     , 0
 .equ INSTRUCTION_ACCESS_FAULT           , 1
@@ -425,17 +423,30 @@
 .equ VIRTUAL_INSTRUCTION                , 22
 .equ STORE_GUEST_PAGE_FAULT             , 23
 
+# Expected Interrupt causes:
+.equ EXPECT_SSI, 1
+.equ EXPECT_MSI, 3
+.equ EXPECT_STI, 5
+.equ EXPECT_MTI, 7
+.equ EXPECT_SEI, 9
+.equ EXPECT_MEI, 11
+
+# XLEN
+.equ XLEN, 64
+
 .equ ECALL            , ECALL_FROM_MACHINE
 
 .equ OS_DELEG_EXCP_TO_SUPER, 0
 .equ OS_DELEG_EXCP_TO_MACHINE, 1
+
+.equ DONT_USE_STACK, 1
 
 .equ PMA_ENABLED, 0
 ;#test.name       sample_test
 ;#test.author     dkoshiya@tenstorrent.com
 ;#test.arch       rv64
 ;#test.priv       machine
-;#test.env        virtualized bare_metal
+;#test.env        bare_metal
 ;#test.cpus       1
 ;#test.paging     disable
 ;#test.category   arch
@@ -443,2106 +454,1634 @@
 ;#test.features   ext_v.enable ext_fp.disable
 ## macros ##
 .macro OS_SETUP_CHECK_EXCP expected_cause, expected_pc, return_pc, expected_tval=0
-            
-            # Setup exception check
-            li x1, check_excp_expected_cause
-            
-            li x2, \expected_cause
-            sw x2, 0(x1)
 
-            # Expected PC
-            li x1, check_excp_expected_pc
-            
-            la x2, \expected_pc
-            sd x2, 0(x1)
+# Setup exception check
+	li x1, check_excp_expected_cause
 
-            # Expected TVAL
-            li x1, check_excp_expected_tval
-            
-            li x2, \expected_tval
-            sd x2, 0(x1)
+	li t3, \expected_cause
+	sw t3, 0(x1)
 
-            # Return pc
-            li x1, check_excp_return_pc
-            
-            la x2, \return_pc
-            sd x2, 0(x1)
+# Expected PC
+	li x1, check_excp_expected_pc
 
-        
+	la t3, \expected_pc
+	sd t3, 0(x1)
+
+# Expected TVAL
+	li x1, check_excp_expected_tval
+
+	li t3, \expected_tval
+	sd t3, 0(x1)
+
+# Return pc
+	li x1, check_excp_return_pc
+
+	la t3, \return_pc
+	sd t3, 0(x1)
+
+
 .endm
-.macro MACHINE_SYSCALL payload_label:req
-        .if OS_DELEG_EXCP_TO_MACHINE
-            la a0, \payload_label
-            li x31, 0xf0001001 # Switch to machine mode
-            ecall
-        .else
-        fail_not_delegating_exceptions_to_machine:
-            j failed
-        .endif
+.macro GET_MHART_ID dest_reg=s1
+	li x31, 0xf0002001 # Call to enter exception handler code, get hartid for free, and skip to next pc.
+	ecall
+	mv \dest_reg, s1
 
-        
 .endm
-.macro GET_HART_ID test_label:req, hartid_counter_label:req
-            li a0, \hartid_counter_label
-            li t0, 1
-            amoadd.w.aq t1, t0, (a0) # FIXME What happens when overflow occurs?
-            li t2, 1
-            remu a0, t1, t2
-        
-.endm
-.macro GET_MHART_ID MACHINE_SYSCALL os_get_hartid
-.endm
-.macro MUTEX_ACQUIRE_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_retry_acquire_lock:
-            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
-        \test_label\()_acquired_lock:
-            fence
+.macro MUTEX_ACQUIRE_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1, end_test_label=end_test_addr
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
 
-        
+	j \test_label\()_retry_acquire_lock
+
+\test_label\()_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg, 0(\lock_addr_reg)
+	bnez \work_reg, \test_label\()_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+\test_label\()_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_check_if_early_bail
+	lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+\test_label\()_acquired_lock:
+	fence
+
+
 .endm
 .macro MUTEX_RELEASE_AMO test_label:req, lock_addr_reg=a0
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_released_lock:
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_released_lock:
 
-        
+
 .endm
 .macro MUTEX_ACQUIRE_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0
-            \test_label\()_cas_acquire:
-                lr.d \work_reg, (\lock_addr_reg) # Load original value.
-                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
-                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
-                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
-                li \return_val_reg, 0 # Set return to success.
-                j \test_label\()_cas_acquired_lock
+\test_label\()_cas_acquire:
+	lr.d \work_reg, (\lock_addr_reg) # Load original value.
+	bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
+	sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+	bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
+	li \return_val_reg, 0 # Set return to success.
+	j \test_label\()_cas_acquired_lock
 
-            \test_label\()_cas_acquire_fail:
-                li \return_val_reg, 1 # Set return to failure.
-            \test_label\()_cas_acquired_lock:
-                fence
-        
+\test_label\()_cas_acquire_fail:
+	li \return_val_reg, 1 # Set return to failure.
+\test_label\()_cas_acquired_lock:
+	fence
+
 .endm
 .macro MUTEX_RELEASE_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0
-            \test_label\()_cas_acquire:
-                lr.d \work_reg, (\lock_addr_reg) # Load original value.
-                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
-                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
-                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
-                li \return_val_reg, 0 # Set return to success.
-                j \test_label\()_cas_acquired_lock
+	fence
+\test_label\()_cas_release:
+	lr.d \work_reg, (\lock_addr_reg) # Load original value.
+	bne \work_reg, \expected_val_reg, \test_label\()_cas_release# Doesn't match, retry
+	sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+	bnez \work_reg, \test_label\()_cas_release # Retry if store-conditional failed.
+	li \return_val_reg, 0 # Set return to success.
+	j \test_label\()_cas_released_lock
 
-            \test_label\()_cas_acquire_fail:
-                li \return_val_reg, 1 # Set return to failure.
-            \test_label\()_cas_acquired_lock:
-                fence
-        
+\test_label\()_cas_release_fail:
+	li \return_val_reg, 1
+	j failed
+\test_label\()_cas_released_lock:
+
 .endm
-.macro SEMAPHORE_ACQUIRE_TICKET test_label:req, semaphore_addr_reg=a0, lock_addr_reg=a1, swap_val_reg=t0, return_val_reg=a2, work_reg=t2
-            \test_label\()_acquire_ticket:
-                
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_acquire_semaphore_retry_acquire_lock:
-            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
-        \test_label\()_acquire_semaphore_acquired_lock:
-            fence
+.macro SEMAPHORE_ACQUIRE_TICKET test_label:req, semaphore_addr_reg=a0, lock_addr_reg=a1, swap_val_reg=t0, return_val_reg=a2, work_reg=t2, end_test_label=end_test_addr
+\test_label\()_acquire_ticket:
 
-        
-                ld \work_reg, (\semaphore_addr_reg)
-                bge x0, \work_reg, \test_label\()_acquire_ticket_fail
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
 
-                # Decrement semaphore
-                addi \work_reg, \work_reg, -1
-                sd \work_reg, (\semaphore_addr_reg)
-                j \test_label\()_acquired_ticket
+	j \test_label\()_acquire_semaphore_retry_acquire_lock
 
-            \test_label\()_acquire_ticket_fail:
-                li \return_val_reg, 1
-                j \test_label\()_semaphore_release_lock
+\test_label\()_acquire_semaphore_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg, 0(\lock_addr_reg)
+	bnez \work_reg, \test_label\()_acquire_semaphore_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
 
-            \test_label\()_acquired_ticket:
-                li \return_val_reg, 0
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_acquire_semaphore_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
 
-            \test_label\()_semaphore_release_lock:
-            
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_acquire_semaphore_released_lock:
+\test_label\()_acquire_semaphore_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_acquire_semaphore_check_if_early_bail
+	lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg,  \test_label\()_acquire_semaphore_retry_acquire_lock    # Retry if held.
+\test_label\()_acquire_semaphore_acquired_lock:
+	fence
 
-        
-            fence
-        
+
+	ld \work_reg, (\semaphore_addr_reg)
+	bge x0, \work_reg, \test_label\()_acquire_ticket_fail
+
+# Decrement semaphore
+	addi \work_reg, \work_reg, -1
+	sd \work_reg, (\semaphore_addr_reg)
+	j \test_label\()_acquired_ticket
+
+\test_label\()_acquire_ticket_fail:
+	li \return_val_reg, 1
+	j \test_label\()_semaphore_release_lock
+
+\test_label\()_acquired_ticket:
+	li \return_val_reg, 0
+
+\test_label\()_semaphore_release_lock:
+
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_acquire_semaphore_released_lock:
+
+
+	fence
+
 .endm
 .macro SEMAPHORE_RELEASE_TICKET test_label:req, semaphore_addr_reg=a0, lock_addr_reg=a1, swap_val_reg=t0, return_val_reg=a2, work_reg=t2
-            fence
-            \test_label\()_release_ticket:
-                
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_release_semaphore_retry_acquire_lock:
-            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
-        \test_label\()_release_semaphore_acquired_lock:
-            fence
+	fence
+\test_label\()_release_ticket:
 
-        
-                ld \work_reg, (\semaphore_addr_reg)
-                addi \work_reg, \work_reg, 1
-                sd \work_reg, (\semaphore_addr_reg)
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
 
-            \test_label\()_released_ticket:
-                li \return_val_reg, 0
+	j \test_label\()_release_semaphore_retry_acquire_lock
 
-            
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_release_semaphore_released_lock:
+\test_label\()_release_semaphore_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg, 0(\lock_addr_reg)
+	bnez \work_reg, \test_label\()_release_semaphore_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
 
-        
-        
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_release_semaphore_early_bail:
+	li a0, end_test_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+\test_label\()_release_semaphore_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_release_semaphore_check_if_early_bail
+	lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg,  \test_label\()_release_semaphore_retry_acquire_lock    # Retry if held.
+\test_label\()_release_semaphore_acquired_lock:
+	fence
+
+
+	ld \work_reg, (\semaphore_addr_reg)
+	addi \work_reg, \work_reg, 1
+	sd \work_reg, (\semaphore_addr_reg)
+
+\test_label\()_released_ticket:
+	li \return_val_reg, 0
+
+
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_release_semaphore_released_lock:
+
+
+
 .endm
-.macro CRITICAL_SECTION_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1, critical_section_addr_reg=a1
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_retry_acquire_lock:
-            lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
-        \test_label\()_acquired_lock:
-            fence
+.macro CRITICAL_SECTION_AMO test_label:req, lock_addr_reg=a0, swap_val_reg=t0, work_reg=t1, critical_section_addr_reg=a1, end_test_label=end_test_addr
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
 
-        jalr ra, \critical_section_addr_reg
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_released_lock:
+	j \test_label\()_retry_acquire_lock
 
-        
+\test_label\()_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg, 0(\lock_addr_reg)
+	bnez \work_reg, \test_label\()_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+\test_label\()_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_check_if_early_bail
+	lw           \work_reg, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg,  \test_label\()_retry_acquire_lock    # Retry if held.
+\test_label\()_acquired_lock:
+	fence
+
+	jalr ra, \critical_section_addr_reg
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_released_lock:
+
+
 .endm
 .macro CRITICAL_SECTION_LR_SC test_label:req, lock_addr_reg=a0, expected_val_reg=a1, desired_val_reg=a2, return_val_reg=a3, work_reg=t0, critical_section_addr_reg=a4
-            \test_label\()_cas_acquire:
-                lr.d \work_reg, (\lock_addr_reg) # Load original value.
-                bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
-                sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
-                bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
-                li eturn_val_reg, 0 # Set return to success.
-                j \test_label\()_cas_acquired_lock
+\test_label\()_cas_acquire:
+	lr.d \work_reg, (\lock_addr_reg) # Load original value.
+	bne \work_reg, \expected_val_reg, \test_label\()_cas_acquire# Doesn't match, retry
+	sc.d \work_reg, \desired_val_reg, (\lock_addr_reg) # Try to update.
+	bnez \work_reg, \test_label\()_cas_acquire # Retry if store-conditional failed.
+	li \return_val_reg, 0 # Set return to success.
+	j \test_label\()_cas_acquired_lock
 
-            \test_label\()_cas_acquire_fail:
-                li eturn_val_reg, 1 # Set return to failure.
-            \test_label\()_cas_acquired_lock:
-                fence
-        bnez eturn_val_reg, \test_label\()_exitjalr ra, \critical_section_addr_reg
-            fence
-            \test_label\()_cas_release:
-                lr.d \work_reg, (\lock_addr_reg) # Load original value.
-                bne \work_reg, \desired_val_reg, \test_label\()_cas_release# Doesn't match, retry
-                sc.d \work_reg, \expected_val_reg, (\lock_addr_reg) # Try to update.
-                bnez \work_reg, \test_label\()_cas_release # Retry if store-conditional failed.
-                li eturn_val_reg, 0 # Set return to success.
-                j \test_label\()_cas_released_lock
+\test_label\()_cas_acquire_fail:
+	li \return_val_reg, 1 # Set return to failure.
+\test_label\()_cas_acquired_lock:
+	fence
+	bnez eturn_val_reg, \test_label\()_exitjalr ra, \critical_section_addr_reg
+	fence
+\test_label\()_cas_release:
+	lr.d \work_reg, (\lock_addr_reg) # Load original value.
+	bne \work_reg, \desired_val_reg, \test_label\()_cas_release# Doesn't match, retry
+	sc.d \work_reg, \expected_val_reg, (\lock_addr_reg) # Try to update.
+	bnez \work_reg, \test_label\()_cas_release # Retry if store-conditional failed.
+	li \return_val_reg, 0 # Set return to success.
+	j \test_label\()_cas_released_lock
 
-            \test_label\()_cas_release_fail:
-                li eturn_val_reg, 1
-                j failed
-            \test_label\()_cas_released_lock:
-        \test_label\()_exit:
+\test_label\()_cas_release_fail:
+	li \return_val_reg, 1
+	j failed
+\test_label\()_cas_released_lock:
+\test_label\()_exit:
 .endm
-.macro OS_SYNC_HARTS test_label:req, lock_addr_reg=a0, arrive_counter_addr_reg=a1, depart_counter_addr_reg=a2, flag_addr_reg=a3, swap_val_reg=t0, work_reg_1=t1, work_reg_2=t2
-        li \lock_addr_reg, barrier_lock
-        li \arrive_counter_addr_reg, barrier_arrive_counter
-        li \depart_counter_addr_reg, barrier_depart_counter
-        li \flag_addr_reg, barrier_flag
+.macro OS_SYNC_HARTS test_label:req, lock_addr_reg=a0, arrive_counter_addr_reg=a1, depart_counter_addr_reg=a2, flag_addr_reg=a3, swap_val_reg=t0, work_reg_1=t1, work_reg_2=t2, end_test_label=end_test_addr
+	li \lock_addr_reg, barrier_lock
+	li \arrive_counter_addr_reg, barrier_arrive_counter
+	li \depart_counter_addr_reg, barrier_depart_counter
+	li \flag_addr_reg, barrier_flag
 
-        
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_0_retry_acquire_lock:
-            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
-        \test_label\()_0_acquired_lock:
-            fence
 
-        
-        # Branch if arrive_counter not equal to zero
-        lw \work_reg_1, 0(\arrive_counter_addr_reg)
-        bnez \work_reg_1, \test_label\()_arrive_count_not_zero
-            # Branch if depart_counter not equal to num_harts
-            lw \work_reg_1, 0(\depart_counter_addr_reg)
-            li \work_reg_2, 1
-            bne \work_reg_1, \work_reg_2, \test_label\()_depart_count_not_num_harts
-                # Set flag to zero
-                sw x0, 0(\flag_addr_reg)
-                j \test_label\()_arrive_count_not_zero
-            \test_label\()_depart_count_not_num_harts:
-                
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_0_released_lock:
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
 
-        
-                \test_label\()_wait_while_depart_count_not_num_harts:
-                    lw \work_reg_1, 0(\depart_counter_addr_reg)
-                    bne \work_reg_1, \work_reg_2, \test_label\()_wait_while_depart_count_not_num_harts
-                
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_1_retry_acquire_lock:
-            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
-        \test_label\()_1_acquired_lock:
-            fence
+	j \test_label\()_0_retry_acquire_lock
 
-        
-                # Set flag to zero
-                sw x0, 0(\flag_addr_reg)
+\test_label\()_0_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg_1, 0(\lock_addr_reg)
+	bnez \work_reg_1, \test_label\()_0_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
 
-        \test_label\()_arrive_count_not_zero:
-            li \work_reg_2, 1
-            amoadd.w \work_reg_1, \work_reg_2, (\arrive_counter_addr_reg)
-            addi \work_reg_1, \work_reg_1, 1
-            
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_1_released_lock:
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_0_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
 
-        
+\test_label\()_0_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_0_check_if_early_bail
+	lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg_1,  \test_label\()_0_retry_acquire_lock    # Retry if held.
+\test_label\()_0_acquired_lock:
+	fence
 
-            # Branch if arrive_count not equal to num_harts
-            li \work_reg_2, 1
-            bne \work_reg_1, \work_reg_2, \test_label\()_arrive_count_not_num_harts # Last to arrive must reset variables
-                # Set arrive_count to zero
-                sw x0, 0(\arrive_counter_addr_reg)
-                # Set depart_counter to 1
-                li \work_reg_1, 1
-                sw \work_reg_1, 0(\depart_counter_addr_reg)
-                # Set flag to one
-                sw \work_reg_1, 0(\flag_addr_reg)
-                j \test_label\()_barrier_complete
-            \test_label\()_arrive_count_not_num_harts:
-                \test_label\()_wait_while_flag_zero:
-                    lw \work_reg_1, 0(\flag_addr_reg)
-                    beqz \work_reg_1, \test_label\()_wait_while_flag_zero
-                
-        li \lock_addr_reg, barrier_lock
-        li \swap_val_reg, 1        # Initialize swap value.
-        \test_label\()_2_retry_acquire_lock:
-            lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
-            bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
-            amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
-            bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
-        \test_label\()_2_acquired_lock:
-            fence
 
-        
-                li \work_reg_1, 1
-                amoadd.w \work_reg_2, \work_reg_1, (\depart_counter_addr_reg)
-                
-        fence
-        amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
-        \test_label\()_2_released_lock:
+# Branch if arrive_counter not equal to zero
+	lw \work_reg_1, 0(\arrive_counter_addr_reg)
+	bnez \work_reg_1, \test_label\()_arrive_count_not_zero
+# Branch if depart_counter not equal to num_harts
+	lw \work_reg_1, 0(\depart_counter_addr_reg)
+	li \work_reg_2, 1
+	bne \work_reg_1, \work_reg_2, \test_label\()_depart_count_not_num_harts
+# Set flag to zero
+	amoswap.w x0, x0, (\flag_addr_reg)
+	j \test_label\()_arrive_count_not_zero
+\test_label\()_depart_count_not_num_harts:
 
-        
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_0_released_lock:
 
-        \test_label\()_barrier_complete:
-            fence
 
-        
+\test_label\()_wait_while_depart_count_not_num_harts:
+	lw \work_reg_1, 0(\depart_counter_addr_reg)
+	bne \work_reg_1, \work_reg_2, \test_label\()_wait_while_depart_count_not_num_harts
+
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
+
+	j \test_label\()_1_retry_acquire_lock
+
+\test_label\()_1_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg_1, 0(\lock_addr_reg)
+	bnez \work_reg_1, \test_label\()_1_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_1_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+\test_label\()_1_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_1_check_if_early_bail
+	lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg_1,  \test_label\()_1_retry_acquire_lock    # Retry if held.
+\test_label\()_1_acquired_lock:
+	fence
+
+
+# Set flag to zero
+	amoswap.w x0, x0, (\flag_addr_reg)
+
+\test_label\()_arrive_count_not_zero:
+	li \work_reg_2, 1
+	amoadd.w \work_reg_1, \work_reg_2, (\arrive_counter_addr_reg)
+	addi \work_reg_1, \work_reg_1, 1
+
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_1_released_lock:
+
+
+
+	li \arrive_counter_addr_reg, barrier_arrive_counter
+
+# Branch if arrive_count not equal to num_harts
+	li \work_reg_2, 1
+	bne \work_reg_1, \work_reg_2, \test_label\()_arrive_count_not_num_harts # Last to arrive must reset variables
+# Set arrive_count to zero
+	amoswap.w x0, x0, (\arrive_counter_addr_reg)
+# Set depart_counter to 1
+	li \work_reg_1, 1
+	amoswap.w x0, \work_reg_1, (\depart_counter_addr_reg)
+# Set flag to one
+	amoswap.w x0, \work_reg_1, (\flag_addr_reg)
+	j \test_label\()_barrier_complete
+\test_label\()_arrive_count_not_num_harts:
+\test_label\()_wait_while_flag_zero:
+# Check again if num_harts_ended is non-zero
+	li \arrive_counter_addr_reg, num_harts_ended
+	lw \work_reg_2, 0(\arrive_counter_addr_reg)
+	beqz \work_reg_2, \test_label\()_no_early_bail
+\test_label\()_yes_other_bailed:
+	li a0, \end_test_label # End test
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+\test_label\()_no_early_bail:
+	lw \work_reg_1, 0(\flag_addr_reg)
+	beqz \work_reg_1, \test_label\()_wait_while_flag_zero
+
+	li \lock_addr_reg, barrier_lock
+	li \swap_val_reg, 500        # Initialize swap value.
+
+	j \test_label\()_2_retry_acquire_lock
+
+\test_label\()_2_check_if_early_bail:
+	li \lock_addr_reg, num_harts_ended
+	lw \work_reg_1, 0(\lock_addr_reg)
+	bnez \work_reg_1, \test_label\()_2_early_bail
+# Looks like we are stuck and no other hart has apparently bailed, so end in a fail.
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+# Another hart may have bailed for an acceptable reason, so end nominally.
+\test_label\()_2_early_bail:
+	li a0, \end_test_label
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+
+\test_label\()_2_retry_acquire_lock:
+# decrement swap value
+	addi \swap_val_reg, \swap_val_reg, -1
+# jump to fail if \swap_val_reg is zero or less
+	bge zero, \swap_val_reg, \test_label\()_2_check_if_early_bail
+	lw           \work_reg_1, (\lock_addr_reg)     # Check if lock is held.
+	bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
+	amoswap.w.aq \work_reg_1, \swap_val_reg, (\lock_addr_reg)
+	bnez         \work_reg_1,  \test_label\()_2_retry_acquire_lock    # Retry if held.
+\test_label\()_2_acquired_lock:
+	fence
+
+
+	li \work_reg_1, 1
+	amoadd.w \work_reg_2, \work_reg_1, (\depart_counter_addr_reg)
+
+	fence
+	amoswap.w.rl x0, x0, (\lock_addr_reg) # Release lock by storing 0.
+\test_label\()_2_released_lock:
+
+
+\test_label\()_barrier_complete:
+	fence
+
+
+.endm
+.macro DISABLE_MIE
+	csrci mstatus, (1<<3)
+.endm
+.macro DISABLE_SIE
+	csrci sstatus, (1<<1)
+.endm
+.macro ENABLE_MIE
+	csrsi mstatus, (1<<3)
+.endm
+.macro ENABLE_SIE
+	csrsi sstatus, (1<<1)
+.endm
+.macro SET_DIRECT_INTERRUPTS
+	csrci mtvec, 0x1
+.endm
+.macro SET_VECTORED_INTERRUPTS
+	csrsi mtvec, 0x1
+.endm
+.macro SET_DIRECT_INTERRUPTS_S
+	csrci stvec, 0x1
+.endm
+.macro SET_VECTORED_INTERRUPTS_S
+	csrsi stvec, 0x1
 .endm
 ## loader ##
 
 
 
-        .section .text
-        .globl _start
-        .option norvc
+.section .text
+	.globl _start
+	.option norvc
 
-        _start:
-            nop
+_start:
+	nop
 
 
-        init:
-        loader_init:
-            li x1, 0x0
-            li x2, 0x0
-            li x3, 0x0
-            li x4, 0x0
-            li x5, 0x0
-            li x6, 0x0
-            li x7, 0x0
-            li x8, 0x0
-            li x9, 0x0
-            li x10, 0x0
-            li x11, 0x0
-            li x12, 0x0
-            li x13, 0x0
-            li x14, 0x0
-            li x15, 0x0
-            li x16, 0x0
-            li x17, 0x0
-            li x18, 0x0
-            li x19, 0x0
-            li x20, 0x0
-            li x21, 0x0
-            li x22, 0x0
-            li x23, 0x0
-            li x24, 0x0
-            li x25, 0x0
-            li x26, 0x0
-            li x27, 0x0
-            li x28, 0x0
-            li x29, 0x0
-            li x30, 0x0
-            li x31, 0x0
+init:
+loader_init:
+	li x1, 0x0
+	li x2, 0x0
+	li x3, 0x0
+	li x4, 0x0
+	li x5, 0x0
+	li x6, 0x0
+	li x7, 0x0
+	li x8, 0x0
+	li x9, 0x0
+	li x10, 0x0
+	li x11, 0x0
+	li x12, 0x0
+	li x13, 0x0
+	li x14, 0x0
+	li x15, 0x0
+	li x16, 0x0
+	li x17, 0x0
+	li x18, 0x0
+	li x19, 0x0
+	li x20, 0x0
+	li x21, 0x0
+	li x22, 0x0
+	li x23, 0x0
+	li x24, 0x0
+	li x25, 0x0
+	li x26, 0x0
+	li x27, 0x0
+	li x28, 0x0
+	li x29, 0x0
+	li x30, 0x0
+	li x31, 0x0
 
-        
+calc_stack_pointer:
+# Calculate hart's stack os_stack_start = os_stack + (page_size*hartID)
+# Assumes page size of 0x1000. Later this should be set with the equates, e.g.
+# .equ stack_page_size, (log2(page_size))
 
-        init_tests:
-            # Initialize test configuration like privilege
-            # We should be in Machine mode at this point
-            # li x1, 0x40341123
-            li t0, 0x80000000003411af
-            csrw misa, t0
-            csrr t0, misa
+	csrr sp, mhartid
+	snez t0, sp
+	beqz t0, load_stack_pointer
 
-        
-        cache_mhartid:
-            csrr s1, mhartid
+	li t1, 0x1000
+# Multiply 0x1000 * hartid, avoids using M instructions in case unsupported
+mult_stack_pointer:
+	add t0, t0, t1
+	addi sp, sp, -1
+	bnez sp, mult_stack_pointer
 
-        
-        set_mstatus_sum:
-            # Set mstatus.SUM=1, so we can access user pages from supervisor
-            li t0, 0x00040000
-            csrrs t0, mstatus, t0
+load_stack_pointer:
+	li sp, os_stack
+	sub sp, sp, t0
+	li t0, 0
+	li t1, 0
 
-        
-        set_mstatus_fsvs:
-            li t0, 0x2200
-            csrrs x0, mstatus, t0
 
-            # Initialize FP registers
-            li t0, check_excp
-            fld f0 , 0(t0)
-            fld f1 , 0(t0)
-            fld f2 , 0(t0)
-            fld f3 , 0(t0)
-            fld f4 , 0(t0)
-            fld f5 , 0(t0)
-            fld f6 , 0(t0)
-            fld f7 , 0(t0)
-            fld f8 , 0(t0)
-            fld f9 , 0(t0)
-            fld f10, 0(t0)
-            fld f11, 0(t0)
-            fld f12, 0(t0)
-            fld f13, 0(t0)
-            fld f14, 0(t0)
-            fld f15, 0(t0)
-            fld f16, 0(t0)
-            fld f17, 0(t0)
-            fld f18, 0(t0)
-            fld f19, 0(t0)
-            fld f20, 0(t0)
-            fld f21, 0(t0)
-            fld f22, 0(t0)
-            fld f23, 0(t0)
-            fld f24, 0(t0)
-            fld f25, 0(t0)
-            fld f26, 0(t0)
-            fld f27, 0(t0)
-            fld f28, 0(t0)
-            fld f29, 0(t0)
-            fld f30, 0(t0)
-            fld f31, 0(t0)
+init_tests:
+# Initialize test configuration like privilege
+# We should be in Machine mode at this point
+# li x1, 0x40341123
+	li t0, 0x80000000003411af
+	csrw misa, t0
+	csrr t0, misa
 
-            #Initialize Vector Registers
-            li x4, 0x0
-            li x5, 0x4
-            li x6, 0xd8
-            li t0, check_excp
-            vsetvl x4,x5,x6
-            vmv.v.x v0,  x0
-            vmv.v.x v1,  x0
-            vmv.v.x v2,  x0
-            vmv.v.x v3,  x0
-            vmv.v.x v4,  x0
-            vmv.v.x v5,  x0
-            vmv.v.x v6,  x0
-            vmv.v.x v7,  x0
-            vmv.v.x v8,  x0
-            vmv.v.x v9,  x0
-            vmv.v.x v10, x0
-            vmv.v.x v11, x0
-            vmv.v.x v12, x0
-            vmv.v.x v13, x0
-            vmv.v.x v14, x0
-            vmv.v.x v15, x0
-            vmv.v.x v16, x0
-            vmv.v.x v17, x0
-            vmv.v.x v18, x0
-            vmv.v.x v19, x0
-            vmv.v.x v20, x0
-            vmv.v.x v21, x0
-            vmv.v.x v22, x0
-            vmv.v.x v23, x0
-            vmv.v.x v24, x0
-            vmv.v.x v25, x0
-            vmv.v.x v26, x0
-            vmv.v.x v27, x0
-            vmv.v.x v28, x0
-            vmv.v.x v29, x0
-            vmv.v.x v30, x0
-            vmv.v.x v31, x0
 
-        nop
-nop
-nop
-nop
+cache_mhartid:
+
+	csrr t0, mhartid
+	csrw sscratch, t0
+
+set_mstatus_sum:
+# Set mstatus.SUM=1, so we can access user pages from supervisor
+	li t0, 0x00040000
+	csrrs t0, mstatus, t0
+
+
+set_mstatus_fsvs:
+	li t0, 0x2200
+	csrrs x0, mstatus, t0
+
+# Initialize FP registers
+	li t0, check_excp
+	fld f0 , 0(t0)
+	fld f1 , 0(t0)
+	fld f2 , 0(t0)
+	fld f3 , 0(t0)
+	fld f4 , 0(t0)
+	fld f5 , 0(t0)
+	fld f6 , 0(t0)
+	fld f7 , 0(t0)
+	fld f8 , 0(t0)
+	fld f9 , 0(t0)
+	fld f10, 0(t0)
+	fld f11, 0(t0)
+	fld f12, 0(t0)
+	fld f13, 0(t0)
+	fld f14, 0(t0)
+	fld f15, 0(t0)
+	fld f16, 0(t0)
+	fld f17, 0(t0)
+	fld f18, 0(t0)
+	fld f19, 0(t0)
+	fld f20, 0(t0)
+	fld f21, 0(t0)
+	fld f22, 0(t0)
+	fld f23, 0(t0)
+	fld f24, 0(t0)
+	fld f25, 0(t0)
+	fld f26, 0(t0)
+	fld f27, 0(t0)
+	fld f28, 0(t0)
+	fld f29, 0(t0)
+	fld f30, 0(t0)
+	fld f31, 0(t0)
+
+#Initialize Vector Registers
+	li x4, 0x0
+	li x5, 0x4
+	li x6, 0xd8
+	li t0, check_excp
+	vsetvl x4,x5,x6
+	vmv.v.x v0,  x0
+	vmv.v.x v1,  x0
+	vmv.v.x v2,  x0
+	vmv.v.x v3,  x0
+	vmv.v.x v4,  x0
+	vmv.v.x v5,  x0
+	vmv.v.x v6,  x0
+	vmv.v.x v7,  x0
+	vmv.v.x v8,  x0
+	vmv.v.x v9,  x0
+	vmv.v.x v10, x0
+	vmv.v.x v11, x0
+	vmv.v.x v12, x0
+	vmv.v.x v13, x0
+	vmv.v.x v14, x0
+	vmv.v.x v15, x0
+	vmv.v.x v16, x0
+	vmv.v.x v17, x0
+	vmv.v.x v18, x0
+	vmv.v.x v19, x0
+	vmv.v.x v20, x0
+	vmv.v.x v21, x0
+	vmv.v.x v22, x0
+	vmv.v.x v23, x0
+	vmv.v.x v24, x0
+	vmv.v.x v25, x0
+	vmv.v.x v26, x0
+	vmv.v.x v27, x0
+	vmv.v.x v28, x0
+	vmv.v.x v29, x0
+	vmv.v.x v30, x0
+	vmv.v.x v31, x0
+
+	nop
+	nop
+	nop
+	nop
 post_switch_to_super:
 
-                setup_stvec:
-                    # Setup stvec, so we can handle the ecall. STVEC contains the base address
-                    # of the interrupt handler
-                    # bit[0] = 0 => direct mode (all exceptions are directed to the base addr)
-                    # la t0, enter_scheduler
-                    la t0, excp_entry
-                    csrw mtvec, t0
-                
-            li t0, passed_addr
-            la t1, passed
-            sd t1, 0(t0)
+# Base Address to jump to during trap
+setup_stvec:
+	la t0, interrupts_entry
+	csrw mtvec, t0
 
-            li t0, os_passed_addr
-            la t1, test_passed
-            sd t1, 0(t0)
+	li t0, passed_addr # For storing address to U mode accessible passed subroutine
+	la t1, passed
+	sd t1, 0(t0)
 
-            li t0, failed_addr
-            la t1, failed
-            sd t1, 0(t0)
+	li t0, failed_addr # For storing address to U mode accessible failed subroutine
+	la t1, failed
+	sd t1, 0(t0)
 
-            li t0, os_failed_addr
-            la t1, test_failed
-            sd t1, 0(t0)
-        
-        init_mepc_label:
-            j schedule_tests
+	li t0, os_passed_addr # For storing address to privileged mode accessible passed subroutine
+	la t1, test_passed
+	sd t1, 0(t0)
 
-        ## excp ##
+	li t0, os_failed_addr # For storing address to privileged mode accessible passed subroutine
+	la t1, test_failed
+	sd t1, 0(t0)
 
-        .section .text
+	li t0, end_test_addr # For storing address to U mode accessible end_test subroutine
+	la t1, end_test
+	sd t1, 0(t0)
 
-        .align 2
-        excp_entry:
-            # Save the exception cause / code
-            csrr t1, mcause
-            li t3, check_excp_actual_cause
-            sd t1, 0(t3)
+	li t0, os_end_test_addr # For storing address to privileged mode accessible end_test subroutine
+	la t1, os_end_test
+	sd t1, 0(t0)
 
-            # Save exception PC
-            csrr t0, mepc
-            li t3, check_excp_actual_pc
-            sd t0, 0(t3)
-        
-        li t0, 8
-        beq t1, t0, os_check_functions
-        li t0, 9
-        beq t1, t0, os_check_functions
-        li t0, 11
-        beq t1, t0, os_check_functions
-        li t0, 10
-        beq t1, t0, os_check_functions
-        j os_check_exception
-        
-        os_check_functions:
-            # The function number is in x31
 
-            li t0, 0xf0000001  # schedule next test
-            beq t0, x31, enter_scheduler
+init_mepc_label:
+	j schedule_tests
+## excp ##
 
-            li t0, 0xf0000002  # fail test
-            beq t0, x31, test_failed
+.section .text
+.align 2
+interrupts_entry:
+	j check_directed_interrupt_or_exception
+	j SSI
+	j test_failed
+	j MSI
+	j test_failed
+	j STI
+	j test_failed
+	j MTI
+	j test_failed
+	j SEI
+	j test_failed
+	j MEI
+	j test_failed
+	j COI
+# Invalid interrupt slide
+	.rept 47
+	j invalid_interrupt
+	.endr
+invalid_interrupt:
+	j test_failed #TODO skip instruction if unhandled interrupt optional behavior
 
-            li t0, 0xf0001001    # Switch to machine mode
-            beq x31, t0, os_fn_f0001001
+# Save temporaries to stack, to ensure interrupts are transparent to test code
+# Expects a0 to be loaded with expected interrupt.
+# Returns a0 as 0 so test code can check that interrupt occured
+.macro check_vectored_interrupt expected
 
-            li t0, 0xf0001002    # Switch to super mode
-            beq x31, t0, os_fn_f0001002
+	.ifndef DONT_USE_STACK
+	sw t0, 0(sp)
+	addi sp, sp, -4
+	.endif
 
-            li t0, 0xf0001003    # Switch to user mode
-            beq x31, t0, os_fn_f0001003
+	li t0, \expected
+	bne t0, a0, test_failed
+	li t0, (1<<\expected)
+	csrc mip, t0                 # Clear expected interrupt bit
+	li a0, 0x0
 
-            li t0, 0xf0001004    # Switch to test mode
-            beq x31, t0, os_fn_f0001004
 
-        
-        os_check_exception:
-        
-                # Check if check_exception is enabled
-                li t3, check_excp
-                lb t0, 0(t3)
-                beq t0, x0, return_to_host
+	.ifndef DONT_USE_STACK
+	lw t0, 0(sp)
+	addi sp, sp, 4
+	.endif
 
-                # Check for correct exception code
-                li t3, check_excp_expected_cause
-                ld t0, 0(t3)
-                sd x0, 0(t3)
-                bne t1, t0, test_failed
+# Return from interrupt
+	mret
+.endm
 
-                # TODO: Check for the correct pc value check_excp_expected_pc
-                li t3, check_excp_expected_pc
-                ld t1, 0(t3)
-                sd x0, 0(t3)
-                li t3, check_excp_actual_pc
-                ld t0, 0(t3)
-                sd x0, 0(t3)
-                bne t1, t0, test_failed
-                j return_to_host
-            
-        
-            ecall_from_machine:
-            ecall_from_supervisor:
-            return_to_host:
-        
-                # Update the return PC from check_excp_return_pc
-                li t3, check_excp_return_pc
-                ld t0, 0(t3)
-                sd x0, 0(t3)
-                csrw mepc, t0
+SSI:
+	check_vectored_interrupt EXPECT_SSI
+MSI:
+	check_vectored_interrupt EXPECT_MSI
+STI:
+	check_vectored_interrupt EXPECT_STI
+MTI:
+	check_vectored_interrupt EXPECT_MTI
+SEI:
+	check_vectored_interrupt EXPECT_SEI
+MEI:
+	check_vectored_interrupt EXPECT_MEI
+COI:
+	j test_failed
 
-                # Return from exception
-                mret
 
-            
-            os_fn_f0001001:
-                # f0001001 : Switch to machine mode
-            
-                # If already in machine mode, do nothing
-                
-            li t0, code_machine_0
-        
-                j ret_from_os_fn
-            
-            os_fn_f0001002:
-                # f0001002 : Switch to super mode
 
-            
-            # Update mstatus csr to switch to super mode
-            li t0, 0x00001800
-            csrrc x0, mstatus, t0
-            li t0, 0x00000800
-            csrrs x0, mstatus, t0
-        
-                sfence.vma
-                # When switching to supervisor mode, we will need to switch a new page
-                # that has u=0
-                
-            li t0, code_super_0
-        
-                j ret_from_os_fn
-            
-            os_fn_f0001003:
-                # f0001003 : Switch to user mode
-            
-            # Update mstatus csr to switch to user mode
-            li t0, 0x00001800
-            csrrc x0, mstatus, t0
-            li t0, 0x00000000
-            csrrs x0, mstatus, t0
-        
-                # Load return pc from os_save_ecall_fn_epc and move it to t0
-                # which will be used to update epc
-                
-            li t0, code_user_0
-        
 
-                j ret_from_os_fn
-            
-            os_fn_f0001004:
-                # f0001004 : Switch to test mode
-            
-            # Update mstatus csr to switch to machine mode
-            li t0, 0x00001800
-            csrrc x0, mstatus, t0
-            li t0, 0x00001800
-            csrrs x0, mstatus, t0
-        
-            # Here, we want to go back to the test code. The PC is saved in os_save_ecall_epc
-            # Load it into t0 and ret_from_os_fn will move t0 to epc
-            li t3, os_save_ecall_fn_epc
-            ld t0, 0(t3)
+check_directed_interrupt_or_exception:
 
-            j ret_from_os_fn
-        
-        ret_from_os_fn:
-            # csrr t0, mepc
-            # addi t0, t0, 4
-            # save current epc to os_save_ecall_fn_epc
-            csrr t1, mepc
-            addi t1, t1, 4
-            li t3, os_save_ecall_fn_epc
-            sd t1, 0(t3)
-            csrw mepc, t0
+# push t0, t1                       # Save temporaries to stack, to ensure interrupts are transparent to user code
+	.ifndef DONT_USE_STACK
+	addi sp, sp, -4
+	sw t0, 0(sp)
+	addi sp, sp, -4
+	sw t1, 0(sp)
+	.endif
 
-            # Clear x31, so we don't accidentally jump to an OS function next time
-            li x31, -1
+	csrr t0, mcause
+	li t1, (0x1<<(XLEN-1))              # Isolate interrupt bit
+	and t0, t0, t1
+	beq t0, x0, excp_entry              # If the interrupt bit is 0, exception
 
-            # Return from exception
-            mret
-        
-        .section .code, "ax"
-        # .org 0x0
-        
+
+	csrr t0, mhartid
+# Get hartid
+	bne t0, x0, test_failed                  # FIXME: Only handles interrupts for hartid0
+
+	li t0, 0
+	csrw mip, t0                 # Clear the pending interrupt by writing a 0; TODO: This will clear nested interrupts. We don't want that. This needs to clear the highest interrupt bit that was set
+
+# pop t1, t0
+	.ifndef DONT_USE_STACK
+	lw t1, 0(sp)
+	addi sp, sp, 4
+	lw t0, 0(sp)
+	addi sp, sp, 4
+	.endif
+
+	mret
+
+.align 2
+excp_entry:
+# get hartid
+
+	csrr s1, mhartid
+
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+
+# Save the exception cause / code
+	csrr t1, mcause
+	li t3, check_excp_actual_cause
+	add t3, t3, s1 # Add offset for this harts check_excp_actual_cause element
+	sd t1, 0(t3)
+
+# Save exception PC
+	csrr t0, mepc
+	li t3, check_excp_actual_pc
+	add t3, t3, s1 # Add offset for this harts check_excp_actual_pc element
+	sd t0, 0(t3)
+
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+
+	li t0, 8
+	beq t1, t0, os_check_functions
+	li t0, 9
+	beq t1, t0, os_check_functions
+	li t0, 11
+	beq t1, t0, os_check_functions
+	li t0, 10
+	beq t1, t0, os_check_functions
+	j os_check_exception
+
+os_check_functions:
+# The function number is in x31
+
+	li t0, 0xf0000001  # schedule next test
+	beq t0, x31, enter_scheduler
+
+	li t0, 0xf0000002  # fail test
+	beq t0, x31, test_failed
+
+	li t0, 0xf0000003  # end test without failure
+	beq t0, x31, os_end_test
+
+	li t0, 0xf0001001    # Switch to machine mode
+	beq x31, t0, os_fn_f0001001
+
+	li t0, 0xf0001002    # Switch to super mode
+	beq x31, t0, os_fn_f0001002
+
+	li t0, 0xf0001003    # Switch to user mode
+	beq x31, t0, os_fn_f0001003
+
+	li t0, 0xf0001004    # Switch to test mode
+	beq x31, t0, os_fn_f0001004
+
+	li t0, 0xf0002001    # Get hartid
+	beq x31, t0, os_fn_f0002001
+
+
+os_check_exception:
+
+# get hartid
+
+	csrr s1, mhartid
+
+
+# Check if check_exception is enabled
+	li t3, check_excp
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+	add t3, t3, s1 # Add offset for this harts check_excp element
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+	lb t0, 0(t3)
+	beq t0, x0, return_to_host
+
+# Check for correct exception code
+	li t3, check_excp_expected_cause
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+	add t3, t3, s1 # Add offset for this harts check_excp_expected_cause element
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+	ld t0, 0(t3)
+	sd x0, 0(t3)
+	bne t1, t0, test_failed
+
+# TODO: Check for the correct pc value check_excp_expected_pc
+	li t3, check_excp_expected_pc
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+	add t3, t3, s1 # Add offset for this harts check_excp_expected_pc element
+	ld t1, 0(t3)
+	sd x0, 0(t3)
+	li t3, check_excp_actual_pc
+	add t3, t3, s1 # Add offset for this harts check_excp_actual_pc element
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+	ld t0, 0(t3)
+	sd x0, 0(t3)
+	bne t1, t0, test_failed
+	j return_to_host
+
+count_ignored_excp:
+	li t0, excp_ignored_count
+	li t1, 1
+	amoadd.w t1, t1, (t0)
+	li t0, 100
+	bge t1, t0, soft_end_test
+	j return_to_host
+
+soft_end_test:
+# Have to os_end_test_addr because we're at an elevated privilege level.
+	addi gp, zero, 0x1
+	li t0, os_end_test_addr
+	ld t1, 0(t0)
+	jr t1
+
+
+ecall_from_machine:
+ecall_from_supervisor:
+return_to_host:
+
+# get hartid
+
+	csrr s1, mhartid
+
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+
+# Update the return PC from check_excp_return_pc
+	li t3, check_excp_return_pc
+	add t3, t3, s1 # Add offset for this harts check_excp_return_pc element
+	ld t0, 0(t3)
+	sd x0, 0(t3)
+	csrw mepc, t0
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+# Return from exception
+	mret
+
+os_fn_f0001001:
+# f0001001 : Switch to machine mode
+
+# If already in machine mode, do nothing
+
+	li t0, code_machine_0
+
+	j ret_from_os_fn
+
+os_fn_f0001002:
+# f0001002 : Switch to super mode
+
+
+# Update mstatus csr to switch to super mode
+	li t0, 0x00001800
+	csrrc x0, mstatus, t0
+	li t0, 0x00000800
+	csrrs x0, mstatus, t0
+
+	sfence.vma
+# When switching to supervisor mode, we will need to switch a new page
+# that has u=0
+
+	li t0, code_super_0
+
+	j ret_from_os_fn
+
+os_fn_f0001003:
+# f0001003 : Switch to user mode
+
+# Update mstatus csr to switch to user mode
+	li t0, 0x00001800
+	csrrc x0, mstatus, t0
+	li t0, 0x00000000
+	csrrs x0, mstatus, t0
+
+# Load return pc from os_save_ecall_fn_epc and move it to t0
+# which will be used to update epc
+
+	li t0, code_user_0
+
+	j ret_from_os_fn
+
+os_fn_f0001004:
+# f0001004 : Switch to test mode
+
+# Update mstatus csr to switch to machine mode
+	li t0, 0x00001800
+	csrrc x0, mstatus, t0
+	li t0, 0x00001800
+	csrrs x0, mstatus, t0
+
+# get hartid
+
+	csrr s1, mhartid
+
+
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+
+# Here, we want to go back to the test code. The PC is saved in os_save_ecall_epc
+# Load it into t0 and ret_from_os_fn will move t0 to epc
+	li t3, os_save_ecall_fn_epc
+	add t3, t3, s1 # Add offset for this harts os_save_ecall_epc element
+	ld t0, 0(t3)
+
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+
+	j ret_from_os_fn
+
+os_fn_f0002001:
+# get hartid already done in ret_from_os_fn
+
+# skip to next pc
+	csrr t0, mepc
+	addi t0, t0, 4
+
+	j ret_from_os_fn
+
+ret_from_os_fn:
+# get hartid
+
+	csrr s1, mhartid
+
+	slli s1, s1, 3 # Multiply saved hartid by 8 to get offset
+
+# csrr t0, mepc
+# addi t0, t0, 4
+# save current epc to os_save_ecall_fn_epc
+	csrr t1, mepc
+	addi t1, t1, 4
+	li t3, os_save_ecall_fn_epc
+	add t3, t3, s1 # Add offset for this harts os_save_ecall_fn_epc element
+	sd t1, 0(t3)
+	csrw mepc, t0
+
+# Clear x31, so we don't accidentally jump to an OS function next time
+	li x31, -1
+
+	srli s1, s1, 3 # Restore saved hartid rather than offset
+# Return from exception
+	mret
+.section .code, "ax"
+# .org 0x0
+
 test_setup:
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
 
 ########################
-# test1 : XORI
+# test1 : SLTIU
 ########################
 
 ;#discrete_test(test=test1)
 test1:
-	li x3,0x80000000
-xori_0_disable_machine :
-	xori x15,x3,0x501
-	li x20,0x0000000080000501
-	bne x20, a5, 1f
+	li x28,0x7fffffff
+sltiu_0_disable_machine :
+	sltiu x8,x28,0x6e
+	li x17,0x0000000000000000
+	bne x17, s0, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test2 : AUIPC
+# test2 : BLT
 ########################
 
 ;#discrete_test(test=test2)
 test2:
-	auipc x7, 0
-	addi x7, x7, 8
-	auipc x9, 0x41667
-auipc_0_disable_machine :
-sub x22, x9, x7
-	li x29,0x0000000041667000
-	bne x29, s6, 1f
+	li x27,0xffffffff
+	li x10,0x0
+	blt_0_not_taken_64_disable_machine : blt x27,x10,jump_blt_0_not_taken_64_disable_machine_failed
+	addi x18, x30, 0x13b
+	sub x7, x24, x6
+	addi x16, x26, 0x3
+	add x9, x12, x13
+	addi x17, x8, 0x6
+	addi x15, x23, 0x2a8
+	add x5, x1, x3
+	sub x22, x20, x31
+	add x14, x25, x21
+	addi x28, x19, 0xa6
+	addi x11, x4, 0x9
+	sub x29, x27, x10
+	sub x18, x30, x7
+	sub x24, x6, x16
+	addi x26, x9, 0x0
+	addi x12, x13, 0x19
+	addi x17, x8, 0xb
+	sub x15, x23, x5
+	addi x1, x3, 0xf0
+	sub x22, x20, x31
+	add x14, x25, x21
+	add x28, x19, x11
+	sub x4, x29, x27
+	add x10, x18, x30
+	addi x7, x24, 0x47
+	sub x6, x16, x26
+	addi x9, x12, 0x8d
+	addi x13, x17, 0x4a
+	addi x8, x15, 0x0
+	sub x23, x5, x1
+	add x3, x22, x20
+	add x31, x14, x25
+	add x21, x28, x19
+	add x11, x4, x29
+	sub x27, x10, x18
+	add x30, x7, x24
+	add x6, x16, x26
+	sub x9, x12, x13
+	add x17, x8, x15
+	addi x23, x5, 0x2
+	addi x1, x3, 0x1
+	sub x22, x20, x31
+	sub x14, x25, x21
+	add x28, x19, x11
+	add x4, x29, x27
+	sub x10, x18, x30
+	addi x7, x24, 0x3ec
+	addi x6, x16, 0x8
+	sub x26, x9, x12
+	add x13, x17, x8
+	addi x15, x23, 0x28
+	add x5, x1, x3
+	sub x22, x20, x31
+	addi x14, x25, 0x13d
+	add x21, x28, x19
+	add x11, x4, x29
+	sub x27, x10, x18
+	add x30, x7, x24
+	addi x6, x16, 0xf
+	add x26, x9, x12
+	sub x13, x17, x8
+	add x15, x23, x5
+	sub x1, x3, x22
+	addi x20, x31, 0x19
+	sub x14, x25, x21
+	add x28, x19, x11
+	add x4, x29, x27
+	addi x10, x18, 0x16
+	sub x30, x7, x24
+	sub x6, x16, x26
+	add x9, x12, x13
+	add x17, x8, x15
+	addi x23, x5, 0x187
+	addi x1, x3, 0x0
+	addi x22, x20, 0xa
+	addi x31, x14, 0x21
+	add x25, x21, x28
+	add x19, x11, x4
+	sub x29, x27, x10
+	sub x18, x30, x7
+	addi x24, x6, 0x0
+	sub x16, x26, x9
+	sub x12, x13, x17
+	add x8, x15, x23
+	addi x5, x1, 0x2
+	addi x3, x22, 0x8
+	sub x20, x31, x14
+	sub x25, x21, x28
+	add x19, x11, x4
+	add x29, x27, x10
+	addi x18, x30, 0x799
+	add x7, x24, x6
+	addi x16, x26, 0xf0
+	addi x9, x12, 0x6
+	add x13, x17, x8
+	sub x15, x23, x5
+	add x1, x3, x22
+	addi x20, x31, 0x96
+	sub x14, x25, x21
+	sub x28, x19, x11
+	sub x4, x29, x27
+	sub x10, x18, x30
+	sub x7, x24, x6
+	add x16, x26, x9
+	sub x12, x13, x17
+	addi x8, x15, 0x296
+	sub x23, x5, x1
+	addi x3, x22, 0x3
+	sub x20, x31, x14
+	sub x25, x21, x28
+	sub x19, x11, x4
+	addi x29, x27, 0x13e
+	sub x10, x18, x30
+	addi x7, x24, 0xe
+	addi x6, x16, 0x1
+	sub x26, x9, x12
+	sub x13, x17, x8
+	addi x15, x23, 0x3a6
+	addi x5, x1, 0x3
+	add x3, x22, x20
+	sub x31, x14, x25
+	sub x21, x28, x19
+	add x11, x4, x29
+	addi x27, x10, 0x1
+	add x18, x30, x7
+	add x24, x6, x16
+	addi x26, x9, 0x0
+	add x12, x13, x17
+	sub x8, x15, x23
+	add x5, x1, x3
+	add x22, x20, x31
+	addi x14, x25, 0x1
+	addi x21, x28, 0x0
+	sub x19, x11, x4
+	addi x29, x27, 0x4b
+	add x10, x18, x30
+	addi x7, x24, 0x17
+	sub x6, x16, x26
+	addi x9, x12, 0x3ff
+	add x13, x17, x8
+	addi x15, x23, 0x1
+	sub x5, x1, x3
+	sub x22, x20, x31
+	addi x14, x25, 0x2df
+	sub x21, x28, x19
+	add x11, x4, x29
+	sub x27, x10, x18
+	sub x30, x7, x24
+	add x6, x16, x26
+	sub x9, x12, x13
+	addi x17, x8, 0xb
+	add x15, x23, x5
+	add x1, x3, x22
+	add x20, x31, x14
+	sub x25, x21, x28
+	addi x19, x11, 0x51
+	addi x4, x29, 0x2a8
+	addi x27, x10, 0xc9
+	add x18, x30, x7
+	sub x24, x6, x16
+	addi x26, x9, 0x2
+	sub x12, x13, x17
+	addi x8, x15, 0x1a
+	sub x23, x5, x1
+	sub x3, x22, x20
+	add x31, x14, x25
+	addi x21, x28, 0x2
+	add x19, x11, x4
+	add x29, x27, x10
+	add x18, x30, x7
+	add x24, x6, x16
+	addi x26, x9, 0x29
+	addi x12, x13, 0x31
+	add x17, x8, x15
+	add x23, x5, x1
+	addi x3, x22, 0x6
+	add x20, x31, x14
+	add x25, x21, x28
+	add x19, x11, x4
+	addi x29, x27, 0x0
+	add x10, x18, x30
+	add x7, x24, x6
+	add x16, x26, x9
+	addi x12, x13, 0x6d
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+jump_blt_0_not_taken_64_disable_machine_failed:
+	nop
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
-
 ########################
-# test3 : DIVU
+# test3 : ANDI
 ########################
 
 ;#discrete_test(test=test3)
 test3:
-	li x20, 0x0
-	li x8, 0x9
-divu_0_disable_machine :
-	divu x19,x20,x8
-	li x11,0x0000000000000000
-	bne x11, s3, 1f
+	li x24,0xffffffffffb8f41d
+andi_0_disable_machine :
+	andi x29,x24,0x1
+	li x4,0x0000000000000001
+	bne x4, t4, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test4 : SLT
+# test4 : DIV
 ########################
 
 ;#discrete_test(test=test4)
 test4:
-	li x6, 0x1afa
-	li x5, 0xfffffffff2ccde17
-slt_0_disable_machine :
-	slt x12,x6,x5
-	li x25,0x0000000000000000
-	bne x25, a2, 1f
+	li x18, 0xcd8
+	li x4, 0x3373
+div_0_disable_machine :
+	div x29,x18,x4
+	li x1,0x0000000000000000
+	bne x1, t4, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test5 : SLTU
+# test5 : SW
 ########################
 
 ;#discrete_test(test=test5)
 test5:
-	li x12, 0x1
-	li x31, 0x47
-sltu_0_disable_machine :
-	sltu x13,x12,x31
-	li x18,0x0000000000000001
-	bne x18, a3, 1f
+;#random_addr(name=sw_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
+;#random_addr(name=sw_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
+;#page_mapping(lin_name=sw_0_disable_machine_lin, phys_name=sw_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
+	li x17,0x7daeee24
+	li x23,sw_0_disable_machine_lin
+	sw_0_disable_machine: sw x17,0x0(x23)
+	li x31, 0x24
+	li x28, sw_0_disable_machine_lin
+	lbu x5, 0x0(x28)
+	bne x31, x5, 1f
+	li x31, 0xee
+	li x28, sw_0_disable_machine_lin
+	lbu x5, 0x1(x28)
+	bne x31, x5, 1f
+	li x31, 0xae
+	li x28, sw_0_disable_machine_lin
+	lbu x5, 0x2(x28)
+	bne x31, x5, 1f
+	li x31, 0x7d
+	li x28, sw_0_disable_machine_lin
+	lbu x5, 0x3(x28)
+	bne x31, x5, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test6 : XOR
+# test6 : MULH
 ########################
 
 ;#discrete_test(test=test6)
 test6:
-	li x31, 0x7fffffff
-	li x9, 0x944
-xor_0_disable_machine :
-	xor x15,x31,x9
-	li x3,0x000000007ffff6bb
-	bne x3, a5, 1f
+	li x10, 0xffffffffb403906d
+	li x22, 0x0
+mulh_0_disable_machine :
+	mulh x11,x10,x22
+	li x25,0x0000000000000000
+	bne x25, a1, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test7 : DIV
+# test7 : BGE
 ########################
 
 ;#discrete_test(test=test7)
 test7:
-	li x1, 0xffffffffab9f6dd5
-	li x24, 0x0
-div_0_disable_machine :
-	div x23,x1,x24
-	li x21,0xffffffffffffffff
-	bne x21, s7, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test8 : SRL
-########################
-
-;#discrete_test(test=test8)
-test8:
-	li x29, 0x30e
-	li x18, 0x80000000
-srl_0_disable_machine :
-	srl x5,x29,x18
-	li x7,0x000000000000030e
-	bne x7, t0, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test9 : LBU
-########################
-
-;#discrete_test(test=test9)
-test9:
-;#random_addr(name=lbu_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
-;#random_addr(name=lbu_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
-;#page_mapping(lin_name=lbu_0_disable_machine_lin, phys_name=lbu_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x20,lbu_0_disable_machine_lin
-lbu_0_disable_machine: lbu x18,0x89(x20)
-	li x11,0x00000000000000e3
-	bne x11, s2, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test10 : SUB
-########################
-
-;#discrete_test(test=test10)
-test10:
-	li x6, 0x7fffffff
-	li x23, 0x4
-sub_0_disable_machine :
-	sub x10,x6,x23
-	li x18,0x000000007ffffffb
-	bne x18, a0, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test11 : OR
-########################
-
-;#discrete_test(test=test11)
-test11:
-	li x15, 0xffffffff
-	li x28, 0x8d
-or_0_disable_machine :
-	or x14,x15,x28
-	li x1,0x00000000ffffffff
-	bne x1, a4, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test12 : JAL
-########################
-
-;#discrete_test(test=test12)
-test12:
-jal_0_disable_machine : jal x1,jump_jal_0_disable_machine_passed
-	sub x15, x22, x19
-	sub x8, x6, x27
-	addi x16, x24, 0x1
-	add x7, x11, x20
-	add x4, x18, x13
-	addi x23, x14, 0x0
-	addi x26, x2, 0x87
-	addi x30, x29, 0x4d
-	add x10, x25, x3
-	addi x5, x9, 0x1
-	sub x28, x31, x1
-	add x12, x17, x21
-	addi x15, x22, 0x7
-	sub x19, x8, x6
-	add x27, x16, x24
-	addi x7, x11, 0xa3
-	add x20, x4, x18
-	add x13, x23, x14
-	addi x26, x2, 0x5
-	add x30, x29, x10
-	addi x25, x3, 0xf
-	addi x5, x9, 0x3d8
-	add x28, x31, x1
-	add x12, x17, x21
-	add x15, x22, x19
-	addi x8, x6, 0x565
-	addi x27, x16, 0xbb
-	sub x24, x7, x11
-	addi x20, x4, 0x3
-	addi x18, x13, 0x0
-	addi x23, x14, 0x3
-	addi x26, x2, 0x1b8
-	add x30, x29, x10
-	sub x25, x3, x5
-	sub x9, x28, x31
-	addi x1, x12, 0x78e
-	sub x17, x21, x15
-	sub x22, x19, x8
-	sub x6, x27, x16
-	add x24, x7, x11
-	sub x20, x4, x18
-	add x13, x23, x14
-	add x26, x2, x30
-	addi x29, x10, 0x55a
-	add x25, x3, x5
-	sub x9, x28, x31
-	addi x1, x12, 0x1f
-	add x17, x21, x15
-	sub x22, x19, x8
-	add x6, x27, x16
-	addi x24, x7, 0xae
-	sub x11, x20, x4
-	sub x18, x13, x23
-	sub x14, x26, x2
-	addi x30, x29, 0x2
-	addi x10, x25, 0x74c
-	addi x3, x5, 0x1f0
-	sub x9, x28, x31
-	sub x1, x12, x17
-	addi x21, x15, 0x63
-	add x22, x19, x8
-	sub x6, x27, x16
-	addi x24, x7, 0x16f
-	addi x11, x20, 0x2f1
-	sub x4, x18, x13
-	sub x23, x14, x26
-	addi x2, x30, 0x7d
-	sub x29, x10, x25
-	addi x3, x5, 0x1
-	add x9, x28, x31
-	sub x1, x12, x17
-	add x21, x15, x22
-	addi x19, x8, 0x7
-	add x6, x27, x16
-	sub x24, x7, x11
-	addi x20, x4, 0xc
-	addi x18, x13, 0x1cc
-	add x23, x14, x26
-	addi x2, x30, 0xa
-	addi x29, x10, 0x5
-	addi x25, x3, 0x1
-	add x5, x9, x28
-	addi x31, x1, 0x164
-	sub x12, x17, x21
-	add x15, x22, x19
-	addi x8, x6, 0x5e
-	add x27, x16, x24
-	sub x7, x11, x20
-	add x4, x18, x13
-	addi x23, x14, 0x28
-	sub x26, x2, x30
-	add x29, x10, x25
-	add x3, x5, x9
-	sub x28, x31, x1
-	sub x12, x17, x21
-	sub x15, x22, x19
-	addi x8, x6, 0x5
-	addi x27, x16, 0xe
-	sub x24, x7, x11
-	addi x20, x4, 0xb2
-	add x18, x13, x23
-	add x14, x26, x2
-	add x30, x29, x10
-	add x25, x3, x5
-	addi x9, x28, 0x26
-	add x31, x1, x12
-	addi x17, x21, 0xa
-	add x15, x22, x19
-	sub x8, x6, x27
-	sub x16, x24, x7
-	sub x11, x20, x4
-	addi x18, x13, 0x11f
-	add x23, x14, x26
-	add x2, x30, x29
-	sub x10, x25, x3
-	sub x5, x9, x28
-	addi x31, x1, 0x0
-	addi x12, x17, 0x73
-	addi x21, x15, 0x3
-	sub x22, x19, x8
-	add x6, x27, x16
-	sub x24, x7, x11
-	add x20, x4, x18
-	add x13, x23, x14
-	add x26, x2, x30
-	addi x29, x10, 0x5
-	sub x25, x3, x5
-	add x9, x28, x31
-	addi x1, x12, 0x3b
-	addi x17, x21, 0x35e
-	sub x15, x22, x19
-	add x8, x6, x27
-	add x16, x24, x7
-	addi x11, x20, 0x231
-	add x4, x18, x13
-	sub x23, x14, x26
-	addi x2, x30, 0x3e3
-	addi x29, x10, 0x7
-	sub x25, x3, x5
-	add x9, x28, x31
-	sub x1, x12, x17
-	add x21, x15, x22
-	addi x19, x8, 0xc
-	sub x6, x27, x16
-	add x24, x7, x11
-	addi x20, x4, 0x40
-	add x18, x13, x23
-	add x14, x26, x2
-	sub x30, x29, x10
-	add x25, x3, x5
-	sub x9, x28, x31
-	add x1, x12, x17
-	addi x21, x15, 0xf2
-	sub x22, x19, x8
-	addi x6, x27, 0x5
-	addi x16, x24, 0xf2
-	add x7, x11, x20
-	addi x4, x18, 0x3
-	sub x13, x23, x14
-	add x26, x2, x30
-	sub x29, x10, x25
-	addi x3, x5, 0x38
-	add x9, x28, x31
-	addi x1, x12, 0xe
-	addi x17, x21, 0x25
-	addi x15, x22, 0x3d6
-	sub x19, x8, x6
-	addi x27, x16, 0xfa
-	add x24, x7, x11
-	addi x20, x4, 0x35
-	add x18, x13, x23
-	add x14, x26, x2
-	add x30, x29, x10
-	add x25, x3, x5
-	add x9, x28, x31
-	addi x1, x12, 0x213
-	sub x17, x21, x15
-	addi x22, x19, 0x2c
-	addi x8, x6, 0x6d
-	sub x27, x16, x24
-	sub x7, x11, x20
-	addi x4, x18, 0x0
-	sub x13, x23, x14
-	addi x26, x2, 0x322
-	add x30, x29, x10
-	addi x25, x3, 0xa
-	addi x5, x9, 0x2e
-	sub x28, x31, x1
-	addi x12, x17, 0x28c
-	addi x21, x15, 0x290
-	addi x22, x19, 0xc
-	add x8, x6, x27
-	addi x16, x24, 0x0
-	addi x7, x11, 0x4
-	addi x20, x4, 0x3
-	addi x18, x13, 0x19
-	add x23, x14, x26
-	add x2, x30, x29
-	sub x10, x25, x3
-	sub x5, x9, x28
-	add x31, x1, x12
-	sub x17, x21, x15
-	sub x22, x19, x8
-	add x6, x27, x16
-	addi x24, x7, 0x6d6
-	addi x11, x20, 0xf
-	addi x4, x18, 0x0
-	sub x13, x23, x14
-	addi x26, x2, 0x3
-	sub x30, x29, x10
-	sub x25, x3, x5
-	addi x9, x28, 0x1c
-	sub x31, x1, x12
-	addi x17, x21, 0xae
-	sub x15, x22, x19
-	add x8, x6, x27
-	addi x16, x24, 0x6
-	add x7, x11, x20
-	add x4, x18, x13
-	add x23, x14, x26
-	add x2, x30, x29
-	addi x10, x25, 0x6
-	add x3, x5, x9
-	addi x28, x31, 0xb
-	add x1, x12, x17
-	addi x21, x15, 0x1a5
-	addi x22, x19, 0x8
-	add x8, x6, x27
-	add x16, x24, x7
-	sub x11, x20, x4
-	addi x18, x13, 0x3
-	sub x23, x14, x26
-	sub x2, x30, x29
-	sub x10, x25, x3
-	add x5, x9, x28
-	addi x31, x1, 0x9
-	sub x12, x17, x21
-	add x15, x22, x19
-	addi x8, x6, 0x1
-	sub x27, x16, x24
-	sub x7, x11, x20
-	sub x4, x18, x13
-	addi x23, x14, 0x6f
-	addi x26, x2, 0x0
-	add x30, x29, x10
-	sub x25, x3, x5
-	sub x9, x28, x31
-	add x1, x12, x17
-	add x21, x15, x22
-	add x19, x8, x6
-	sub x27, x16, x24
-	addi x7, x11, 0x149
-	add x20, x4, x18
-	addi x13, x23, 0x53b
-	sub x14, x26, x2
-	sub x30, x29, x10
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-jump_jal_0_disable_machine_passed :
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-########################
-# test13 : AND
-########################
-
-;#discrete_test(test=test13)
-test13:
-	li x12, 0x4ed7b9
-	li x20, 0x2
-and_0_disable_machine :
-	and x25,x12,x20
-	li x2,0x0000000000000000
-	bne x2, s9, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test14 : SB
-########################
-
-;#discrete_test(test=test14)
-test14:
-;#random_addr(name=sb_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
-;#random_addr(name=sb_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
-;#page_mapping(lin_name=sb_0_disable_machine_lin, phys_name=sb_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x15,0xc9bcbb17
-	li x12,sb_0_disable_machine_lin
-sb_0_disable_machine: sb x15,0x83(x12)
-	li x18, 0x17
-	li x10, sb_0_disable_machine_lin
-	lbu x20, 0x83(x10)
-	bne x18, x20, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test15 : LHU
-########################
-
-;#discrete_test(test=test15)
-test15:
-;#random_addr(name=lhu_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
-;#random_addr(name=lhu_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
-;#page_mapping(lin_name=lhu_0_disable_machine_lin, phys_name=lhu_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x14,lhu_0_disable_machine_lin
-lhu_0_disable_machine: lhu x22,0x1a(x14)
-	li x5,0x0000000000003ae8
-	bne x5, s6, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test16 : SLTIU
-########################
-
-;#discrete_test(test=test16)
-test16:
-	li x11,0xffffffffdba3a11a
-sltiu_0_disable_machine :
-	sltiu x23,x11,0xdd
-	li x4,0x0000000000000000
-	bne x4, s7, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test17 : LW
-########################
-
-;#discrete_test(test=test17)
-test17:
-;#random_addr(name=lw_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
-;#random_addr(name=lw_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
-;#page_mapping(lin_name=lw_0_disable_machine_lin, phys_name=lw_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x26,lw_0_disable_machine_lin
-lw_0_disable_machine: lw x5,0x494(x26)
-	li x14,0xffffffff9f7be923
-	bne x14, t0, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test18 : MULHU
-########################
-
-;#discrete_test(test=test18)
-test18:
-	li x16, 0x92f2
-	li x7, 0x0
-mulhu_0_disable_machine :
-	mulhu x28,x16,x7
-	li x27,0x0000000000000000
-	bne x27, t3, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test19 : MULH
-########################
-
-;#discrete_test(test=test19)
-test19:
-	li x17, 0x80000000
-	li x31, 0x7fffffff
-mulh_0_disable_machine :
-	mulh x24,x17,x31
-	li x13,0x0000000000000000
-	bne x13, s8, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test20 : MUL
-########################
-
-;#discrete_test(test=test20)
-test20:
-	li x21, 0x80000000
-	li x2, 0xffffffffa2a58a16
-mul_0_disable_machine :
-	mul x13,x21,x2
-	li x7,0xd152c50b00000000
-	bne x7, a3, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test21 : MULHSU
-########################
-
-;#discrete_test(test=test21)
-test21:
-	li x27, 0x3681c8e
-	li x8, 0x35d7
-mulhsu_0_disable_machine :
-	mulhsu x13,x27,x8
-	li x17,0x0000000000000000
-	bne x17, a3, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test22 : SRA
-########################
-
-;#discrete_test(test=test22)
-test22:
-	li x21, 0xfffffffff986dc40
-	li x4, 0x2
-sra_0_disable_machine :
-	sra x12,x21,x4
-	li x1,0xfffffffffe61b710
-	bne x1, a2, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test23 : SLTI
-########################
-
-;#discrete_test(test=test23)
-test23:
-	li x9,0x29431
-slti_0_disable_machine :
-	slti x27,x9,0x7b
-	li x22,0x0000000000000000
-	bne x22, s11, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test24 : ADDI
-########################
-
-;#discrete_test(test=test24)
-test24:
-	li x23,0x7fffffff
-addi_0_disable_machine :
-	addi x20,x23,0x2d
-	li x27,0x000000008000002c
-	bne x27, s4, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test25 : JALR
-########################
-
-;#discrete_test(test=test25)
-test25:
-la x30,jump_jalr_0_disable_machine_passed
-jalr_0_disable_machine : jalr x3,0(x30)
-	addi x26, x10, 0x15
-	sub x25, x20, x1
-	sub x7, x27, x19
-	sub x21, x28, x17
-	addi x2, x31, 0x17
-	addi x9, x22, 0x147
-	sub x6, x14, x13
-	sub x5, x11, x8
-	sub x4, x18, x29
-	add x15, x12, x16
-	sub x24, x23, x3
-	addi x30, x26, 0x4
-	addi x10, x25, 0x4
-	add x20, x1, x7
-	addi x27, x19, 0x5
-	sub x21, x28, x17
-	add x2, x31, x9
-	addi x22, x6, 0x4f
-	sub x14, x13, x5
-	sub x11, x8, x4
-	addi x18, x29, 0x9
-	sub x15, x12, x16
-	addi x24, x23, 0x3a
-	addi x3, x30, 0x0
-	sub x26, x10, x25
-	add x20, x1, x7
-	add x27, x19, x21
-	add x28, x17, x2
-	sub x31, x9, x22
-	add x6, x14, x13
-	sub x5, x11, x8
-	sub x4, x18, x29
-	addi x15, x12, 0xcb
-	addi x16, x24, 0x6
-	sub x23, x3, x30
-	sub x26, x10, x25
-	sub x20, x1, x7
-	sub x27, x19, x21
-	addi x28, x17, 0x10
-	addi x2, x31, 0x14
-	addi x9, x22, 0x3f
-	add x6, x14, x13
-	add x5, x11, x8
-	add x4, x18, x29
-	addi x15, x12, 0xd7
-	add x16, x24, x23
-	sub x3, x30, x26
-	addi x10, x25, 0x8f
-	sub x20, x1, x7
-	sub x27, x19, x21
-	add x28, x17, x2
-	addi x31, x9, 0x4
-	sub x22, x6, x14
-	addi x13, x5, 0x3e
-	add x11, x8, x4
-	addi x18, x29, 0x6c
-	sub x15, x12, x16
-	sub x24, x23, x3
-	sub x30, x26, x10
-	add x25, x20, x1
-	add x7, x27, x19
-	sub x21, x28, x17
-	sub x2, x31, x9
-	add x22, x6, x14
-	addi x13, x5, 0x2de
-	addi x11, x8, 0x1
-	add x4, x18, x29
-	sub x15, x12, x16
-	addi x24, x23, 0x19
-	sub x3, x30, x26
-	addi x10, x25, 0x3
-	sub x20, x1, x7
-	add x27, x19, x21
-	sub x28, x17, x2
-	add x31, x9, x22
-	add x6, x14, x13
-	addi x5, x11, 0xc
-	addi x8, x4, 0x5
-	addi x18, x29, 0x37
-	sub x15, x12, x16
-	addi x24, x23, 0x73
-	add x3, x30, x26
-	sub x10, x25, x20
-	sub x1, x7, x27
-	add x19, x21, x28
-	sub x17, x2, x31
-	add x9, x22, x6
-	add x14, x13, x5
-	sub x11, x8, x4
-	sub x18, x29, x15
-	add x12, x16, x24
-	sub x23, x3, x30
-	sub x26, x10, x25
-	add x20, x1, x7
-	sub x27, x19, x21
-	addi x28, x17, 0x0
-	add x2, x31, x9
-	addi x22, x6, 0x63
-	addi x14, x13, 0x135
-	add x5, x11, x8
-	sub x4, x18, x29
-	add x15, x12, x16
-	sub x24, x23, x3
-	add x30, x26, x10
-	add x25, x20, x1
-	add x7, x27, x19
-	addi x21, x28, 0xb
-	sub x17, x2, x31
-	add x9, x22, x6
-	add x14, x13, x5
-	sub x11, x8, x4
-	add x18, x29, x15
-	addi x12, x16, 0xc
-	sub x24, x23, x3
-	add x30, x26, x10
-	addi x25, x20, 0xe
-	add x1, x7, x27
-	sub x19, x21, x28
-	sub x17, x2, x31
-	sub x9, x22, x6
-	addi x14, x13, 0x19a
-	addi x5, x11, 0xd
-	add x8, x4, x18
-	addi x29, x15, 0x1e9
-	add x12, x16, x24
-	add x23, x3, x30
-	addi x26, x10, 0x1
-	add x25, x20, x1
-	addi x7, x27, 0x12
-	add x19, x21, x28
-	sub x17, x2, x31
-	sub x9, x22, x6
-	add x14, x13, x5
-	addi x11, x8, 0xe
-	addi x4, x18, 0x5f
-	addi x29, x15, 0x6c
-	add x12, x16, x24
-	sub x23, x3, x30
-	addi x26, x10, 0x7
-	sub x25, x20, x1
-	sub x7, x27, x19
-	add x21, x28, x17
-	sub x2, x31, x9
-	addi x22, x6, 0x1
-	addi x14, x13, 0xe
-	addi x5, x11, 0x7
-	addi x8, x4, 0x661
-	addi x18, x29, 0x76
-	sub x15, x12, x16
-	addi x24, x23, 0x5
-	add x3, x30, x26
-	sub x10, x25, x20
-	sub x1, x7, x27
-	add x19, x21, x28
-	sub x17, x2, x31
-	add x9, x22, x6
-	sub x14, x13, x5
-	addi x11, x8, 0x12
-	sub x4, x18, x29
-	addi x15, x12, 0x0
-	sub x16, x24, x23
-	addi x3, x30, 0x1
-	add x26, x10, x25
-	addi x20, x1, 0x22
-	sub x7, x27, x19
-	add x21, x28, x17
-	addi x2, x31, 0x154
-	addi x9, x22, 0x4
-	addi x6, x14, 0x1a
-	addi x13, x5, 0x0
-	addi x11, x8, 0x3
-	addi x4, x18, 0x3
-	sub x29, x15, x12
-	add x16, x24, x23
-	addi x3, x30, 0x3
-	addi x26, x10, 0xd
-	add x25, x20, x1
-	add x7, x27, x19
-	add x21, x28, x17
-	sub x2, x31, x9
-	sub x22, x6, x14
-	add x13, x5, x11
-	addi x8, x4, 0x7
-	addi x18, x29, 0x7
-	sub x15, x12, x16
-	add x24, x23, x3
-	sub x30, x26, x10
-	sub x25, x20, x1
-	add x7, x27, x19
-	addi x21, x28, 0x11a
-	add x17, x2, x31
-	sub x9, x22, x6
-	sub x14, x13, x5
-	add x11, x8, x4
-	add x18, x29, x15
-	sub x12, x16, x24
-	add x23, x3, x30
-	sub x26, x10, x25
-	addi x20, x1, 0x1c
-	add x7, x27, x19
-	add x21, x28, x17
-	add x2, x31, x9
-	add x22, x6, x14
-	addi x13, x5, 0x7a
-	add x11, x8, x4
-	add x18, x29, x15
-	addi x12, x16, 0x3
-	add x24, x23, x3
-	addi x30, x26, 0x2b0
-	add x10, x25, x20
-	addi x1, x7, 0x3d
-	sub x27, x19, x21
-	addi x28, x17, 0xae
-	sub x2, x31, x9
-	addi x22, x6, 0x1
-	sub x14, x13, x5
-	sub x11, x8, x4
-	addi x18, x29, 0x2
-	sub x15, x12, x16
-	sub x24, x23, x3
-	sub x30, x26, x10
-	addi x25, x20, 0x8
-	sub x1, x7, x27
-	addi x19, x21, 0x3
-	sub x28, x17, x2
-	addi x31, x9, 0x4
-	sub x22, x6, x14
-	add x13, x5, x11
-	add x8, x4, x18
-	addi x29, x15, 0x0
-	add x12, x16, x24
-	addi x23, x3, 0x1
-	add x30, x26, x10
-	add x25, x20, x1
-	add x7, x27, x19
-	add x21, x28, x17
-	addi x2, x31, 0x0
-	add x9, x22, x6
-	sub x14, x13, x5
-	addi x11, x8, 0x0
-	sub x4, x18, x29
-	sub x15, x12, x16
-	addi x24, x23, 0x3
-	add x3, x30, x26
-	sub x10, x25, x20
-	addi x1, x7, 0x6fd
-	add x27, x19, x21
-	add x28, x17, x2
-	sub x31, x9, x22
-	addi x6, x14, 0x0
-	add x13, x5, x11
-	addi x8, x4, 0x2
-	addi x18, x29, 0x16
-	sub x15, x12, x16
-	addi x24, x23, 0x203
-	add x3, x30, x26
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-jump_jalr_0_disable_machine_passed :
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-########################
-# test26 : REMU
-########################
-
-;#discrete_test(test=test26)
-test26:
-	li x12, 0xffffffff
-	li x21, 0x80000000
-remu_0_disable_machine :
-	remu x31,x12,x21
-	li x6,0x000000007fffffff
-	bne x6, t6, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test27 : LH
-########################
-
-;#discrete_test(test=test27)
-test27:
-;#random_addr(name=lh_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
-;#random_addr(name=lh_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
-;#page_mapping(lin_name=lh_0_disable_machine_lin, phys_name=lh_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x18,lh_0_disable_machine_lin
-lh_0_disable_machine: lh x5,0xc4(x18)
-	li x19,0x0000000000004f2f
-	bne x19, t0, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test28 : BGEU
-########################
-
-;#discrete_test(test=test28)
-test28:
-	li x12,0x7fffffff
-	li x9,0x609a
-bgeu_0_taken_64_disable_machine : bgeu x12,x9,jump_bgeu_0_taken_64_disable_machine_passed
-	sub x4, x2, x18
-	add x26, x14, x6
-	sub x10, x1, x11
-	sub x21, x8, x20
-	add x22, x29, x30
-	addi x5, x25, 0x0
-	addi x24, x7, 0x6a
-	sub x23, x19, x17
-	addi x28, x31, 0x1
-	add x27, x13, x16
-	add x3, x15, x12
-	add x9, x4, x2
-	addi x18, x26, 0x2
-	add x14, x6, x10
-	addi x1, x11, 0x3
-	addi x21, x8, 0x3d2
-	add x20, x22, x29
-	addi x30, x5, 0x0
-	add x25, x24, x7
-	addi x23, x19, 0x127
-	sub x17, x28, x31
-	add x27, x13, x16
-	addi x3, x15, 0x2cf
-	add x12, x9, x4
-	sub x2, x18, x26
-	addi x14, x6, 0x288
-	sub x10, x1, x11
-	sub x21, x8, x20
-	sub x22, x29, x30
-	addi x5, x25, 0x3
-	add x24, x7, x23
-	sub x19, x17, x28
-	sub x31, x27, x13
-	add x16, x3, x15
-	add x12, x9, x4
-	add x2, x18, x26
-	addi x14, x6, 0x29f
-	addi x10, x1, 0x20
-	add x11, x21, x8
-	addi x20, x22, 0x0
-	sub x29, x30, x5
-	sub x25, x24, x7
-	addi x23, x19, 0xf
-	addi x17, x28, 0x57
-	add x31, x27, x13
-	sub x16, x3, x15
-	sub x12, x9, x4
-	add x2, x18, x26
-	add x14, x6, x10
-	sub x1, x11, x21
-	addi x8, x20, 0x0
-	add x22, x29, x30
-	addi x5, x25, 0x13
-	sub x24, x7, x23
-	add x19, x17, x28
-	sub x31, x27, x13
-	addi x16, x3, 0x9a
-	addi x15, x12, 0x0
-	addi x9, x4, 0xf
-	add x2, x18, x26
-	add x14, x6, x10
-	add x1, x11, x21
-	sub x8, x20, x22
-	add x29, x30, x5
-	addi x25, x24, 0x7
-	addi x7, x23, 0x3f
-	add x19, x17, x28
-	sub x31, x27, x13
-	addi x16, x3, 0x25
-	addi x15, x12, 0x1
-	sub x9, x4, x2
-	sub x18, x26, x14
-	addi x6, x10, 0xce
-	sub x1, x11, x21
-	sub x8, x20, x22
-	addi x29, x30, 0x18c
-	addi x5, x25, 0xb7
-	add x24, x7, x23
-	addi x19, x17, 0x0
-	sub x28, x31, x27
-	sub x13, x16, x3
-	addi x15, x12, 0xdb
-	addi x9, x4, 0x1b9
-	sub x2, x18, x26
-	addi x14, x6, 0x7b
-	add x10, x1, x11
-	addi x21, x8, 0x63
-	addi x20, x22, 0x33e
-	sub x29, x30, x5
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-jump_bgeu_0_taken_64_disable_machine_passed:
-	nop
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-########################
-# test29 : REM
-########################
-
-;#discrete_test(test=test29)
-test29:
-	li x27, 0xffffffffb3304420
-	li x25, 0x80000000
-rem_0_disable_machine :
-	rem x14,x27,x25
-	li x3,0xffffffffb3304420
-	bne x3, a4, 1f
-	li a0, passed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	1:
-	li a0, failed_addr
-	ld a1, 0(a0)
-	jalr ra, 0(a1)
-	2:
-
-########################
-# test30 : BGE
-########################
-
-;#discrete_test(test=test30)
-test30:
-	li x1,0xffffffffe9d0b632
-	li x27,0x13d
-bge_0_not_taken_64_disable_machine : bge x1,x27,jump_bge_0_not_taken_64_disable_machine_failed
-	sub x16, x23, x13
-	add x24, x5, x25
-	add x2, x28, x22
-	add x4, x9, x12
-	addi x30, x10, 0x2
-	addi x17, x6, 0x1
-	sub x18, x8, x11
-	add x19, x3, x21
-	addi x29, x7, 0x1
-	sub x20, x14, x26
-	sub x15, x31, x1
-	add x27, x16, x23
-	add x13, x24, x5
-	sub x25, x2, x28
-	sub x22, x4, x9
-	addi x12, x30, 0x51
-	add x10, x17, x6
-	addi x18, x8, 0x2c2
-	add x11, x19, x3
-	sub x21, x29, x7
-	add x20, x14, x26
-	addi x15, x31, 0x1b
-	addi x1, x27, 0xff
-	add x16, x23, x13
-	sub x24, x5, x25
-	add x2, x28, x22
-	addi x4, x9, 0xb0
-	add x12, x30, x10
-	addi x17, x6, 0x2
-	addi x18, x8, 0x1
-	addi x11, x19, 0x31
-	add x3, x21, x29
-	addi x7, x20, 0x0
-	add x14, x26, x15
-	sub x31, x1, x27
-	add x16, x23, x13
-	sub x24, x5, x25
-	sub x2, x28, x22
-	addi x4, x9, 0x23
-	sub x12, x30, x10
-	sub x17, x6, x18
-	addi x8, x11, 0x2
-	sub x19, x3, x21
-	add x29, x7, x20
-	add x14, x26, x15
-	add x31, x1, x27
-	add x16, x23, x13
-	addi x24, x5, 0x29
-	sub x25, x2, x28
-	add x22, x4, x9
-	addi x12, x30, 0x2d8
-	sub x10, x17, x6
-	sub x18, x8, x11
-	sub x19, x3, x21
-	sub x29, x7, x20
-	add x14, x26, x15
-	sub x31, x1, x27
-	sub x16, x23, x13
-	sub x24, x5, x25
-	sub x2, x28, x22
-	add x4, x9, x12
-	sub x30, x10, x17
-	sub x6, x18, x8
-	sub x11, x19, x3
-	add x21, x29, x7
-	add x20, x14, x26
-	addi x15, x31, 0x1a
-	addi x1, x27, 0x3
-	add x16, x23, x13
-	addi x24, x5, 0x1
-	sub x25, x2, x28
-	sub x22, x4, x9
-	add x12, x30, x10
-	sub x17, x6, x18
-	addi x8, x11, 0x1
-	sub x19, x3, x21
-	addi x29, x7, 0x2e
-	addi x20, x14, 0x0
-	sub x26, x15, x31
-	sub x1, x27, x16
-	addi x23, x13, 0xce
-	sub x24, x5, x25
-	addi x2, x28, 0x1f
-	addi x22, x4, 0x49
-	sub x9, x12, x30
-	add x10, x17, x6
-	addi x18, x8, 0x714
-	sub x11, x19, x3
-	sub x21, x29, x7
-	addi x20, x14, 0x70
-	sub x26, x15, x31
-	addi x1, x27, 0x38
-	sub x16, x23, x13
-	add x24, x5, x25
-	add x2, x28, x22
-	addi x4, x9, 0xa8
-	sub x12, x30, x10
-	addi x17, x6, 0x0
-	add x18, x8, x11
-	add x19, x3, x21
-	add x29, x7, x20
-	add x14, x26, x15
-	addi x31, x1, 0x1
-	sub x27, x16, x23
-	sub x13, x24, x5
-	sub x25, x2, x28
-	add x22, x4, x9
-	sub x12, x30, x10
-	sub x17, x6, x18
-	add x8, x11, x19
-	sub x3, x21, x29
-	add x7, x20, x14
-	sub x26, x15, x31
-	sub x1, x27, x16
-	sub x23, x13, x24
-	add x5, x25, x2
-	sub x28, x22, x4
-	addi x9, x12, 0x3ec
-	add x30, x10, x17
-	add x6, x18, x8
-	sub x11, x19, x3
-	sub x21, x29, x7
-	sub x20, x14, x26
-	add x15, x31, x1
-	add x27, x16, x23
-	add x13, x24, x5
-	sub x25, x2, x28
-	sub x22, x4, x9
-	sub x12, x30, x10
-	add x17, x6, x18
-	sub x8, x11, x19
-	sub x3, x21, x29
-	sub x7, x20, x14
-	add x26, x15, x31
-	addi x1, x27, 0x421
-	addi x16, x23, 0x197
-	addi x13, x24, 0x3
-	sub x5, x25, x2
-	sub x28, x22, x4
-	addi x9, x12, 0x3
-	addi x30, x10, 0x7
-	sub x17, x6, x18
-	sub x8, x11, x19
-	sub x3, x21, x29
-	addi x7, x20, 0xc
-	add x14, x26, x15
-	sub x31, x1, x27
-	add x16, x23, x13
-	add x24, x5, x25
-	add x2, x28, x22
-	sub x4, x9, x12
-	add x30, x10, x17
-	sub x6, x18, x8
-	addi x11, x19, 0xc8
-	addi x3, x21, 0x29
-	add x29, x7, x20
-	sub x14, x26, x15
-	sub x31, x1, x27
-	addi x16, x23, 0x0
-	addi x13, x24, 0x7
-	sub x5, x25, x2
-	add x28, x22, x4
-	add x9, x12, x30
-	sub x10, x17, x6
-	add x18, x8, x11
-	add x19, x3, x21
-	addi x29, x7, 0x0
-	addi x20, x14, 0x37c
-	addi x26, x15, 0xc
-	add x31, x1, x27
-	add x16, x23, x13
-	addi x24, x5, 0x4
-	sub x25, x2, x28
-	sub x22, x4, x9
-	sub x12, x30, x10
-	add x17, x6, x18
-	add x8, x11, x19
-	addi x3, x21, 0x2
-	addi x29, x7, 0x1
-	sub x20, x14, x26
-	addi x15, x31, 0x9
-	addi x1, x27, 0x26
-	sub x16, x23, x13
-	addi x24, x5, 0xb
-	add x25, x2, x28
-	addi x22, x4, 0x8
-	addi x9, x12, 0x21
-	add x30, x10, x17
-	sub x6, x18, x8
-	add x11, x19, x3
-	add x21, x29, x7
-	addi x20, x14, 0x2
-	add x26, x15, x31
-	addi x1, x27, 0x4
-	sub x16, x23, x13
-	add x24, x5, x25
-	sub x2, x28, x22
-	add x4, x9, x12
-	sub x30, x10, x17
-	addi x6, x18, 0xe
-	addi x8, x11, 0x8d
-	add x19, x3, x21
-	addi x29, x7, 0x3
-	add x20, x14, x26
-	add x15, x31, x1
-	add x27, x16, x23
-	add x13, x24, x5
-	sub x25, x2, x28
-	addi x22, x4, 0x2
-	addi x9, x12, 0x0
-	add x30, x10, x17
-	addi x6, x18, 0x22f
-	addi x8, x11, 0x2c
-	addi x19, x3, 0x62
-	addi x21, x29, 0x2
-	addi x7, x20, 0x4d
-	addi x14, x26, 0x156
-	addi x15, x31, 0x0
-	add x1, x27, x16
-	addi x23, x13, 0xee
-	add x24, x5, x25
-	addi x2, x28, 0x5f4
-	add x22, x4, x9
-	addi x12, x30, 0x99
-	sub x10, x17, x6
+	li x16,0xffffffffaca00550
+	li x14,0x0
+	bge_0_not_taken_64_disable_machine : bge x16,x14,jump_bge_0_not_taken_64_disable_machine_failed
+	add x8, x21, x29
+	sub x1, x3, x18
+	addi x23, x9, 0x6
+	sub x20, x24, x31
+	add x7, x13, x22
+	addi x27, x10, 0x4
+	add x17, x25, x4
+	addi x6, x19, 0x1
+	addi x15, x26, 0x6f
+	addi x28, x5, 0x0
+	addi x30, x11, 0x1
+	addi x12, x16, 0x1a8
+	add x14, x8, x21
+	sub x29, x1, x3
+	sub x18, x23, x9
+	add x20, x24, x31
+	addi x7, x13, 0x25
+	add x22, x27, x10
+	addi x17, x25, 0x37
+	add x4, x6, x19
+	add x15, x26, x28
+	addi x5, x30, 0x7
+	sub x11, x12, x16
+	addi x14, x8, 0x181
+	sub x21, x29, x1
+	sub x3, x18, x23
+	addi x9, x20, 0x0
+	sub x24, x31, x7
+	addi x13, x22, 0x7ce
+	add x27, x10, x17
+	sub x25, x4, x6
+	sub x19, x15, x26
+	sub x28, x5, x30
+	sub x11, x12, x16
+	sub x14, x8, x21
+	sub x29, x1, x3
+	add x18, x23, x9
+	add x20, x24, x31
+	addi x7, x13, 0x62
+	addi x22, x27, 0x43
+	addi x10, x17, 0x4da
+	add x25, x4, x6
+	add x19, x15, x26
+	add x28, x5, x30
+	addi x11, x12, 0x15
+	addi x16, x14, 0x2ad
+	add x8, x21, x29
+	sub x1, x3, x18
+	addi x23, x9, 0x4
+	addi x20, x24, 0xaa
+	addi x31, x7, 0x42
+	addi x13, x22, 0x1ac
+	addi x27, x10, 0x0
+	add x17, x25, x4
+	add x6, x19, x15
+	sub x26, x28, x5
+	sub x30, x11, x12
+	addi x16, x14, 0x10f
+	add x8, x21, x29
+	addi x1, x3, 0x323
+	sub x18, x23, x9
+	add x20, x24, x31
+	sub x7, x13, x22
+	sub x27, x10, x17
+	add x25, x4, x6
+	sub x19, x15, x26
+	sub x28, x5, x30
+	addi x11, x12, 0x61a
+	add x16, x14, x8
+	add x21, x29, x1
+	addi x3, x18, 0x1c
+	add x23, x9, x20
+	add x24, x31, x7
+	add x13, x22, x27
+	addi x10, x17, 0x258
+	add x25, x4, x6
+	sub x19, x15, x26
+	sub x28, x5, x30
+	add x11, x12, x16
+	add x14, x8, x21
+	sub x29, x1, x3
+	addi x18, x23, 0x5a
+	sub x9, x20, x24
+	add x31, x7, x13
+	sub x22, x27, x10
+	sub x17, x25, x4
+	sub x6, x19, x15
+	add x26, x28, x5
+	add x30, x11, x12
+	add x16, x14, x8
+	sub x21, x29, x1
+	addi x3, x18, 0x1c
+	sub x23, x9, x20
+	sub x24, x31, x7
+	sub x13, x22, x27
+	sub x10, x17, x25
+	addi x4, x6, 0x0
+	sub x19, x15, x26
+	add x28, x5, x30
+	add x11, x12, x16
+	addi x14, x8, 0x1
+	sub x21, x29, x1
+	addi x3, x18, 0x1
+	sub x23, x9, x20
+	add x24, x31, x7
+	addi x13, x22, 0x1e8
+	sub x27, x10, x17
+	sub x25, x4, x6
+	addi x19, x15, 0x0
+	add x26, x28, x5
+	add x30, x11, x12
+	sub x16, x14, x8
+	add x21, x29, x1
+	add x3, x18, x23
+	add x9, x20, x24
+	add x31, x7, x13
+	addi x22, x27, 0x1d
+	sub x10, x17, x25
+	sub x4, x6, x19
+	sub x15, x26, x28
+	addi x5, x30, 0xa8
+	addi x11, x12, 0x3b9
+	add x16, x14, x8
+	addi x21, x29, 0x18
+	addi x1, x3, 0x366
+	addi x18, x23, 0x6e
+	addi x9, x20, 0x117
+	addi x24, x31, 0x1
+	addi x7, x13, 0x34
+	sub x22, x27, x10
+	addi x17, x25, 0x3e
+	addi x4, x6, 0x4f1
+	addi x19, x15, 0x0
+	addi x26, x28, 0x25
+	add x5, x30, x11
+	add x12, x16, x14
+	sub x8, x21, x29
+	add x1, x3, x18
+	sub x23, x9, x20
+	addi x24, x31, 0x28
+	add x7, x13, x22
+	add x27, x10, x17
+	sub x25, x4, x6
+	addi x19, x15, 0x1c
+	add x26, x28, x5
+	sub x30, x11, x12
+	sub x16, x14, x8
+	sub x21, x29, x1
+	addi x3, x18, 0x30
+	add x23, x9, x20
+	addi x24, x31, 0x34
+	sub x7, x13, x22
+	add x27, x10, x17
+	sub x25, x4, x6
+	sub x19, x15, x26
+	add x28, x5, x30
+	sub x11, x12, x16
+	add x14, x8, x21
+	sub x29, x1, x3
+	sub x18, x23, x9
+	sub x20, x24, x31
+	add x7, x13, x22
+	sub x27, x10, x17
+	add x25, x4, x6
+	sub x19, x15, x26
+	addi x28, x5, 0x1aa
+	addi x30, x11, 0x3a
+	addi x12, x16, 0x133
+	sub x14, x8, x21
+	sub x29, x1, x3
+	sub x18, x23, x9
+	addi x20, x24, 0x1
+	add x31, x7, x13
+	addi x22, x27, 0x3c
+	addi x10, x17, 0x2e
+	sub x25, x4, x6
+	addi x19, x15, 0x0
+	addi x26, x28, 0xc
+	add x5, x30, x11
+	addi x12, x16, 0xdf
+	addi x14, x8, 0x4
+	addi x21, x29, 0x0
+	addi x1, x3, 0x56
+	addi x18, x23, 0x0
+	sub x9, x20, x24
+	addi x31, x7, 0x2
+	addi x13, x22, 0x7
+	sub x27, x10, x17
+	sub x25, x4, x6
+	addi x19, x15, 0x9a
+	sub x26, x28, x5
+	sub x30, x11, x12
+	add x16, x14, x8
+	add x21, x29, x1
+	add x3, x18, x23
+	add x9, x20, x24
+	addi x31, x7, 0xa9
+	add x13, x22, x27
+	add x10, x17, x25
+	add x4, x6, x19
+	sub x15, x26, x28
+	add x5, x30, x11
+	addi x12, x16, 0x2
+	add x14, x8, x21
+	sub x29, x1, x3
+	add x18, x23, x9
+	sub x20, x24, x31
+	addi x7, x13, 0x6d
+	addi x22, x27, 0x2
+	add x10, x17, x25
+	add x4, x6, x19
+	addi x15, x26, 0x6
+	sub x28, x5, x30
+	addi x11, x12, 0x1d
+	addi x16, x14, 0x1
+	addi x8, x21, 0x3
+	sub x29, x1, x3
+	add x18, x23, x9
+	addi x20, x24, 0x4ac
+	add x31, x7, x13
+	sub x22, x27, x10
+	addi x17, x25, 0x1
+	addi x4, x6, 0x10
+	addi x19, x15, 0xb8
+	addi x26, x28, 0xb2
+	add x5, x30, x11
+	sub x12, x16, x14
+	addi x8, x21, 0x15
+	add x29, x1, x3
+	sub x18, x23, x9
+	addi x20, x24, 0x25
+	sub x31, x7, x13
+	sub x22, x27, x10
+	addi x17, x25, 0x12b
+	add x4, x6, x19
+	add x15, x26, x28
+	add x5, x30, x11
+	add x12, x16, x14
+	addi x8, x21, 0x16c
+	sub x29, x1, x3
+	addi x18, x23, 0x1c6
+	add x9, x20, x24
+	sub x31, x7, x13
+	sub x22, x27, x10
+	add x17, x25, x4
+	sub x6, x19, x15
+	sub x26, x28, x5
+	addi x30, x11, 0x1
+	sub x12, x16, x14
+	addi x8, x21, 0x0
+	sub x29, x1, x3
+	addi x18, x23, 0x104
+	add x9, x20, x24
+	addi x31, x7, 0x40
+	add x13, x22, x27
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
@@ -2552,46 +2091,371 @@ jump_bge_0_not_taken_64_disable_machine_failed:
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
 ########################
-# test31 : LB
+# test8 : SLTI
 ########################
 
-;#discrete_test(test=test31)
-test31:
+;#discrete_test(test=test8)
+test8:
+	li x26,0x0
+slti_0_disable_machine :
+	slti x11,x26,0x13
+	li x20,0x0000000000000001
+	bne x20, a1, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+2:
+
+########################
+# test9 : BGEU
+########################
+
+;#discrete_test(test=test9)
+test9:
+	li x11,0x80000000
+	li x18,0xcda11ac
+	bgeu_0_taken_64_disable_machine : bgeu x11,x18,jump_bgeu_0_taken_64_disable_machine_passed
+	sub x3, x28, x21
+	add x24, x12, x7
+	add x15, x13, x14
+	add x16, x30, x22
+	addi x17, x31, 0x8e
+	sub x6, x1, x26
+	add x25, x27, x23
+	add x10, x20, x19
+	sub x9, x5, x29
+	sub x8, x4, x11
+	add x18, x3, x28
+	add x21, x24, x12
+	add x7, x15, x13
+	sub x14, x16, x30
+	addi x22, x17, 0x3
+	add x31, x6, x1
+	add x26, x25, x27
+	addi x23, x10, 0x11
+	sub x20, x19, x9
+	sub x5, x29, x8
+	add x4, x11, x18
+	addi x3, x28, 0x11
+	addi x21, x24, 0x4
+	addi x12, x7, 0x1c2
+	addi x15, x13, 0x9
+	add x14, x16, x30
+	add x22, x17, x31
+	addi x6, x1, 0x6f
+	add x26, x25, x27
+	sub x23, x10, x20
+	addi x19, x9, 0x1c4
+	sub x5, x29, x8
+	sub x4, x11, x18
+	addi x3, x28, 0x12
+	addi x21, x24, 0x1d0
+	sub x12, x7, x15
+	addi x13, x14, 0x0
+	addi x16, x30, 0x6
+	addi x22, x17, 0x21a
+	addi x31, x6, 0x4c
+	sub x1, x26, x25
+	addi x27, x23, 0x8c
+	addi x10, x20, 0x124
+	addi x19, x9, 0x6
+	addi x5, x29, 0x6
+	addi x8, x4, 0x3f7
+	add x11, x18, x3
+	addi x28, x21, 0x1d
+	sub x24, x12, x7
+	add x15, x13, x14
+	sub x16, x30, x22
+	sub x17, x31, x6
+	add x1, x26, x25
+	sub x27, x23, x10
+	add x20, x19, x9
+	sub x5, x29, x8
+	add x4, x11, x18
+	add x3, x28, x21
+	addi x24, x12, 0x1
+	sub x7, x15, x13
+	sub x14, x16, x30
+	add x22, x17, x31
+	add x6, x1, x26
+	add x25, x27, x23
+	add x10, x20, x19
+	addi x9, x5, 0x24
+	add x29, x8, x4
+	sub x11, x18, x3
+	addi x28, x21, 0x2
+	sub x24, x12, x7
+	sub x15, x13, x14
+	add x16, x30, x22
+	add x17, x31, x6
+	add x1, x26, x25
+	addi x27, x23, 0xb
+	sub x10, x20, x19
+	sub x9, x5, x29
+	add x8, x4, x11
+	add x18, x3, x28
+	sub x21, x24, x12
+	sub x7, x15, x13
+	add x14, x16, x30
+	addi x22, x17, 0x130
+	addi x31, x6, 0x1
+	sub x1, x26, x25
+	sub x27, x23, x10
+	add x20, x19, x9
+	add x5, x29, x8
+	sub x4, x11, x18
+	sub x3, x28, x21
+	sub x24, x12, x7
+	sub x15, x13, x14
+	addi x16, x30, 0x4b
+	sub x22, x17, x31
+	add x6, x1, x26
+	addi x25, x27, 0x72
+	addi x23, x10, 0x30
+	addi x20, x19, 0x72
+	sub x9, x5, x29
+	addi x8, x4, 0x244
+	add x11, x18, x3
+	add x28, x21, x24
+	add x12, x7, x15
+	sub x13, x14, x16
+	sub x30, x22, x17
+	addi x31, x6, 0x2
+	add x1, x26, x25
+	addi x27, x23, 0xe2
+	sub x10, x20, x19
+	add x9, x5, x29
+	addi x8, x4, 0x8c
+	addi x11, x18, 0xe4
+	add x3, x28, x21
+	addi x24, x12, 0x132
+	add x7, x15, x13
+	add x14, x16, x30
+	sub x22, x17, x31
+	addi x6, x1, 0x16
+	sub x26, x25, x27
+	addi x23, x10, 0x24
+	addi x20, x19, 0x1
+	add x9, x5, x29
+	add x8, x4, x11
+	addi x18, x3, 0x28
+	addi x28, x21, 0x0
+	add x24, x12, x7
+	add x15, x13, x14
+	add x16, x30, x22
+	addi x17, x31, 0x0
+	sub x6, x1, x26
+	addi x25, x27, 0x497
+	add x23, x10, x20
+	addi x19, x9, 0x3c7
+	addi x5, x29, 0x6
+	add x8, x4, x11
+	sub x18, x3, x28
+	sub x21, x24, x12
+	sub x7, x15, x13
+	addi x14, x16, 0x59
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+jump_bgeu_0_taken_64_disable_machine_passed:
+	nop
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test10 : LB
+########################
+
+;#discrete_test(test=test10)
+test10:
 ;#random_addr(name=lb_0_disable_machine_lin, type=linear, size=0x1000, and_mask=0xfffffffffffff000)
 ;#random_addr(name=lb_0_disable_machine_phy, type=physical, size=0x1000, and_mask=0xfffffffffffff000)
 ;#page_mapping(lin_name=lb_0_disable_machine_lin, phys_name=lb_0_disable_machine_phy, v=1, r=1, w=1, a=1, d=1)
-	li x15,lb_0_disable_machine_lin
-lb_0_disable_machine: lb x4,0x1e3(x15)
-	li x19,0xffffffffffffffe3
-	bne x19, tp, 1f
+	li x29,lb_0_disable_machine_lin
+	lb_0_disable_machine: lb x7,0x8(x29)
+	li x24,0xffffffffffffffb5
+	bne x24, t2, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
 
 ########################
-# test32 : ORI
+# test11 : SLTU
 ########################
 
-;#discrete_test(test=test32)
-test32:
-	li x26,0xffffffff
-ori_0_disable_machine :
-	ori x24,x26,0x1
-	li x22,0x00000000ffffffff
-	bne x22, s8, 1f
+;#discrete_test(test=test11)
+test11:
+	li x29, 0xffffffff
+	li x11, 0xffffffff965e2f3a
+sltu_0_disable_machine :
+	sltu x17,x29,x11
+	li x16,0x0000000000000001
+	bne x16, a7, 1f
 	li a0, passed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	1:
+1:
 	li a0, failed_addr
 	ld a1, 0(a0)
 	jalr ra, 0(a1)
-	2:
+2:
+
+########################
+# test12 : BEQ
+########################
+
+;#discrete_test(test=test12)
+test12:
+	li x23,0xfffffffffcf139f9
+	li x5,0xfffffffffcf139f9
+	beq_0_taken_64_disable_machine : beq x23,x5,jump_beq_0_taken_64_disable_machine_passed
+	sub x7, x17, x1
+	addi x29, x18, 0x5
+	add x3, x6, x15
+	addi x24, x16, 0x1
+	add x9, x30, x27
+	addi x25, x4, 0x15b
+	addi x19, x26, 0x63e
+	sub x11, x21, x28
+	add x14, x13, x31
+	addi x10, x8, 0x3cd
+	sub x22, x12, x20
+	add x23, x5, x7
+	sub x17, x1, x29
+	addi x18, x3, 0x9
+	add x6, x15, x24
+	add x16, x9, x30
+	addi x27, x25, 0x3
+	addi x4, x19, 0x1
+	sub x26, x11, x21
+	addi x28, x14, 0x0
+	addi x13, x31, 0x2f
+	add x10, x8, x22
+	sub x12, x20, x23
+	sub x5, x7, x17
+	add x1, x29, x18
+	addi x3, x6, 0x12
+	sub x15, x24, x16
+	addi x9, x30, 0x3
+	sub x27, x25, x4
+	add x19, x26, x11
+	addi x21, x28, 0x180
+	add x14, x13, x31
+	addi x10, x8, 0x6
+	add x22, x12, x20
+	sub x23, x5, x7
+	add x17, x1, x29
+	add x18, x3, x6
+	sub x15, x24, x16
+	sub x9, x30, x27
+	add x25, x4, x19
+	sub x26, x11, x21
+	add x28, x14, x13
+	add x31, x10, x8
+	addi x22, x12, 0x1f7
+	addi x20, x23, 0x1
+	sub x5, x7, x17
+	add x1, x29, x18
+	sub x3, x6, x15
+	addi x24, x16, 0x8
+	sub x9, x30, x27
+	addi x25, x4, 0xb6
+	sub x19, x26, x11
+	sub x21, x28, x14
+	addi x13, x31, 0x3
+	addi x10, x8, 0x7
+	sub x22, x12, x20
+	add x23, x5, x7
+	sub x17, x1, x29
+	sub x18, x3, x6
+	addi x15, x24, 0x9e
+	sub x16, x9, x30
+	addi x27, x25, 0x26e
+	addi x4, x19, 0xd
+	add x26, x11, x21
+	sub x28, x14, x13
+	sub x31, x10, x8
+	add x22, x12, x20
+	addi x23, x5, 0x4
+	addi x7, x17, 0x351
+	addi x1, x29, 0x29d
+	add x18, x3, x6
+	sub x15, x24, x16
+	add x9, x30, x27
+	addi x25, x4, 0x73
+	addi x19, x26, 0x7e
+	sub x11, x21, x28
+	add x14, x13, x31
+	sub x10, x8, x22
+	add x12, x20, x23
+	add x5, x7, x17
+	add x1, x29, x18
+	addi x3, x6, 0x7c
+	add x15, x24, x16
+	addi x9, x30, 0x1d8
+	addi x27, x25, 0xdc
+	sub x4, x19, x26
+	add x11, x21, x28
+	addi x14, x13, 0x7d
+	addi x31, x10, 0x3c9
+	add x8, x22, x12
+	sub x20, x23, x5
+	sub x7, x17, x1
+	addi x29, x18, 0x15
+	sub x3, x6, x15
+	addi x24, x16, 0x21d
+	addi x9, x30, 0x13
+	add x27, x25, x4
+	sub x19, x26, x11
+	sub x21, x28, x14
+	addi x13, x31, 0x33
+	add x10, x8, x22
+	add x12, x20, x23
+	add x5, x7, x17
+	add x1, x29, x18
+	add x3, x6, x15
+	addi x24, x16, 0x1c
+	sub x9, x30, x27
+	sub x25, x4, x19
+	addi x26, x11, 0x1
+	sub x21, x28, x14
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+jump_beq_0_taken_64_disable_machine_passed:
+	nop
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+########################
+# test13 : MULHSU
+########################
+
+;#discrete_test(test=test13)
+test13:
+	li x6, 0x7fffffff
+	li x12, 0xffffffffd93433c1
+mulhsu_0_disable_machine :
+	mulhsu x24,x6,x12
+	li x10,0x000000007ffffffe
+	bne x10, s8, 1f
+	li a0, passed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+1:
+	li a0, failed_addr
+	ld a1, 0(a0)
+	jalr ra, 0(a1)
+2:
 
 test_cleanup:
 	li a0, passed_addr
@@ -2599,309 +2463,335 @@ test_cleanup:
 	jalr ra, 0(a1)
 
 passed:
-    li t0, os_passed_addr
-    ld t1, 0(t0)
-    jr t1
+	li t0, os_passed_addr
+	ld t1, 0(t0)
+	jr t1
 
 failed:
-    li t0, os_failed_addr
-    ld t1, 0(t0)
-    jr t1
+	li t0, os_failed_addr
+	ld t1, 0(t0)
+	jr t1
+
+end_test:
+	li t0, os_end_test_addr
+	ld t1, 0(t0)
+	jr t1
 ## os ##
 
-        .section .text
+.section .text
 
-        enter_scheduler:
-            # Check if t0 has a pass or fail condition
-            li t1, 0xbaadc0de
-            beq t0, t1, test_failed
-            # git hartid
-
-        
-        test_passed:
-            # li gp, 0x1
-            # j os_end_test
-            j schedule_tests
-
-    
-        test_failed:
-            li gp, 0x3
-            j os_end_test
-
-        
-        os_rng_orig:
-            
-                # simple XORshift random number generator
-                # https://www.javamex.com/tutorials/random_numbers/xorshift.shtml#.VlcaYzKwEV8
-
-                # Calculate seed addr offset
-                mv t2, s1
-                mv t1, a3
-                mul t2, t2, t1
-
-                # Load seed element for this hart
-                mv t1, a1
-                add t1, t1, t2
-                ld t0, (t1)
-
-                # Generate new seed
-                slli t1, t0, 21
-                xor t0, t0, t1
-                srli t1, t0, 35
-                xor t0, t0, t1
-                slli t1, t0, 4
-                xor t0, t0, t1
-
-                # Store updated seed element for this hart
-                mv t1, a1
-                add t1, t1, t2
-                sd t0, (t1)
-
-                # Obtain random number
-                mv t1, a2
-                remu t0, t0, t1
-                # Ignore * elements at the beginning of the array
-                #mv t1, a5
-                #add t0, t0, t1
-                # Offset scale is the number of bytes per element for indexing into an array
-                #mv t1, a4
-                #mul t0, t0, t1
-
-                # Store in return register
-                mv a0, t0
-        
-            ret
-
-        
-        schedule_seed:
-            .dword 3717616969
-        schedule_setup:
-        				.dword 1
-
-        schedule_tests:
-            # Insert CSR read randomization logic here if allowed
-            csrr t0, stval
-csrr t0, sepc
-csrr t0, minstret
-csrr t0, menvcfg
-csrr t0, scounteren
-csrr t0, stval
-csrr t0, scause
+enter_scheduler:
+# Check if t0 has a pass or fail condition
+	li t1, 0xbaadc0de
+	beq t0, t1, test_failed
 
 
-            la t0, schedule_setup
-
-            
-            
-            
-
-            ld t1, 0(t0)
-
-            
-
-            
-            sd x0, 0(t0)
-            
-
-            mv t0, x0
-            bnez t1, schedule_next_test
-            
-            endless:
-
-            
-
-            # Load test pointer (all harts need to do this)
-            la t0, num_runs
-            load_test_pointer:
-            lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
-            
-            
-            lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
-            
-            li gp, 0x1
-            beqz t1, os_end_test # end program, if zero
-            # Decrement num_runs and store it back
-            decrement_num_runs:
-            addi t2, t1, -1
-
-            
-
-            
-            sw t2, 0(t0)
-            
-
-            
-                scheduler:
-                mv t0, t1
-                slli t0, t0, 3
-
-                
-        schedule_next_test:
-            # Get the pointer to the next test label
-            la t1, os_test_sequence
-            add t0, t0, t1 # t0 = current os_test_sequence pointer
-            ld t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
-
-        
-            # Schedule next test, t1 has the test_label
-            # priv_mode: MACHINE
-
-            # Need barrier here so tests don't read num_runs after hart 0 updated it
-            
-
-            jr t1   # jump to t1
-            # For user mode use sret to jump to test
-
-        
-
-        os_end_test:
-            #    la t1, test_done
-            #    jalr x0, t1, 0
-            #
-            # test_done:
-            #    li gp, 0x1
-            #    j write_tohost
-
-        os_write_tohost:
-           # sw gp, tohost, t5
-            la t0, tohost
-            sw gp, 0(t0)
-
-        
-        _exit:
-           j os_write_tohost
-
-        
-
-        num_runs:
-            # We need +1 below since we have cleanup as the last entry in the dtests_seq
-            .dword 33
-        os_test_sequence:
-            .dword test_setup
-    .dword test_cleanup
-    .dword test14
-    .dword test8
-    .dword test29
-    .dword test32
-    .dword test18
-    .dword test30
-    .dword test16
-    .dword test19
-    .dword test1
-    .dword test21
-    .dword test27
-    .dword test17
-    .dword test6
-    .dword test7
-    .dword test4
-    .dword test11
-    .dword test22
-    .dword test31
-    .dword test20
-    .dword test13
-    .dword test23
-    .dword test10
-    .dword test15
-    .dword test24
-    .dword test3
-    .dword test2
-    .dword test9
-    .dword test25
-    .dword test28
-    .dword test12
-    .dword test26
-    .dword test5
+test_passed:
+	j schedule_tests
 
 
-        
-        # Pseudorandom number generator between 0 and 10 using LCG algorithm
-        # Seed value
-        li a0, 42       # Set initial seed value (can be any value)
+test_failed:
+	li a0, num_hard_fails
+	li t0, 1
+	amoadd.w x0, t0, (a0)
+	li gp, 0x3
+	j os_end_test
 
-        # LCG parameters
-        li a1, 1664525  # Multiplier
-        li a2, 1013904223  # Increment
-        li a3, 2^32     # Modulus (2^32 for a 32-bit pseudorandom number)
 
-        # Generate pseudorandom number
-        mul a0, a0, a1   # a0 = a0 * multiplier
-        add a0, a0, a2  # a0 = a0 + increment
-        rem a0, a0, a3   # a0 = a0 % modulus (remainder)
+os_rng_orig:
 
-        # Calculate pseudorandom number between 0 and 10
-        li a1, 11        # Maximum value (10 + 1)
-        rem a0, a0, a1   # a0 = a0 % maximum value
+# simple XORshift random number generator
+# https://www.javamex.com/tutorials/random_numbers/xorshift.shtml#.VlcaYzKwEV8
 
-        ret
+	csrr t2, mhartid
 
-        # The pseudorandom number between 0 and 10 will be stored in a0
 
-        
+# Calculate seed addr offset
+	mv t1, a3
+	mul t2, t2, t1
 
-        # Define tohost and fromhost labels for Spike to end the test
-        .align 6; .global tohost; tohost: .dword 0;
-        .align 6; .global fromhost; fromhost: .dword 0;
+# Load seed element for this hart
+	mv t1, a1
+	add t1, t1, t2
+	ld t0, (t1)
 
-        
-            .section .os_data, "aw"
-            # OS data
-            check_excp:
-                .dword 0x1
-            check_excp_expected_pc:
-                .dword -1
-            check_excp_actual_pc:
-                .dword -1
-            check_excp_return_pc:
-                .dword -1
-            check_excp_expected_tval:
-                .dword -1
-            check_excp_expected_cause:
-                # 0xff is the default value. If we see 0xff, exception was not expected.
-                # So, we can go to fail
-                .dword 0xff
-            check_excp_actual_cause:
-                .dword 0xff
-            os_save_ecall_fn_epc:
-                .dword -1
-            passed_addr:
-                .dword 0x0
-            failed_addr:
-                .dword 0x0
-            machine_flags:
-                .dword 0x0
-            user_flags:
-                .dword 0x0
-            super_flags:
-                .dword 0x0
-            machine_area:
-                .dword 0x0
-            user_area:
-                .dword 0x0
-            super_area:
-                .dword 0x0
-            .section .data
+# Generate new seed
+	slli t1, t0, 21
+	xor t0, t0, t1
+	srli t1, t0, 35
+	xor t0, t0, t1
+	slli t1, t0, 4
+	xor t0, t0, t1
 
-;#init_memory @lbu_0_disable_machine_lin
-.section .lbu_0_disable_machine_lin, "ax"
-	.org 0x89
-	.word 0x5bf211e3
-;#init_memory @sb_0_disable_machine_lin
-.section .sb_0_disable_machine_lin, "ax"
-	.org 0x83
-	.word 0xd3a82c53
-;#init_memory @lhu_0_disable_machine_lin
-.section .lhu_0_disable_machine_lin, "ax"
-	.org 0x1a
-	.word 0x26293ae8
-;#init_memory @lw_0_disable_machine_lin
-.section .lw_0_disable_machine_lin, "ax"
-	.org 0x494
-	.word 0x9f7be923
-;#init_memory @lh_0_disable_machine_lin
-.section .lh_0_disable_machine_lin, "ax"
-	.org 0xc4
-	.word 0x1d6b4f2f
+# Store updated seed element for this hart
+	mv t1, a1
+	add t1, t1, t2
+	sd t0, (t1)
+
+# Obtain random number
+	mv t1, a2
+	remu t0, t0, t1
+# Ignore * elements at the beginning of the array
+#mv t1, a5
+#add t0, t0, t1
+# Offset scale is the number of bytes per element for indexing into an array
+#mv t1, a4
+#mul t0, t0, t1
+
+# Store in return register
+	mv a0, t0
+
+	ret
+
+.align 8
+schedule_seed:
+	.dword 1686326849
+schedule_setup:
+	.dword 1
+
+schedule_tests:
+# Insert CSR read randomization logic here if allowed
+	csrr t0, misa
+	csrr t0, minstret
+	csrr t0, sie
+	csrr t0, marchid
+	csrr t0, sscratch
+	csrr t0, scounteren
+	csrr t0, mstatus
+	csrr t0, sie
+
+
+	la t0, schedule_setup
+
+
+
+
+
+
+	ld t1, 0(t0)
+
+
+
+
+	sd x0, 0(t0)
+
+
+	mv t0, x0
+	bnez t1, schedule_next_test
+
+endless:
+
+
+
+# Load test pointer (all harts need to do this)
+	la t0, num_runs
+load_test_pointer:
+	lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+
+
+	lw t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+
+	li gp, 0x1
+	beqz t1, os_end_test # end program, if zero
+# Decrement num_runs and store it back
+decrement_num_runs:
+	addi t2, t1, -1
+
+
+
+# Get hartid
+
+
+	sw t2, 0(t0)
+
+
+
+scheduler:
+	mv t0, t1
+	slli t0, t0, 3
+
+
+schedule_next_test:
+# Get the pointer to the next test label
+	la t1, os_test_sequence
+	add t0, t0, t1 # t0 = current os_test_sequence pointer
+	ld t1, 0(t0)  # t1 = [os_test_sequence] (actual test label)
+
+
+# Schedule next test, t1 has the test_label
+# priv_mode: MACHINE
+
+# Need barrier here so tests don't read num_runs after hart 0 updated it
+
+
+	jr t1   # jump to t1
+# For user mode use sret to jump to test
+
+
+.align 6; .global tohost_mutex; tohost_mutex: .dword 0; # Used to protect access to tohost
+
+os_end_test:
+os_write_tohost:
+
+# each hart increments num_harts_ended so that the first one waits till all harts have finished before writing to tohost
+mark_done:
+	li t0, 1
+	li t3, num_harts_ended
+	amoadd.w x0, t0, (t3)
+
+# Try to obtain tohost_mutex
+	la a0, tohost_mutex
+	j tohost_try_lock
+
+wait_for_dismissal:
+	wfi
+	j wait_for_dismissal
+
+tohost_try_lock:
+	li t0, 1                    # Initialize swap value.
+	ld           t1, (a0)       # Check if lock is held.
+	bnez         t1,  wait_for_dismissal        # fail if held.
+	amoswap.d.aq t1, t0, (a0)   # Attempt to acquire lock.
+	bnez         t1,  wait_for_dismissal        # fail if held
+
+# obtained lock, no need to release this one since we are ending the simulation.
+	li t2, 1
+	li t1, num_hard_fails
+	li t4, 100000 # Timeout for eot waiting
+
+wait_for_others:
+	bltz t4, mark_fail # This is a timeout, other harts didn't finish
+	addi t4, t4, -1
+	lw t0, (t1)
+	bnez t0, mark_fail # Write immediately if there was a hard fail
+	lw t0, (t3)
+	bne t0, t2, wait_for_others
+
+	j load_tohost_addr
+
+mark_fail:
+	li gp, 0x3
+
+load_tohost_addr:
+	la t0, tohost
+
+write_to_tohost:
+	sw gp, 0(t0)
+
+_exit:
+	j wait_for_dismissal
+
+
+
+num_runs:
+# We need +1 below since we have cleanup as the last entry in the dtests_seq
+	.dword 14
+
+.align 8
+os_test_sequence:
+	.dword test_setup
+	.dword test_cleanup
+	.dword test11
+	.dword test13
+	.dword test3
+	.dword test9
+	.dword test6
+	.dword test12
+	.dword test5
+	.dword test1
+	.dword test8
+	.dword test4
+	.dword test10
+	.dword test7
+	.dword test2
+
+
+
+# Pseudorandom number generator between 0 and 10 using LCG algorithm
+# Seed value
+	li a0, 42       # Set initial seed value (can be any value)
+
+# LCG parameters
+	li a1, 1664525  # Multiplier
+	li a2, 1013904223  # Increment
+	li a3, 2^32     # Modulus (2^32 for a 32-bit pseudorandom number)
+
+# Generate pseudorandom number
+	mul a0, a0, a1   # a0 = a0 * multiplier
+	add a0, a0, a2  # a0 = a0 + increment
+	rem a0, a0, a3   # a0 = a0 % modulus (remainder)
+
+# Calculate pseudorandom number between 0 and 10
+	li a1, 11        # Maximum value (10 + 1)
+	rem a0, a0, a1   # a0 = a0 % maximum value
+
+	ret
+
+# The pseudorandom number between 0 and 10 will be stored in a0
+
+
+.section .os_data, "aw"
+# OS data
+check_excp_mem:
+	.dword 0x1
+check_excp_expected_pc_mem:
+	.dword -1
+check_excp_actual_pc_mem:
+	.dword -1
+check_excp_return_pc_mem:
+	.dword -1
+check_excp_expected_tval_mem:
+	.dword -1
+check_excp_actual_tval_mem:
+	.dword -1
+check_excp_expected_cause_mem:
+	.dword 0xff
+check_excp_actual_cause_mem:
+	.dword 0xff
+os_save_ecall_fn_epc_mem:
+	.dword -1
+passed_addr_mem:
+	.dword 0x0
+failed_addr_mem:
+	.dword 0x0
+machine_flags_mem:
+	.dword 0x0
+user_flags_mem:
+	.dword 0x0
+super_flags_mem:
+	.dword 0x0
+machine_area_mem:
+	.dword 0x0
+user_area_mem:
+	.dword 0x0
+super_area_mem:
+	.dword 0x0
+os_passed_addr_mem:
+	.dword 0x0
+os_failed_addr_mem:
+	.dword 0x0
+os_end_test_addr_mem:
+	.dword 0x0
+end_test_addr_mem:
+	.dword 0x0
+num_harts_ended_mem:
+	.dword 0x0
+num_hard_fails_mem:
+	.dword 0x0
+excp_ignored_count_mem:
+	.dword 0x0
+
+# HTIF is defeined at 0x7000_0000, can be used as a character device so should be read/writeable.
+.section .io_htif, "aw"
+.align 6; .global tohost; tohost: .dword 0;
+.align 6; .global fromhost; fromhost: .dword 0;
+.section .data
+
+;#init_memory @sw_0_disable_machine_lin
+.section .sw_0_disable_machine_lin, "ax"
+	.org 0x0
+	.word 0x68157945
 ;#init_memory @lb_0_disable_machine_lin
 .section .lb_0_disable_machine_lin, "ax"
-	.org 0x1e3
-	.word 0x351cace3
+	.org 0x8
+	.word 0xf9a648b5

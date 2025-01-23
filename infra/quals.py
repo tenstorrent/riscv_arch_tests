@@ -158,7 +158,7 @@ class Runner:
                 test.run()
                 if self.track_test_num:
                     print("\33[2K\r", flush=True, end="")
-                test_log = test.log.relative_to(self.repo_path) if test.result == PassFailEnum.FAILED else "N/A"
+                test_log = test.log.resolve() if test.result == PassFailEnum.FAILED else "N/A"
                 pass_fails.append(tuple([test.name, test.result.name, test_log]))
 
         if all([t[1]=="PASS" for t in pass_fails]):
@@ -249,20 +249,30 @@ class SpikeRunner(ISSRunner):
         else:
             vlen = None
 
+        misaligned_ok = True
+        if "bare_metal" in filepath.parts and "paging_bare" in filepath.parts:
+            aligned_extensions = ["rv_i", "rv_a", "rv_m", "rv_f"]           # Extensions that need to be aligned
+            if any([ext in filepath.parts for ext in aligned_extensions]):
+                misaligned_ok = False
+
+
         spike_priv =  self.spike_priv_arg(str(filepath))
         spike_isa =  self.spike_isa_arg(str(filepath))
 
         self._default_opts = [
             f"--isa={spike_isa}",
             f"--priv={spike_priv}",
-            "--misaligned",
             "--max-instrs=500000",
             "--log-commits",
-            "-l", f"{testfile}"
+            "-l",
         ]
         if vlen:
             self._default_opts.appned("--varch=vlen:{vlen},elen:64")
+        if misaligned_ok:
+            self._default_opts.append("--misaligned")
 
+
+        self._default_opts.append(f"{testfile}")
         self._tool = spike_path or self.repo_path / "spike/spike"
 
         if opts == "default":

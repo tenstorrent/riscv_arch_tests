@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xfc1e0000;
+	. = 0x83f38000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x8001000e;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,79 +509,82 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0xfe4ba000;
+	. = 0xd2056000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xfe160000;
-	 .amoand.d_0_disable_supervisor_lin : { *(.amoand.d_0_disable_supervisor_lin) } 
-
-	. = 0xfea49000;
+	. = 0x8fc6a000;
 	 .amoadd.w_0_disable_supervisor_lin : { *(.amoadd.w_0_disable_supervisor_lin) } 
 
-	. = 0xfe15f000;
-	 .amoor.d_0_disable_supervisor_lin : { *(.amoor.d_0_disable_supervisor_lin) } 
-
-	. = 0xfe1f4000;
+	. = 0x8fd0d000;
 	 .amoxor.d_0_disable_supervisor_lin : { *(.amoxor.d_0_disable_supervisor_lin) } 
 
-	. = 0xfe18e000;
-	 .lr.d_0_disable_supervisor_lin : { *(.lr.d_0_disable_supervisor_lin) } 
-
-	. = 0xfe60e000;
-	 .sc.w_0_disable_supervisor_lin : { *(.sc.w_0_disable_supervisor_lin) } 
-
-	. = 0xb6a93000;
-	 .amominu.d_0_disable_supervisor_lin : { *(.amominu.d_0_disable_supervisor_lin) } 
-
-	. = 0xfea4a000;
-	 .amomaxu.d_0_disable_supervisor_lin : { *(.amomaxu.d_0_disable_supervisor_lin) } 
-
-	. = 0xff6db000;
-	 .amomaxu.w_0_disable_supervisor_lin : { *(.amomaxu.w_0_disable_supervisor_lin) } 
-
-	. = 0xfdc84000;
-	 .amomax.d_0_disable_supervisor_lin : { *(.amomax.d_0_disable_supervisor_lin) } 
-
-	. = 0xfe18d000;
+	. = 0xd53ec000;
 	 .amoswap.w_0_disable_supervisor_lin : { *(.amoswap.w_0_disable_supervisor_lin) } 
 
-	. = 0xff88e000;
-	 .amoor.w_0_disable_supervisor_lin : { *(.amoor.w_0_disable_supervisor_lin) } 
-
-	. = 0xfe197000;
-	 .lr.w_0_disable_supervisor_lin : { *(.lr.w_0_disable_supervisor_lin) } 
-
-	. = 0xfe266000;
-	 .amoswap.d_0_disable_supervisor_lin : { *(.amoswap.d_0_disable_supervisor_lin) } 
-
-	. = 0xfe4e6000;
-	 .amominu.w_0_disable_supervisor_lin : { *(.amominu.w_0_disable_supervisor_lin) } 
-
-	. = 0xfe4bc000;
+	. = 0x8fcb4000;
 	 .sc.d_0_disable_supervisor_lin : { *(.sc.d_0_disable_supervisor_lin) } 
 
-	. = 0xfe2ec000;
-	 .amomax.w_0_disable_supervisor_lin : { *(.amomax.w_0_disable_supervisor_lin) } 
-
-	. = 0xfe166000;
+	. = 0x8fcf8000;
 	 .amomin.w_0_disable_supervisor_lin : { *(.amomin.w_0_disable_supervisor_lin) } 
 
-	. = 0xfe508000;
-	 .amoand.w_0_disable_supervisor_lin : { *(.amoand.w_0_disable_supervisor_lin) } 
+	. = 0x8fe6b000;
+	 .amomaxu.d_0_disable_supervisor_lin : { *(.amomaxu.d_0_disable_supervisor_lin) } 
 
-	. = 0xfe163000;
+	. = 0x83f3a000;
+	 .amomax.d_0_disable_supervisor_lin : { *(.amomax.d_0_disable_supervisor_lin) } 
+
+	. = 0x8fe12000;
+	 .amominu.w_0_disable_supervisor_lin : { *(.amominu.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fd75000;
+	 .lr.d_0_disable_supervisor_lin : { *(.lr.d_0_disable_supervisor_lin) } 
+
+	. = 0x8fd01000;
+	 .lr.w_0_disable_supervisor_lin : { *(.lr.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fe74000;
+	 .amoor.w_0_disable_supervisor_lin : { *(.amoor.w_0_disable_supervisor_lin) } 
+
+	. = 0x9f1e8000;
+	 .amomin.d_0_disable_supervisor_lin : { *(.amomin.d_0_disable_supervisor_lin) } 
+
+	. = 0x8fd57000;
 	 .amoadd.d_0_disable_supervisor_lin : { *(.amoadd.d_0_disable_supervisor_lin) } 
 
-	. = 0xfe161000;
+	. = 0x8fdd8000;
+	 .amomaxu.w_0_disable_supervisor_lin : { *(.amomaxu.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fec2000;
+	 .amoand.d_0_disable_supervisor_lin : { *(.amoand.d_0_disable_supervisor_lin) } 
+
+	. = 0x8fcf0000;
+	 .amoand.w_0_disable_supervisor_lin : { *(.amoand.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fd07000;
 	 .amoxor.w_0_disable_supervisor_lin : { *(.amoxor.w_0_disable_supervisor_lin) } 
 
-	. = 0xfd402000;
-	 .amomin.d_0_disable_supervisor_lin : { *(.amomin.d_0_disable_supervisor_lin) } 
+	. = 0x8fcff000;
+	 .amoor.d_0_disable_supervisor_lin : { *(.amoor.d_0_disable_supervisor_lin) } 
+
+	. = 0x8f2f3000;
+	 .amominu.d_0_disable_supervisor_lin : { *(.amominu.d_0_disable_supervisor_lin) } 
+
+	. = 0x8fe37000;
+	 .amomax.w_0_disable_supervisor_lin : { *(.amomax.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fe38000;
+	 .sc.w_0_disable_supervisor_lin : { *(.sc.w_0_disable_supervisor_lin) } 
+
+	. = 0x8fd12000;
+	 .amoswap.d_0_disable_supervisor_lin : { *(.amoswap.d_0_disable_supervisor_lin) } 
 
 }

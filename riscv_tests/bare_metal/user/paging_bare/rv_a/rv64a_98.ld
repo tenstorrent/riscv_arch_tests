@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xa9a44000;
+	. = 0xc5f8e000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x8001011c;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,79 +509,82 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0x95712000;
+	. = 0x853dc000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xa07e1000;
-	 .amomax.w_0_disable_user_lin : { *(.amomax.w_0_disable_user_lin) } 
-
-	. = 0x93009000;
-	 .amoxor.d_0_disable_user_lin : { *(.amoxor.d_0_disable_user_lin) } 
-
-	. = 0xb2347000;
-	 .amominu.w_0_disable_user_lin : { *(.amominu.w_0_disable_user_lin) } 
-
-	. = 0x939c8000;
-	 .amoor.d_0_disable_user_lin : { *(.amoor.d_0_disable_user_lin) } 
-
-	. = 0x931aa000;
-	 .amoand.d_0_disable_user_lin : { *(.amoand.d_0_disable_user_lin) } 
-
-	. = 0x968d9000;
-	 .lr.w_0_disable_user_lin : { *(.lr.w_0_disable_user_lin) } 
-
-	. = 0x95391000;
-	 .amomin.w_0_disable_user_lin : { *(.amomin.w_0_disable_user_lin) } 
-
-	. = 0xb1961000;
-	 .amominu.d_0_disable_user_lin : { *(.amominu.d_0_disable_user_lin) } 
-
-	. = 0xa7860000;
-	 .sc.w_0_disable_user_lin : { *(.sc.w_0_disable_user_lin) } 
-
-	. = 0xb21ae000;
-	 .amoadd.d_0_disable_user_lin : { *(.amoadd.d_0_disable_user_lin) } 
-
-	. = 0xa1157000;
-	 .lr.d_0_disable_user_lin : { *(.lr.d_0_disable_user_lin) } 
-
-	. = 0x959cf000;
-	 .amomaxu.w_0_disable_user_lin : { *(.amomaxu.w_0_disable_user_lin) } 
-
-	. = 0xc332e000;
-	 .sc.d_0_disable_user_lin : { *(.sc.d_0_disable_user_lin) } 
-
-	. = 0xa0c27000;
+	. = 0xcdc0e000;
 	 .amoadd.w_0_disable_user_lin : { *(.amoadd.w_0_disable_user_lin) } 
 
-	. = 0xa6636000;
-	 .amoand.w_0_disable_user_lin : { *(.amoand.w_0_disable_user_lin) } 
-
-	. = 0xa0877000;
-	 .amoswap.d_0_disable_user_lin : { *(.amoswap.d_0_disable_user_lin) } 
-
-	. = 0xa0e33000;
-	 .amoxor.w_0_disable_user_lin : { *(.amoxor.w_0_disable_user_lin) } 
-
-	. = 0x95ed1000;
-	 .amomax.d_0_disable_user_lin : { *(.amomax.d_0_disable_user_lin) } 
-
-	. = 0xb1edf000;
+	. = 0xd9579000;
 	 .amoor.w_0_disable_user_lin : { *(.amoor.w_0_disable_user_lin) } 
 
-	. = 0xc2c4c000;
-	 .amomaxu.d_0_disable_user_lin : { *(.amomaxu.d_0_disable_user_lin) } 
+	. = 0x8c2cd000;
+	 .sc.d_0_disable_user_lin : { *(.sc.d_0_disable_user_lin) } 
 
-	. = 0x98a93000;
+	. = 0xc332e000;
+	 .lr.d_0_disable_user_lin : { *(.lr.d_0_disable_user_lin) } 
+
+	. = 0x8ba06000;
+	 .amoand.w_0_disable_user_lin : { *(.amoand.w_0_disable_user_lin) } 
+
+	. = 0x8098d000;
+	 .amominu.d_0_disable_user_lin : { *(.amominu.d_0_disable_user_lin) } 
+
+	. = 0xa510b000;
+	 .amoswap.d_0_disable_user_lin : { *(.amoswap.d_0_disable_user_lin) } 
+
+	. = 0xcceca000;
+	 .amoor.d_0_disable_user_lin : { *(.amoor.d_0_disable_user_lin) } 
+
+	. = 0x8dfd0000;
+	 .amomaxu.w_0_disable_user_lin : { *(.amomaxu.w_0_disable_user_lin) } 
+
+	. = 0x90147000;
+	 .amoxor.w_0_disable_user_lin : { *(.amoxor.w_0_disable_user_lin) } 
+
+	. = 0x80138000;
+	 .amoswap.w_0_disable_user_lin : { *(.amoswap.w_0_disable_user_lin) } 
+
+	. = 0x8de77000;
+	 .lr.w_0_disable_user_lin : { *(.lr.w_0_disable_user_lin) } 
+
+	. = 0xa0394000;
+	 .amoand.d_0_disable_user_lin : { *(.amoand.d_0_disable_user_lin) } 
+
+	. = 0xfd843000;
+	 .amoxor.d_0_disable_user_lin : { *(.amoxor.d_0_disable_user_lin) } 
+
+	. = 0x8cc44000;
+	 .amomax.d_0_disable_user_lin : { *(.amomax.d_0_disable_user_lin) } 
+
+	. = 0xa2b5d000;
+	 .sc.w_0_disable_user_lin : { *(.sc.w_0_disable_user_lin) } 
+
+	. = 0x8ffff000;
 	 .amomin.d_0_disable_user_lin : { *(.amomin.d_0_disable_user_lin) } 
 
-	. = 0xc321d000;
-	 .amoswap.w_0_disable_user_lin : { *(.amoswap.w_0_disable_user_lin) } 
+	. = 0x8cc45000;
+	 .amomaxu.d_0_disable_user_lin : { *(.amomaxu.d_0_disable_user_lin) } 
+
+	. = 0xb1a92000;
+	 .amomax.w_0_disable_user_lin : { *(.amomax.w_0_disable_user_lin) } 
+
+	. = 0xe7d9f000;
+	 .amominu.w_0_disable_user_lin : { *(.amominu.w_0_disable_user_lin) } 
+
+	. = 0xc49ee000;
+	 .amoadd.d_0_disable_user_lin : { *(.amoadd.d_0_disable_user_lin) } 
+
+	. = 0x8eac9000;
+	 .amomin.w_0_disable_user_lin : { *(.amomin.w_0_disable_user_lin) } 
 
 }

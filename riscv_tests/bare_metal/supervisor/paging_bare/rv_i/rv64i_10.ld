@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xbbab6000;
+	. = 0x953e4000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x800100d2;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,37 +509,43 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0xe77e2000;
+	. = 0xdce56000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0xac0b1000;
-	 .sw_0_disable_supervisor_lin : { *(.sw_0_disable_supervisor_lin) } 
-
-	. = 0xe77e1000;
-	 .lw_0_disable_supervisor_lin : { *(.lw_0_disable_supervisor_lin) } 
-
-	. = 0x9cce5000;
+	. = 0x92c4b000;
 	 .lbu_0_disable_supervisor_lin : { *(.lbu_0_disable_supervisor_lin) } 
 
-	. = 0xeaa54000;
-	 .lh_0_disable_supervisor_lin : { *(.lh_0_disable_supervisor_lin) } 
-
-	. = 0x87490000;
-	 .sb_0_disable_supervisor_lin : { *(.sb_0_disable_supervisor_lin) } 
-
-	. = 0xf5659000;
+	. = 0x90302000;
 	 .sd_0_disable_supervisor_lin : { *(.sd_0_disable_supervisor_lin) } 
 
-	. = 0xeb0c2000;
-	 .lhu_0_disable_supervisor_lin : { *(.lhu_0_disable_supervisor_lin) } 
+	. = 0x8db94000;
+	 .ld_0_disable_supervisor_lin : { *(.ld_0_disable_supervisor_lin) } 
 
-	. = 0xeaa76000;
+	. = 0x907f7000;
 	 .lb_0_disable_supervisor_lin : { *(.lb_0_disable_supervisor_lin) } 
+
+	. = 0x92245000;
+	 .sw_0_disable_supervisor_lin : { *(.sw_0_disable_supervisor_lin) } 
+
+	. = 0x8e31a000;
+	 .sh_0_disable_supervisor_lin : { *(.sh_0_disable_supervisor_lin) } 
+
+	. = 0xeed22000;
+	 .lh_0_disable_supervisor_lin : { *(.lh_0_disable_supervisor_lin) } 
+
+	. = 0x94312000;
+	 .lwu_0_disable_supervisor_lin : { *(.lwu_0_disable_supervisor_lin) } 
+
+	. = 0x92d74000;
+	 .sb_0_disable_supervisor_lin : { *(.sb_0_disable_supervisor_lin) } 
 
 }

@@ -2,7 +2,7 @@ OUTPUT_ARCH("riscv")
 ENTRY(_start)
 SECTIONS
 {
-	. = 0xa2954000;
+	. = 0xa38ba000;
 	 .data : { *(.data) } 
 
 	. = 0x80000000;
@@ -53,7 +53,7 @@ SECTIONS
 	. = 0x8000f000;
 	 .__section__text_15 : { *(.__section__text_15) } 
 
-	. = 0x80010062;
+	. = 0x80010000;
 	 .code : { *(.code) } 
 
 	. = 0x80011000;
@@ -509,43 +509,40 @@ SECTIONS
 	. = 0x800a7000;
 	 .code_machine_7 : { *(.code_machine_7) } 
 
-	. = 0x8f2e6000;
+	. = 0xc002e000;
 	 .os_data : { *(.os_data) } 
 
-	. = 0x55d4a80;
+	. = 0x90000000;
+	 .os_stack_end : { *(.os_stack_end) } 
+
+	. = 0x90001000;
 	 .os_stack : { *(.os_stack) } 
 
-	. = 0x55d5a80;
-	 .__section__os_stack_1 : { *(.__section__os_stack_1) } 
+	. = 0x70000000;
+	 .io_htif : { *(.io_htif) } 
 
-	. = 0x8ea82000;
-	 .sh_0_disable_supervisor_lin : { *(.sh_0_disable_supervisor_lin) } 
-
-	. = 0x9868e000;
-	 .sw_0_disable_supervisor_lin : { *(.sw_0_disable_supervisor_lin) } 
-
-	. = 0x8f2e5000;
-	 .sd_0_disable_supervisor_lin : { *(.sd_0_disable_supervisor_lin) } 
-
-	. = 0x9ff89000;
-	 .lb_0_disable_supervisor_lin : { *(.lb_0_disable_supervisor_lin) } 
-
-	. = 0xa1f0e000;
-	 .lwu_0_disable_supervisor_lin : { *(.lwu_0_disable_supervisor_lin) } 
-
-	. = 0xcd803000;
-	 .lh_0_disable_supervisor_lin : { *(.lh_0_disable_supervisor_lin) } 
-
-	. = 0xf16f5000;
-	 .lhu_0_disable_supervisor_lin : { *(.lhu_0_disable_supervisor_lin) } 
-
-	. = 0x921eb000;
-	 .lw_0_disable_supervisor_lin : { *(.lw_0_disable_supervisor_lin) } 
-
-	. = 0xa12b7000;
+	. = 0x827d6000;
 	 .sb_0_disable_supervisor_lin : { *(.sb_0_disable_supervisor_lin) } 
 
-	. = 0xa002a000;
-	 .lbu_0_disable_supervisor_lin : { *(.lbu_0_disable_supervisor_lin) } 
+	. = 0xb1394000;
+	 .lwu_0_disable_supervisor_lin : { *(.lwu_0_disable_supervisor_lin) } 
+
+	. = 0xadc3f000;
+	 .sd_0_disable_supervisor_lin : { *(.sd_0_disable_supervisor_lin) } 
+
+	. = 0x822d9000;
+	 .lb_0_disable_supervisor_lin : { *(.lb_0_disable_supervisor_lin) } 
+
+	. = 0x82660000;
+	 .lh_0_disable_supervisor_lin : { *(.lh_0_disable_supervisor_lin) } 
+
+	. = 0xaf14c000;
+	 .sw_0_disable_supervisor_lin : { *(.sw_0_disable_supervisor_lin) } 
+
+	. = 0x8ffff000;
+	 .lhu_0_disable_supervisor_lin : { *(.lhu_0_disable_supervisor_lin) } 
+
+	. = 0xae630000;
+	 .ld_0_disable_supervisor_lin : { *(.ld_0_disable_supervisor_lin) } 
 
 }
