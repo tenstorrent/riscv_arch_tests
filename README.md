@@ -94,13 +94,13 @@ Here the code in the `<test1>` label is setting the 64-bit operand for the `ANDI
 1. Clone repository and git init submodules (`git submodule update --init --recursive`)
 2. Build `whisper`, steps are [here](https://github.com/tenstorrent/whisper#compiling-whisper)
 3. Build `spike`, steps are [here](https://github.com/tenstorrent/spike#build-steps)
-4. cd to riscv_tests directory
-5. Type the command to run a single test list. The log file is printed to `riscv_tests/log`:\
-    `../infra/quals.py --quals_file <quals_file> --iss <whisper/spike> --vlen <128/256>`
+4. Type the command to run a pre-compiled (available in the release section) single test list. The log file is printed to `riscv_tests/log`:\
+    `./infra/quals.py --pre-compiled --quals_file <quals_file> --iss <whisper/spike> --vlen <128/256>`
+    - `--pre-compiled` is optional. If you want to compile the tests yourself and run them, then remove this flag. The compiled tests are created under the `riscv_tests/log/build` directory. In the `quals_file`, for the selected tests, you can also pass `cflags=""` to pass custom cflags for the test.
     - `--quals_file` is mandatory.
     - If running an rvv test, specify the `vlen` (128 or 256) in the command line appropriately for the test list. `vlen` is 256 by default when the argument is not provided.
     - One type of `iss` needs to be specified in either the command line or in the quals file. The `iss` in command line has a higher priority and will overwrite the `iss` tool in the quals file.
-6. (optional) Run all tests with both whisper and spike:\
+5. (optional) Run all tests with both whisper and spike:\
     `./test_all.bash`
 
 ## Debugging test failures
