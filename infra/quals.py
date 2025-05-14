@@ -51,6 +51,8 @@ class Runner:
         spike_path,
         repo_path,
         output_directory,
+        pre_compiled,
+        test_build_directory=None,
         log_directory=None,
         track_test_num=False,
         sample=1.0,
@@ -65,12 +67,17 @@ class Runner:
         self.spike_path         = spike_path
         self.repo_path          = repo_path
         self.output_directory   = output_directory
+        self.is_precompiled     = pre_compiled
         self.track_test_num     = track_test_num
         self.sample             = sample            # Perecent of tests to run in .list
 
         self.log_directory      = log_directory if log_directory is not None else self.repo_path / "riscv_tests/log"
         if not self.log_directory.exists():
             self.log_directory.mkdir()
+
+        self.test_build_directory = test_build_directory if test_build_directory is not None else self.repo_path / "riscv_tests/log/build"
+        if not self.test_build_directory.exists() and not self.is_precompiled:
+            self.test_build_directory.mkdir()
 
         self.parse_qual_list(quals_file)
 
@@ -90,6 +97,7 @@ class Runner:
             for line in qual_list:
                 name = ""
                 seed = ""
+                cflags = ""
                 if not line.startswith('#') and line.strip():
                     args = shlex.split(line)
                     for arg in args:
@@ -105,6 +113,9 @@ class Runner:
                                 seed = str(random.getrandbits(32))
                                 if self.iss==None and tool not in ['whisper'] and tool not in ['spike']:
                                         opts = f'{opts} --seed {seed}'
+                        if 'cflags' in arg:
+                            cflags = shlex.split(arg.split("=", 1)[1])
+
                     if name == "":
                         name = f'TEST{self.test_num}'
                         self.test_num += 1
@@ -117,16 +128,23 @@ class Runner:
 
                     test = QualTest(name)
 
+                    #Compile the Test only if the pre-compiled flag not passed.
+                    if not self.is_precompiled:
+                        if len(cflags) == 0:
+                            TestCompiler(testfile, build_dir=self.test_build_directory)
+                        else:
+                            TestCompiler(testfile, cflags=cflags, build_dir=self.test_build_directory)
+
                     # command line argument has higher priority
                     if self.iss == "whisper":
-                        test.runner = WhisperRunner(testfile, opts,  self.whisper_path, repo_path=self.repo_path, log_directory=self.log_directory)
+                        test.runner = WhisperRunner(testfile, opts,  self.whisper_path, repo_path=self.repo_path, log_directory=self.log_directory, is_precompiled=self.is_precompiled)
                     elif self.iss == "spike":
-                        test.runner = SpikeRunner(testfile, opts, self.spike_path, repo_path=self.repo_path, log_directory=self.log_directory)
+                        test.runner = SpikeRunner(testfile, opts, self.spike_path, repo_path=self.repo_path, log_directory=self.log_directory, is_precompiled=self.is_precompiled)
 
                     elif tool == "whisper":
-                        test.runner = WhisperRunner(testfile, opts, self.whisper_path, repo_path=self.repo_path, log_directory=self.log_directory)
+                        test.runner = WhisperRunner(testfile, opts, self.whisper_path, repo_path=self.repo_path, log_directory=self.log_directory, is_precompiled=self.is_precompiled)
                     elif tool == "spike":
-                        test.runner = SpikeRunner(testfile, opts, self.spike_path, repo_path=self.repo_path, log_directory=self.log_directory)
+                        test.runner = SpikeRunner(testfile, opts, self.spike_path, repo_path=self.repo_path, log_directory=self.log_directory, is_precompiled=self.is_precompiled)
                     else:
                         sys.exit("Tool Unknown")
                     self._tests.append(test)
@@ -178,6 +196,40 @@ class Runner:
                 return PassFailEnum.FAILED
         return PassFailEnum.PASS
 
+class TestCompiler():
+    def __init__(self, testfile, build_dir, cflags=None):
+        # Configurable paths and options
+        self.RISCV_GCC = "riscv64-unknown-elf-gcc"
+        self._default_cflags = ["-march=rv64gcv_zba_zbb_zbc_zbs", "-mabi=lp64", "-Wall", "-Werror", "-O2", "-nostartfiles"]
+        self.asm_file = Path(f'{testfile}.S')
+        self.ld_file = Path(f'{testfile}.ld')
+        if Path(f'{str(build_dir)}/{str(testfile.name)}').exists():
+            print(f"Skipping Compilation for : {self.asm_file}")
+            return
+
+        if not build_dir.exists():
+            raise Exception("Build Directory does not Exists!")
+
+        # Check if matching .ld file exists
+        if not self.ld_file.exists():
+            print(f"Warning: Skipping {self.asm_file} because {self.ld_file} does not exist.")
+
+        #selection of cflags option
+        if cflags is None:
+            self.CFLAGS = self._default_cflags
+        else:
+            self.CFLAGS = cflags
+
+        # Build command
+        cmd = [self.RISCV_GCC, *self.CFLAGS, "-T", str(self.ld_file), "-o", f'{str(build_dir)}/{str(testfile.name)}', str(self.asm_file)]
+        print(f"Compiling: {self.asm_file}")
+
+        try:
+            subprocess.run(cmd, check=True)
+
+        except subprocess.CalledProcessError as e:
+            print(f"Compilation failed for {self.asm_file}: {e}")
+
 class ISSRunner(Runner):
     def run(self):
         with open(self.log, "w") as f:
@@ -191,11 +243,12 @@ class ISSRunner(Runner):
         return PassFailEnum.PASS
 
 class WhisperRunner(ISSRunner):
-    def __init__(self, testfile, opts,  whisper_path=None, log_directory=None, repo_path=None):
+    def __init__(self, testfile, opts,  whisper_path=None, log_directory=None, repo_path=None, is_precompiled=False):
         filepath                = testfile.resolve()
         test_base               = testfile.name
         self.testname           = testfile.stem
         self.log_directory      = log_directory
+        self.is_precompiled     = is_precompiled
 
         self.repo_path  = repo_path
         self.log        = self.log_directory / f"{self.testname}_whisper.stdout.log"
@@ -227,16 +280,21 @@ class WhisperRunner(ISSRunner):
         else:
             self._opts = opts
 
-        self._testfile = testfile
+        if self.is_precompiled:
+            self._testfile = testfile
+        else:
+            self._testfile = f'{self.log_directory}/build/{testfile.name}'
+
         self.run_cmd = f'{self._tool} {self._testfile} {self._opts}'
 
 
 class SpikeRunner(ISSRunner):
-    def __init__(self, testfile, opts,  spike_path=None, log_directory=None, repo_path=None):
+    def __init__(self, testfile, opts,  spike_path=None, log_directory=None, repo_path=None, is_precompiled=False):
         filepath            = testfile.resolve()
         test_base           = testfile.name
         self.testname       = testfile.stem
         self.log_directory  = log_directory
+        self.is_precompiled     = is_precompiled
 
         self.repo_path  = repo_path
         self.log        = self.log_directory / f"{self.testname}_spike.log"
@@ -267,12 +325,16 @@ class SpikeRunner(ISSRunner):
             "-l",
         ]
         if vlen:
-            self._default_opts.appned("--varch=vlen:{vlen},elen:64")
+            self._default_opts.append("--varch=vlen:{vlen},elen:64")
         if misaligned_ok:
             self._default_opts.append("--misaligned")
 
 
-        self._default_opts.append(f"{testfile}")
+        if self.is_precompiled:
+            self._default_opts.append(f"{testfile}")
+        else:
+            self._default_opts.append(f'{self.log_directory}/build/{testfile.name}')
+
         self._tool = spike_path or self.repo_path / "spike/spike"
 
         if opts == "default":
@@ -339,10 +401,14 @@ if __name__ == "__main__":
                     (Note: this will overwrite the \"tool\" \
                     option in the quals file)'
     )
-    parser.add_argument("--whisper_path", default=Path("/usr/bin/whisper"), type=Path, help="Path to whisper tool; Defaults to bin install in container")
-    parser.add_argument("--spike_path", default=Path("/usr/bin/spike"), type=Path, help="Path to spike tool; Defaults to bin install in container")
+    parser.add_argument("--whisper_path", default=Path("whisper"), type=Path, help="Path to whisper tool; Defaults to bin install in container")
+    parser.add_argument("--spike_path", default=Path("spike"), type=Path, help="Path to spike tool; Defaults to bin install in container")
     parser.add_argument("--repo_path", default=Path(__file__).parents[1], type=Path, help="Path to top of repository")
     parser.add_argument("--track_test_num", default=False, action="store_true", help="Prints number of test currently running on screen")
+    parser.add_argument('--pre-compiled',
+        action='store_true',
+        help='If set, will skip the compilation step and expect the pre-compiled binaries.'
+    )
 
     args                = parser.parse_args()
 
