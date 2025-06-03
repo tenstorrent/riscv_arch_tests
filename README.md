@@ -94,6 +94,14 @@ Here the code in the `<test1>` label is setting the 64-bit operand for the `ANDI
 1. Clone repository and git init submodules (`git submodule update --init --recursive`)
 2. Build `whisper`, steps are [here](https://github.com/tenstorrent/whisper#compiling-whisper)
 3. Build `spike`, steps are [here](https://github.com/tenstorrent/spike#build-steps)
+We are building with some additional custom opts, after running `git submodule init && git submodule update`:
+```sh
+cd spike
+./configure --enable-tt-stop-if-tohost-nonzero --enable-tt-table-walk-debug --enable-tt-expanded-dram-address-range --enable-dual-endian --with-isa=RV64IMAFDCV_ZBA_ZBB_ZBC_ZBS --with-priv=MSU
+make -j 8
+make install
+```
+
 4. Type the command to run a pre-compiled (available in the release section) single test list. The log file is printed to `riscv_tests/log`:\
     `./infra/quals.py --pre-compiled --quals_file <quals_file> --iss <whisper/spike> --vlen <128/256>`
     - `--pre-compiled` is optional. If you want to compile the tests yourself and run them, then remove this flag. The compiled tests are created under the `riscv_tests/log/build` directory. In the `quals_file`, for the selected tests, you can also pass `cflags=""` to pass custom cflags for the test.
